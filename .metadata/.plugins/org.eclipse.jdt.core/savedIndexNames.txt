@@ -6,6 +6,7 @@ INDEX VERSION 1.126+D:\Dokumenter\Skole\Programutvikling\Prosjektoppgave\.metada
 3140045379.index
 529437705.index
 4050959524.index
+1047318574.index
 1962638457.index
 3291799386.index
 848959954.index
