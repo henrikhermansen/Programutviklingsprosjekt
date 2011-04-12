@@ -6,7 +6,7 @@ import java.awt.EventQueue;
  * @author Gruppe 3
  *
  */
-public class runMetrodata {
+public class RunMetrodata {
 
 	/**
 	 * Starter hovedtråd og oppretter hovedvinduet
