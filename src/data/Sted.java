@@ -3,8 +3,9 @@ package data;
 import java.io.Serializable;
 
 /**
- * @author Gruppe 3
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 
 public class Sted implements Serializable
@@ -75,16 +76,28 @@ public class Sted implements Serializable
 		return fylke;
 	}
 	
+	/**
+	 * Returnerer datoliste-objektet
+	 * @return	datoliste
+	 */
 	public Datoliste getDatoliste()
 	{
 		return datoliste;
 	}
 	
+	/**
+	 * Endrer navnet på stedet
+	 * @param n	Navn
+	 */
 	public void setNavn(String n)
 	{
 		navn = n;
 	}
 	
+	/**
+	 * Endrer fylkesnummeret
+	 * @param f	fylkesnummer (SSB)
+	 */
 	public void setFylke(int f)
 	{
 		fylke = f;

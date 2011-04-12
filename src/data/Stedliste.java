@@ -11,6 +11,9 @@ import java.util.*;
 public class Stedliste implements Serializable
 {
 	private static final long serialVersionUID = 4783661286758461364L;
+	/**
+	 * Arrayliste som inneholder stedene
+	 */
 	private ArrayList<Sted> liste = new ArrayList<Sted>();
 	
 	/**
@@ -34,7 +37,7 @@ public class Stedliste implements Serializable
 	/**
 	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
-	 * @return Et sted-objekt hvis det finnes, ellers null
+	 * @return	Et sted-objekt hvis det finnes, ellers null
 	 */
 	public Sted finnSted(String navn)
 	{
@@ -48,7 +51,7 @@ public class Stedliste implements Serializable
 	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
 	 * @param fylke	Fylket stedet ligger i (SSBs fylkesnummer)
-	 * @return Et sted-objekt hvis det finnes, ellers null
+	 * @return	Et sted-objekt hvis det finnes, ellers null
 	 */
 	public Sted finnSted(String navn, int fylke)
 	{
@@ -60,7 +63,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Sletter et sted og alle dets data fra listen (Alle værdata går også tapt)
-	 * @param s Sted-objekt
+	 * @param s	Sted-objekt
 	 */
 	public void slettSted(Sted s)
 	{
