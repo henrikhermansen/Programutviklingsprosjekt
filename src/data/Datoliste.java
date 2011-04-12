@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 
 import logic.Datosammenligner;
 
@@ -36,5 +37,37 @@ public class Datoliste implements Serializable
 	public void sorter()
 	{
 		Collections.sort(liste,new Datosammenligner());
+	}
+	
+	// Søke/finnemetoder
+	public Dato finnDato(int år,int måned,int dag)
+	{
+		GregorianCalendar gc=new GregorianCalendar(år,måned,dag);
+		return finnDato(gc);
+	}
+	
+	public Dato finnDato(GregorianCalendar gc)
+	{
+		Dato dato=new Dato(gc);
+		int index=Collections.binarySearch(liste, dato, new Datosammenligner());
+		if(index<0)
+			return null;
+		return liste.get(index);
+	}
+	
+	public Dato[] finnDatoer(int år)
+	{
+	    String personer = "";
+	    Iterator<Dato> iterator = liste.iterator();
+	    while ( iterator.hasNext() )
+	    {
+	      personer += iterator.next().toString() + "\n";
+	    }
+	    return personer;
+	}
+	
+	public Dato[] finnDatoer(int år, int måned)
+	{
+		
 	}
 }

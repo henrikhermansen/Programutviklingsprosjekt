@@ -31,8 +31,7 @@ public class Dato implements Serializable
 	 */
 	public Dato(int dag, int måned, int år)
 	{
-		this.dato=new GregorianCalendar();
-		this.dato.set(år,måned,dag);
+		this.dato=new GregorianCalendar(år,måned,dag);
 	}
 	
 	/**
@@ -109,6 +108,15 @@ public class Dato implements Serializable
 	public int getMaxTemp()
 	{
 		return this.maxTemp;
+	}
+	
+	/**
+	 * Get-metode for gjennomsnittstemperatur denne dagen.
+	 * @return	gjennomsnittstemperatur denne dagen.
+	 */
+	public int getAvgTemp()
+	{
+		return (this.minTemp+this.maxTemp)/2;
 	}
 	
 	/**

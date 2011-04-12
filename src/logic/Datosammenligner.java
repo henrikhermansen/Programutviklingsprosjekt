@@ -24,5 +24,4 @@ public class Datosammenligner implements Comparator<Dato>, Serializable
 	public int compare(Dato nå, Dato da) {
 		return nå.getDato().compareTo(da.getDato());
 	}
-
 }
