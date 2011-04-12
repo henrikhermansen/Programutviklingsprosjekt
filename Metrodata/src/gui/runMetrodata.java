@@ -1,20 +1,25 @@
-/**
- * 
- */
 package gui;
 
+import java.awt.EventQueue;
+
 /**
- * @author Eier
+ * @author Gruppe 3
  *
  */
 public class runMetrodata {
 
 	/**
+	 * Starter hovedtråd og oppretter hovedvinduet
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable() {
+												@Override
+												public void run()
+												{
+													new Metrovindu();
+												}
+											});
 	}
-
 }
