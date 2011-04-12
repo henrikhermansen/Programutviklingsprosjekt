@@ -67,7 +67,7 @@ public class Metrovindu extends JFrame implements Serializable
 		sidemeny.add(new JButton("Værdata for dato"));
 		
 		c.add(sidemeny, BorderLayout.LINE_START);
-		c.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på", JLabel.CENTER), BorderLayout.CENTER);
+		c.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER), BorderLayout.CENTER);
 		setJMenuBar(menylinje);
 		setVisible(true);
 		setSize(800,600);
