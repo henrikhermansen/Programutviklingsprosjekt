@@ -12,12 +12,23 @@ import java.awt.event.*;
  */
 public class StedRegPanel
 {
+	/**
+	 * panel - Det ytterste panelet som refereres/sendes til i hovedvinduet
+	 * navn - inputfelt for stedsnavn
+	 * fylke - listeboks med fylkene
+	 * regSted - knapp for å registrere
+	 * sl - refererer til klassen Stedsliste og brukes til aksessere Stedslistes metoder
+	 */
 	private JPanel panel;
 	private JTextField navn;
 	private JComboBox fylke;
 	JButton regSted;
 	Stedliste sl;
 	
+	/**
+	 * 
+	 * @param mv	
+	 */
 	public StedRegPanel(Metrovindu mv)
 	{
 		sl = new Stedliste();

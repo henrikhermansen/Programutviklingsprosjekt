@@ -6,8 +6,9 @@ import java.io.*;
 import javax.swing.*;
 
 /**
- * @author Gruppe 3
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 public class Metrovindu extends JFrame implements Serializable
 {
@@ -93,6 +94,7 @@ public class Metrovindu extends JFrame implements Serializable
 		setJMenuBar(menylinje);
 		setVisible(true);
 		setSize(800,600);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fjernes etterhvert
 	}
 	
