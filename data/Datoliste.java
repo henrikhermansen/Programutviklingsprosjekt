@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 
-import logic.Datosammenligner;
 
 /**
  *	@author		Gruppe 3

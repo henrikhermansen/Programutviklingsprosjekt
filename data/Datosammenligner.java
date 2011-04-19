@@ -1,10 +1,9 @@
-package logic;
+package data;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 
-import data.Dato;
 
 /**
  *	@author		Gruppe 3
