@@ -13,11 +13,35 @@ import javax.swing.*;
 public class Metrovindu extends JFrame implements Serializable
 {
 	private static final long serialVersionUID = 7406892436505608180L;
+	
+	/**
+	 * Knapper for å registrere sted, registrere data, finne sted og finne data.
+	 */
 	private JButton regSted, regData, finnSted, finnData;
+	
+	/**
+	 * Oppretter panelet som er til høyre i hovedvindu.
+	 */
 	private JPanel hovedpanel;
+	
+	/**
+	 * Container c er containeren som holder på vindusobjektet.
+	 */
 	private Container c;
+	
+	/**
+	 * Metrovindu er en referanse til seg selv som kan brukes av andre objekter.
+	 */
 	private Metrovindu mv = this;
 	
+	/**
+	 * Hovedvinduet blir opprettet.
+	 * UIManager.setLookAndFeel setter utseende på knapper etc lik windows utseende.
+	 * Hovedvinduet bygges opp med menybar i toppen felt for "fil", "registrer","statistikk"
+	 * og "hjelp".
+	 * Menyen på venstre side i hovedvinduet blir opprettet samt plassen til panelvinduet 
+	 * på venstre siden.
+	 */
 	public Metrovindu()
 	{
 		super("Meteorologiske data");
@@ -98,6 +122,9 @@ public class Metrovindu extends JFrame implements Serializable
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fjernes etterhvert
 	}
 	
+	/**
+	 * Oppdaterer og setter hovedpanel/vindu til høyre.
+	 */
 	public void settHovedPanel()
 	{
 		c.remove(1);
@@ -106,6 +133,12 @@ public class Metrovindu extends JFrame implements Serializable
 		c.repaint();
 	}
 	
+	/**
+	 * Privat lytteklasse av typen ActionListener for menyknappene 
+	 * til venstre i hovedvinduet.
+	 * @author bOa
+	 *
+	 */
 	private class MenyKnappelytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
