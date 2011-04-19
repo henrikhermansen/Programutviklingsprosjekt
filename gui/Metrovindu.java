@@ -105,7 +105,7 @@ public class Metrovindu extends JFrame implements Serializable
 		{
 			if(e.getSource() == regSted)
 			{
-				c.remove(hovedpanel);
+				c.remove(1);
 				StedRegPanel p = new StedRegPanel(mv);
 				c.add(p.getPanel(), BorderLayout.CENTER);
 				c.validate();
