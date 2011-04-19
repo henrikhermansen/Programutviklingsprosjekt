@@ -14,31 +14,32 @@ public class Sted implements Serializable
 	/**
 	 * Fylkene er gitt int-konstanter
 	 */
-	public static final int ØSTFOLD = 0,
-							AKERSHUS = 1,
-							OSLO = 2,
-							HEDMARK = 3,
-							OPPLAND = 4,
-							BUSKERUD = 5,
-							VESTFOLD = 6,
-							TELEMARK = 7,
-							AUST_AGDER = 8,
-							VEST_AGDER = 9,
-							ROGALAND = 10,
-							HORDALAND = 11,
+	public static final int AKERSHUS = 0,
+							AUST_AGDER = 1,
+							BUSKERUD = 2,
+							FINNMARK = 3,
+							HEDMARK = 4,
+							HORDALAND = 5,
+							MØRE_OG_ROMSDAL = 6,
+							NORD_TRØNDELAG = 7,
+							NORDLAND = 8,
+							OPPLAND = 9,
+							OSLO = 10,
+							ROGALAND = 11,
 							SOGN_OG_FJORDANE = 12,
-							MØRE_OG_ROMSDAL = 13,
-							SØR_TRØNDELAG = 14,
-							NORD_TRØNDELAG = 15,
-							NORDLAND = 16,
-							TROMS = 17,
-							FINNMARK = 18;
+							SØR_TRØNDELAG = 13,
+							TELEMARK = 14,
+							TROMS = 15,
+							VEST_AGDER = 16,
+							VESTFOLD = 17,
+							ØSTFOLD = 18;							
+							
 	/**
 	 * Fylkene i en String[]-konstant
 	 */
-	public static final String[] fylkesliste={"Østfold","Akershus","Oslo","Hedmark","Oppland","Buskerud","Vestfold","Telemark","Aust-agder",
-											"Vest-agder","Rogaland","Hordaland","Sogn og fjordane","Møre og romsdal","Sør-trøndelag",
-											"Nord-trøndelag","Nordland","Troms","Finnmark"};
+	public static final String[] fylkesliste={"Akershus","Aust-agder","Buskerud","Finnmark","Hedmark","Hordaland","Møre og romsdal",
+											"Nord-trøndelag","Nordland","Oppland","Oslo","Rogaland","Sogn og fjordane",
+											"Sør-trøndelag","Telemark","Troms","Vest-agder","Vestfold","Østfold"};
 	/**
 	 * Stedsnavn
 	 */
