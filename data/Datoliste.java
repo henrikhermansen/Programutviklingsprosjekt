@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
-import logic.Datosammenligner;
-
 /**
  *	@author		Gruppe 3
  *	@version	1
@@ -41,13 +39,24 @@ public class Datoliste implements Serializable
 		Collections.sort(liste,new Datosammenligner());
 	}
 	
-	// Søke/finnemetoder
+	/**
+	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
+	 * @param år	året i datoen det skal søkes etter.
+	 * @param måned	måneden i datoen det skal søkes etter.
+	 * @param dag	dagen i datoen det skal søkes etter.
+	 * @return		et Dato-objekt basert på søkekriteriene.
+	 */
 	public Dato finnDato(int år,int måned,int dag)
 	{
 		GregorianCalendar gc=new GregorianCalendar(år,måned,dag);
 		return finnDato(gc);
 	}
 	
+	/**
+	 * Finner og returnerer et Dato-objekt ved å sammenligne med et allerede opprettet Dato-objekt.
+	 * @param gc	et GregorianCalendar-objekt.
+	 * @return		et Dato-objekt basert på søkekriteriet.
+	 */
 	public Dato finnDato(GregorianCalendar gc)
 	{
 		Dato dato=new Dato(gc);
@@ -57,6 +66,11 @@ public class Datoliste implements Serializable
 		return liste.get(index);
 	}
 	
+	/**
+	 * Finner og returnerer et Datoliste-objekt som inneholder registrerte datoer i det året det søkes etter.
+	 * @param år	det årstallet man vil hente datoer ut fra.
+	 * @return		et Datoliste-objekt.
+	 */
 	public Datoliste finnDatoer(int år)
 	{
 		Datoliste datoliste=new Datoliste();
@@ -67,6 +81,12 @@ public class Datoliste implements Serializable
 		return datoliste;
 	}
 	
+	/**
+	 * Finner og returnerer et Datoliste-objekt som inneholder registrete datoer i den måneden og det året det søkes etter.
+	 * @param år	det årstallet man vil hente datoer ut fra.
+	 * @param måned	den måneden man vil hente datoer ut fra.
+	 * @return		et Datoliste-objekt.
+	 */
 	public Datoliste finnDatoer(int år, int måned)
 	{
 		Datoliste datoliste=new Datoliste();

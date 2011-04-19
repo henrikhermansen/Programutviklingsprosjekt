@@ -3,8 +3,6 @@ package data;
 import java.io.Serializable;
 import java.util.Comparator;
 
-import data.Dato;
-
 /**
  *	@author		Gruppe 3
  *	@version	1
