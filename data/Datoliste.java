@@ -2,9 +2,10 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
-
+import java.util.Iterator;
 
 /**
  *	@author		Gruppe 3
@@ -38,13 +39,24 @@ public class Datoliste implements Serializable
 		Collections.sort(liste,new Datosammenligner());
 	}
 	
-	// Søke/finnemetoder
+	/**
+	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
+	 * @param år	året i datoen det skal søkes etter.
+	 * @param måned	måneden i datoen det skal søkes etter.
+	 * @param dag	dagen i datoen det skal søkes etter.
+	 * @return		et Dato-objekt basert på søkekriteriene.
+	 */
 	public Dato finnDato(int år,int måned,int dag)
 	{
 		GregorianCalendar gc=new GregorianCalendar(år,måned,dag);
 		return finnDato(gc);
 	}
 	
+	/**
+	 * Finner og returnerer et Dato-objekt ved å sammenligne med et allerede opprettet Dato-objekt.
+	 * @param gc	et GregorianCalendar-objekt.
+	 * @return		et Dato-objekt basert på søkekriteriet.
+	 */
 	public Dato finnDato(GregorianCalendar gc)
 	{
 		Dato dato=new Dato(gc);
@@ -54,19 +66,34 @@ public class Datoliste implements Serializable
 		return liste.get(index);
 	}
 	
-	public Dato[] finnDatoer(int år)
+	/**
+	 * Finner og returnerer et Datoliste-objekt som inneholder registrerte datoer i det året det søkes etter.
+	 * @param år	det årstallet man vil hente datoer ut fra.
+	 * @return		et Datoliste-objekt.
+	 */
+	public Datoliste finnDatoer(int år)
 	{
-	    String personer = "";
-	    Iterator<Dato> iterator = liste.iterator();
-	    while ( iterator.hasNext() )
-	    {
-	      personer += iterator.next().toString() + "\n";
-	    }
-	    return personer;
+		Datoliste datoliste=new Datoliste();
+		Iterator<Dato> iterator = liste.iterator();
+		while(iterator.hasNext())
+			if(iterator.next().getDato().get(Calendar.YEAR)==år)
+				datoliste.settInn(iterator.next());
+		return datoliste;
 	}
 	
-	public Dato[] finnDatoer(int år, int måned)
+	/**
+	 * Finner og returnerer et Datoliste-objekt som inneholder registrete datoer i den måneden og det året det søkes etter.
+	 * @param år	det årstallet man vil hente datoer ut fra.
+	 * @param måned	den måneden man vil hente datoer ut fra.
+	 * @return		et Datoliste-objekt.
+	 */
+	public Datoliste finnDatoer(int år, int måned)
 	{
-		
+		Datoliste datoliste=new Datoliste();
+		Iterator<Dato> iterator = liste.iterator();
+		while(iterator.hasNext())
+			if(iterator.next().getDato().get(Calendar.YEAR)==år && iterator.next().getDato().get(Calendar.MONTH)==måned)
+				datoliste.settInn(iterator.next());
+		return datoliste;
 	}
 }
