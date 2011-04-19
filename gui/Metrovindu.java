@@ -79,7 +79,7 @@ public class Metrovindu extends JFrame implements Serializable
 		sidemeny.add(regSted);
 		sidemeny.add(regData);
 		sidemeny.add(finnSted);
-		sidemeny.add(finnData);
+		sidemeny.add(finnData);asd
 		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
 		sidepanel.setBorder(BorderFactory.createLoweredBevelBorder());
 		sidewrapper.add(sidepanel);
