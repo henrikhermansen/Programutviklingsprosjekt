@@ -1,5 +1,6 @@
 package gui;
 
+import data.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,16 +16,17 @@ public class StedRegPanel
 	private JTextField navn;
 	private JComboBox fylke;
 	JButton regSted;
+	Stedliste sl;
+	private Metrovindu mv;
 	
-	public StedRegPanel()
+	public StedRegPanel(Metrovindu mv)
 	{
+		sl = new Stedliste();
+		this.mv = mv;
+		
 		panel = new JPanel();
 		navn = new JTextField();
-		String[] fylker = {"Østfold","Akershus","Oslo","Hedmark","Oppland","Buskerud","Vestfold",
-				"Telemark","Aust-Agder","Vest-Agder","Rogaland","Hordaland",
-				"Sogn og Fjordane","Møre og Romsdal","Sør-Trøndelag","Nord-Trøndelag",
-				"Norland","Troms","Finnamark"};
-		fylke = new JComboBox(fylker);
+		fylke = new JComboBox(Sted.fylkesliste);
 		regSted = new JButton("Registrer sted");
 		
 		RegStedLytter regStedLytter = new RegStedLytter();
@@ -41,6 +43,11 @@ public class StedRegPanel
 		panel.add(regSted);
 	}
 	
+	public JPanel getPanel()
+	{
+		return panel;
+	}
+	
 	private class RegStedLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -49,7 +56,16 @@ public class StedRegPanel
 			if (n == null || n.length() < 2)
 			{
 				JOptionPane.showMessageDialog(panel, "Skriv inn et stedsnavn", "Ufullstendig informasjon", JOptionPane.INFORMATION_MESSAGE);
+				return;
 			}
+			if (sl.finnSted(n, fylke.getSelectedIndex()) != null)
+			{
+				JOptionPane.showMessageDialog(panel, "Dette stedet eksisterer allerede i dette fylket", "Eksisterende stedsnavn", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			sl.settInn(new Sted(n, fylke.getSelectedIndex()));
+			JOptionPane.showMessageDialog(panel, n+" ble registrert i "+fylke.getSelectedItem().toString(), "Sted registrert", JOptionPane.INFORMATION_MESSAGE);
+			mv.settHovedPanel();
 		}
 	}
 }

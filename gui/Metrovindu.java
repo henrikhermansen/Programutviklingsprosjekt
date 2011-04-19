@@ -12,6 +12,10 @@ import javax.swing.*;
 public class Metrovindu extends JFrame implements Serializable
 {
 	private static final long serialVersionUID = 7406892436505608180L;
+	private JButton regSted, regData, finnSted, finnData;
+	private JPanel hovedpanel;
+	private Container c;
+	private Metrovindu mv = this;
 	
 	public Metrovindu()
 	{
@@ -24,7 +28,9 @@ public class Metrovindu extends JFrame implements Serializable
 			
 		}
 		
-		Container c = getContentPane();
+		MenyKnappelytter mklytter = new MenyKnappelytter();
+		
+		c = getContentPane();
 		BorderLayout bl = new BorderLayout();
 		c.setLayout(bl);
 		
@@ -61,17 +67,50 @@ public class Metrovindu extends JFrame implements Serializable
 		JPanel sidemeny = new JPanel();
 		GridLayout knapperekke = new GridLayout(5,0);
 		sidemeny.setLayout(knapperekke);
-		sidemeny.add(new JButton("Registrer sted"));
-		sidemeny.add(new JButton("Register værdata"));
-		sidemeny.add(new JButton("Værdata for sted"));
-		sidemeny.add(new JButton("Værdata for dato"));
+		regSted = new JButton("Registrer sted");
+		regData = new JButton("Register værdata");
+		finnSted = new JButton("Værdata for sted");
+		finnData = new JButton("Værdata for dato");
+		regSted.addActionListener(mklytter);
+		regData.addActionListener(mklytter);
+		finnSted.addActionListener(mklytter);
+		finnData.addActionListener(mklytter);
+		sidemeny.add(regSted);
+		sidemeny.add(regData);
+		sidemeny.add(finnSted);
+		sidemeny.add(finnData);
+		
+		hovedpanel = new JPanel();
+		hovedpanel.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER));
 		
 		c.add(sidemeny, BorderLayout.LINE_START);
-		c.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER), BorderLayout.CENTER);
+		c.add(hovedpanel, BorderLayout.CENTER);
 		setJMenuBar(menylinje);
 		setVisible(true);
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fjernes etterhvert
 	}
-
+	
+	public void settHovedPanel()
+	{
+		c.remove(1);
+		c.add(hovedpanel, BorderLayout.CENTER);
+		c.validate();
+		c.repaint();
+	}
+	
+	private class MenyKnappelytter implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getSource() == regSted)
+			{
+				c.remove(hovedpanel);
+				StedRegPanel p = new StedRegPanel(mv);
+				c.add(p.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+			}
+		}
+	}
 }
