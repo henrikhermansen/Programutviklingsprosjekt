@@ -61,6 +61,16 @@ public class Stedliste implements Serializable
 		return liste.get(index);
 	}
 	
+	public Stedliste finnSted(int fylke)
+	{
+		Stedliste stedliste=new Stedliste();
+		Iterator<Sted> iterator = liste.iterator();
+		while(iterator.hasNext())
+			if(iterator.next().getFylke()==fylke)
+				stedliste.settInn(iterator.next());
+		return stedliste;
+	}
+	
 	/**
 	 * Sletter et sted og alle dets data fra listen (Alle værdata går også tapt)
 	 * @param s	Sted-objekt
