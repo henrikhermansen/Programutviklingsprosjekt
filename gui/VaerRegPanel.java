@@ -1,11 +1,15 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -14,18 +18,24 @@ import javax.swing.JTextField;
 
 import data.Sted;
 
-@SuppressWarnings("serial")
-public class VaerRegPanel extends JPanel
+public class VaerRegPanel
 {
-	private JPanel panel;
+	private static final long serialVersionUID = 5190542424951093587L;
+	private JPanel panel,panel2;
 	private JComboBox fylke,sted;
 	private JTextField minTemp, maxTemp, nedbør, dato;
 	private JButton registrer;
+	private Metrovindu mv;
 	
-	public VaerRegPanel()
+	public VaerRegPanel(Metrovindu mv)
 	{
-		panel=new JPanel();
-		panel.setLayout(new GridLayout(6,2,3,3));
+		this.mv=mv;
+		
+		panel=new JPanel(new GridLayout(0,2,3,3));
+		
+		panel2=new JPanel(new BorderLayout());
+		panel2.add(panel,BorderLayout.PAGE_START);
+		panel2.setBorder(BorderFactory.createEmptyBorder(25, 35, 10, 35));
 		
 		HandlingsLytter handlingslytter=new HandlingsLytter();
 		SkrivefeltLytter skrivefeltlytter=new SkrivefeltLytter();
@@ -68,7 +78,7 @@ public class VaerRegPanel extends JPanel
 	
 	public JPanel getPanel()
 	{
-		return panel;
+		return panel2;
 	}
 	
 	private class HandlingsLytter implements ActionListener

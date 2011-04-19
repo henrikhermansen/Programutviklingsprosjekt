@@ -31,8 +31,7 @@ public class Metrovindu extends JFrame implements Serializable
 		MenyKnappelytter mklytter = new MenyKnappelytter();
 		
 		c = getContentPane();
-		BorderLayout bl = new BorderLayout();
-		c.setLayout(bl);
+		c.setLayout(new BorderLayout());
 		
 		JMenuBar menylinje = new JMenuBar();
 		JMenu filmeny = new JMenu("Fil");
@@ -50,7 +49,7 @@ public class Metrovindu extends JFrame implements Serializable
 		JMenuItem filAvslutt = new JMenuItem("Avslutt");
 		filAvslutt.setMnemonic('a');
 		filAvslutt.addActionListener(new ActionListener() {
-			@Override
+			// TODO Fjerne/fikse dette
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null,"test","test",JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
@@ -64,6 +63,8 @@ public class Metrovindu extends JFrame implements Serializable
 		menylinje.add(statistikkmeny);
 		menylinje.add(hjelpmeny);
 		
+		JPanel sidewrapper = new JPanel();
+		JPanel sidepanel = new JPanel(new BorderLayout());
 		JPanel sidemeny = new JPanel();
 		GridLayout knapperekke = new GridLayout(5,0);
 		sidemeny.setLayout(knapperekke);
@@ -79,11 +80,15 @@ public class Metrovindu extends JFrame implements Serializable
 		sidemeny.add(regData);
 		sidemeny.add(finnSted);
 		sidemeny.add(finnData);
+		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
+		sidepanel.setBorder(BorderFactory.createLoweredBevelBorder());
+		sidewrapper.add(sidepanel);
+		sidewrapper.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		hovedpanel = new JPanel();
 		hovedpanel.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER));
 		
-		c.add(sidemeny, BorderLayout.LINE_START);
+		c.add(sidewrapper, BorderLayout.LINE_START);
 		c.add(hovedpanel, BorderLayout.CENTER);
 		setJMenuBar(menylinje);
 		setVisible(true);
@@ -105,8 +110,16 @@ public class Metrovindu extends JFrame implements Serializable
 		{
 			if(e.getSource() == regSted)
 			{
-				c.remove(hovedpanel);
+				c.remove(1);
 				StedRegPanel p = new StedRegPanel(mv);
+				c.add(p.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+			}
+			if(e.getSource() == regData)
+			{
+				c.remove(1);
+				VaerRegPanel p = new VaerRegPanel(mv);
 				c.add(p.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
