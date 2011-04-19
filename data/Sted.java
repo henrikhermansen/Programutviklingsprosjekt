@@ -12,33 +12,39 @@ public class Sted implements Serializable
 {
 	private static final long serialVersionUID = 5741295195692438029L;
 	/**
-	 * Fylkene er gitt int-konstanter etter SSBs fylkesnummer
+	 * Fylkene er gitt int-konstanter
 	 */
-	public static final int ØSTFOLD = 1,
-							AKERSHUS = 2,
-							OSLO = 3,
-							HEDMARK = 4,
-							OPPLAND = 5,
-							BUSKERUD = 6,
-							VESTFOLD = 7,
-							TELEMARK = 8,
-							AUST_AGDER = 9,
-							VEST_AGDER = 10,
-							ROGALAND = 11,
-							HORDALAND = 12,
-							SOGN_OG_FJORDANE = 14,
-							MØRE_OG_ROMSDAL = 15,
-							SØR_TRØNDELAG = 16,
-							NORD_TRØNDELAG = 17,
-							NORDLAND = 18,
-							TROMS = 19,
-							FINNMARK = 20;
+	public static final int ØSTFOLD = 0,
+							AKERSHUS = 1,
+							OSLO = 2,
+							HEDMARK = 3,
+							OPPLAND = 4,
+							BUSKERUD = 5,
+							VESTFOLD = 6,
+							TELEMARK = 7,
+							AUST_AGDER = 8,
+							VEST_AGDER = 9,
+							ROGALAND = 10,
+							HORDALAND = 11,
+							SOGN_OG_FJORDANE = 12,
+							MØRE_OG_ROMSDAL = 13,
+							SØR_TRØNDELAG = 14,
+							NORD_TRØNDELAG = 15,
+							NORDLAND = 16,
+							TROMS = 17,
+							FINNMARK = 18;
+	/**
+	 * Fylkene i en String[]-konstant
+	 */
+	public static final String[] fylkesliste={"Østfold","Akershus","Oslo","Hedmark","Oppland","Buskerud","Vestfold","Telemark","Aust-agder",
+											"Vest-agder","Rogaland","Hordaland","Sogn og fjordane","Møre og romsdal","Sør-trøndelag",
+											"Nord-trøndelag","Nordland","Troms","Finnmark"};
 	/**
 	 * Stedsnavn
 	 */
 	private String navn;
 	/**
-	 * Fylkesnummer (SSB)
+	 * Fylkesnummer
 	 */
 	private int fylke;
 	/**
