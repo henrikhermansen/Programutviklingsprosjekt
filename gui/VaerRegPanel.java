@@ -16,6 +16,11 @@ import javax.swing.JTextField;
 
 import data.Sted;
 
+/**
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
+ */
 public class VaerRegPanel
 {
 	private static final long serialVersionUID = 5190542424951093587L;
