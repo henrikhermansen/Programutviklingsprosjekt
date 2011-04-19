@@ -2,8 +2,10 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 import logic.Datosammenligner;
 
@@ -55,19 +57,23 @@ public class Datoliste implements Serializable
 		return liste.get(index);
 	}
 	
-	public Dato[] finnDatoer(int år)
+	public Datoliste finnDatoer(int år)
 	{
-	    String personer = "";
-	    Iterator<Dato> iterator = liste.iterator();
-	    while ( iterator.hasNext() )
-	    {
-	      personer += iterator.next().toString() + "\n";
-	    }
-	    return personer;
+		Datoliste datoliste=new Datoliste();
+		Iterator<Dato> iterator = liste.iterator();
+		while(iterator.hasNext())
+			if(iterator.next().getDato().get(Calendar.YEAR)==år)
+				datoliste.settInn(iterator.next());
+		return datoliste;
 	}
 	
-	public Dato[] finnDatoer(int år, int måned)
+	public Datoliste finnDatoer(int år, int måned)
 	{
-		
+		Datoliste datoliste=new Datoliste();
+		Iterator<Dato> iterator = liste.iterator();
+		while(iterator.hasNext())
+			if(iterator.next().getDato().get(Calendar.YEAR)==år && iterator.next().getDato().get(Calendar.MONTH)==måned)
+				datoliste.settInn(iterator.next());
+		return datoliste;
 	}
 }

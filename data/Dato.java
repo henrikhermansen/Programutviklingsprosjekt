@@ -13,9 +13,9 @@ public class Dato implements Serializable
 {
 	private static final long serialVersionUID = 8069404848049956509L;
 	/**
-	 * @minTemp	Minimumstemperatur for denne dagen.
-	 * @maxTemp	Maksimumstemperatur for denne dagen.
-	 * @nedbør	Nedbørsmengde for denne dagen.
+	 * minTemp	Minimumstemperatur for denne dagen.
+	 * maxTemp	Maksimumstemperatur for denne dagen.
+	 * nedbør	Nedbørsmengde for denne dagen.
 	 */
 	private int minTemp,maxTemp,nedbør;
 	/**
