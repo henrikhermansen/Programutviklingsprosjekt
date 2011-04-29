@@ -34,7 +34,7 @@ public class StedRegPanel
 	 */
 	public StedRegPanel(Metrovindu mv)
 	{
-		sl = new Stedliste();
+		sl = new Stedliste(); //Må motta stedliste fra hovedvindu
 		
 		panel = new JPanel(new BorderLayout());
 		navn = new JTextField(20);

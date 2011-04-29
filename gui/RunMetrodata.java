@@ -1,19 +1,25 @@
 package gui;
 
+import data.*;
+
 import java.awt.EventQueue;
 
 /**
- * @author Gruppe 3
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 public class RunMetrodata {
 
 	/**
-	 * Starter hovedtråd og oppretter hovedvinduet
+	 * Starter hovedtråd og oppretter hovedvinduet.
 	 * @param args
 	 */
 	public static void main(String[] args)
 	{
+		//Her laster vi inn klassene som er lagret på fil og sender dem med som parametere til Metrovindu
+		Stedliste sl;
+		
 		EventQueue.invokeLater(new Runnable() {
 												@Override
 												public void run()
