@@ -35,6 +35,24 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * Returnerer antall elementer i listen
+	 * @return	int antall elementer
+	 */
+	public int size()
+	{
+		return liste.size();
+	}
+	
+	/**
+	 * Returnerer iteratoren til listen
+	 * @return	Iterator<Sted> til listen
+	 */
+	public Iterator<Sted> iterator()
+	{
+		return liste.iterator();
+	}
+	
+	/**
 	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
 	 * @return	Et sted-objekt hvis det finnes, ellers null
@@ -61,14 +79,39 @@ public class Stedliste implements Serializable
 		return liste.get(index);
 	}
 	
+	/**
+	 * Returnerer en Stedliste med stedene i et gitt fylke
+	 * @param fylke	int fylkesnummeret
+	 * @return	Stedliste med Stedobjektene i et gitt fylke
+	 */
 	public Stedliste finnSted(int fylke)
 	{
-		Stedliste stedliste=new Stedliste();
+		Stedliste stedliste = new Stedliste();
 		Iterator<Sted> iterator = liste.iterator();
 		while(iterator.hasNext())
-			if(iterator.next().getFylke()==fylke)
-				stedliste.settInn(iterator.next());
+		{
+			Sted neste = iterator.next();
+			if(neste.getFylke()==fylke)
+				stedliste.settInn(neste);
+		}
 		return stedliste;
+	}
+	
+	/**
+	 * @param fylke	Fylkesnummer
+	 * @return	String-array av alle stedsnavnene i et gitt fylke
+	 */
+	public String[] toString(int fylke)
+	{
+		Stedliste templiste = finnSted(fylke);
+		Iterator<Sted> iterator = templiste.iterator();
+		String[] steder = new String[templiste.size()];
+		int løkketeller = 0;
+		
+		while(iterator.hasNext())
+			steder[løkketeller++] = iterator.next().getNavn();
+
+		return steder;
 	}
 	
 	/**

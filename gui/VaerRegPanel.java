@@ -1,15 +1,8 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import data.Sted;
+import java.awt.event.*;
+import javax.swing.*;
+import data.Stedliste;
 
 /**
  *	@author		Gruppe 3
@@ -18,19 +11,15 @@ import data.Sted;
  */
 public class VaerRegPanel extends MetroPanel
 {
-//	private JPanel panel3;
-	private JComboBox fylke,sted;
-	@SuppressWarnings("unused")
-	private JTextField minTemp, maxTemp, nedbør, dato; // TODO fikse dato!
+	private JTextField minTemp, maxTemp, nedbør;
 	private JButton registrer;
 	
-	public VaerRegPanel()
+	/**
+	 * @param sl	Referanse til stedlisten
+	 */
+	public VaerRegPanel(Stedliste sl)
 	{
-		super();
-		
-//		panel3=new JPanel(new BorderLayout());
-//		panel3.add(panel2,BorderLayout.PAGE_START);
-//		panel3.setBorder(BorderFactory.createRaisedBevelBorder());
+		super(sl);
 		
 		/**
 		 * handlingslytter	En ActionListener for JComboBox'ene og JButton.
@@ -42,16 +31,9 @@ public class VaerRegPanel extends MetroPanel
 		/**
 		 * En JComboBox med liste over alle fylkene. handlingslytter legges på som ActionListener.
 		 */
-		fylke=new JComboBox(Sted.fylkesliste);
 		fylke.addActionListener(handlingslytter);
-		
-		/**
-		 * En JComboBox med liste over stedene i fylket. handlingslytter legges på som ActionListener. Den settes false inntil et fylke er valgt.
-		 */
-		sted=new JComboBox();
 		sted.addActionListener(handlingslytter);
-		sted.setEnabled(false);
-		
+		hentSteder(fylke.getSelectedIndex());
 		/**
 		 * Oppretter tekstfelt for værdataene.
 		 */
@@ -62,9 +44,9 @@ public class VaerRegPanel extends MetroPanel
 		/**
 		 * Alle tekstfeltene settes false inntil et fylke og sted er valgt.
 		 */
-		minTemp.setEditable(false);
-		maxTemp.setEditable(false);
-		nedbør.setEditable(false);
+//		minTemp.setEditable(false);
+//		maxTemp.setEditable(false);
+//		nedbør.setEditable(false);
 		
 		/**
 		 * Alle tekstfeltene får skrivefeltlytter som KeyListener.
@@ -77,7 +59,7 @@ public class VaerRegPanel extends MetroPanel
 		 * Oppretter knappen for å utføre en registrering av værdata.
 		 */
 		registrer=new JButton("Registrer værdata");
-		registrer.setEnabled(false);
+//		registrer.setEnabled(false);
 		registrer.addActionListener(handlingslytter);
 		
 		/**
@@ -93,6 +75,8 @@ public class VaerRegPanel extends MetroPanel
 		grid.add(maxTemp);
 		grid.add(new JLabel("Nedbørsmengde i mm"));
 		grid.add(nedbør);
+		grid.add(new JLabel("Velg dato"));
+		grid.add(dato);
 		grid.add(new JLabel(""));
 		grid.add(registrer);
 	}
@@ -104,7 +88,7 @@ public class VaerRegPanel extends MetroPanel
 	{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==fylke)
-				return;
+				hentSteder(fylke.getSelectedIndex());
 			if(e.getSource()==registrer)
 				return;
 		}

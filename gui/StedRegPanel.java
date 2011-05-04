@@ -18,24 +18,19 @@ public class StedRegPanel extends MetroPanel
 	 * sl		refererer til klassen Stedsliste og brukes til aksessere Stedslistes metoder
 	 */
 	private JTextField navn;
-	private JComboBox fylke;
 	JButton regSted;
-	Stedliste sl;
 	
 	/**
 	 * 
-	 * @param mv	for å kunne referere til hovedvinduet hvis det trengs
+	 * @param sl	Referanse til stedlisten
 	 * 
-	 * Konstruktør. Oppretter felt og knapper, og setter inn i et gridlayout.
-	 * Setter gridlayoutet inn i et borderlayout.
+	 * Konstruktør. Oppretter felt og knapper.
 	 */
-	public StedRegPanel()
+	public StedRegPanel(Stedliste sl)
 	{
-		super();
-		sl = new Stedliste(); //Må motta stedliste fra hovedvindu
+		super(sl);
 		
 		navn = new JTextField(20);
-		fylke = new JComboBox(Sted.fylkesliste);
 		regSted = new JButton("Registrer sted");
 		
 		RegStedLytter regStedLytter = new RegStedLytter();

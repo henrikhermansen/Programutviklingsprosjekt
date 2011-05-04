@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import data.Stedliste;
 
 /**
  *	@author		Gruppe 3
@@ -13,18 +14,17 @@ import javax.swing.*;
 public class Metrovindu extends JFrame
 {	
 	/**
-	 * Knapper for å registrere sted, registrere data, finne sted og finne data.
+	 * sl		Stedliste-objektet som inneholder alle lagrede data
+	 * srPanel	Panelet for å registrere sted
+	 * vrPanel	Panelet for å registrere værdata
+	 * JButton	Knapper for å registrere sted, registrere data, finne sted og finne data
+	 * hovedpanel	Oppretter panelet som er til høyre i hovedvindu
+	 * c		Container c er containeren som holder på vindusobjektet
 	 */
-	private JButton regSted, regData, finnSted, finnData;
-	
-	/**
-	 * Oppretter panelet som er til høyre i hovedvindu.
-	 */
+	private Stedliste sl;
+	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel;
+	private JButton regSted, regData, finnSted, finnDato;
 	private JPanel hovedpanel;
-	
-	/**
-	 * Container c er containeren som holder på vindusobjektet.
-	 */
 	private Container c;
 	
 	/**
@@ -35,9 +35,15 @@ public class Metrovindu extends JFrame
 	 * Menyen på venstre side i hovedvinduet blir opprettet samt plassen til panelvinduet 
 	 * på venstre siden.
 	 */
-	public Metrovindu()
+	public Metrovindu(Stedliste sl)
 	{
 		super("Meteorologiske data");
+		
+		this.sl = sl;
+		srPanel = new StedRegPanel(this.sl);
+		vrPanel = new VaerRegPanel(this.sl);
+		sdPanel = new StedDataPanel(this.sl);
+		ddPanel = new DatoDataPanel(this.sl);
 		
 		try
 		{
@@ -89,15 +95,15 @@ public class Metrovindu extends JFrame
 		regSted = new JButton("Registrer sted");
 		regData = new JButton("Register værdata");
 		finnSted = new JButton("Værdata for sted");
-		finnData = new JButton("Værdata for dato");
+		finnDato = new JButton("Værdata for dato");
 		regSted.addActionListener(mklytter);
 		regData.addActionListener(mklytter);
 		finnSted.addActionListener(mklytter);
-		finnData.addActionListener(mklytter);
+		finnDato.addActionListener(mklytter);
 		sidemeny.add(regSted);
 		sidemeny.add(regData);
 		sidemeny.add(finnSted);
-		sidemeny.add(finnData);
+		sidemeny.add(finnDato);
 		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
 		sidepanel.setBorder(BorderFactory.createLoweredBevelBorder());
 		sidewrapper.add(sidepanel);
@@ -139,16 +145,30 @@ public class Metrovindu extends JFrame
 			if(e.getSource() == regSted)
 			{
 				c.remove(1);
-				StedRegPanel p = new StedRegPanel();
-				c.add(p.getPanel(), BorderLayout.CENTER);
+				c.add(srPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}
 			if(e.getSource() == regData)
 			{
 				c.remove(1);
-				VaerRegPanel p = new VaerRegPanel();
-				c.add(p.getPanel(), BorderLayout.CENTER);
+				c.add(vrPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+				vrPanel.hentSteder(vrPanel.getFylke());
+			}
+			if(e.getSource() == finnSted)
+			{
+				c.remove(1);
+				c.add(sdPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+				sdPanel.hentSteder(sdPanel.getFylke());
+			}
+			if(e.getSource() == finnDato)
+			{
+				c.remove(1);
+				c.add(ddPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}

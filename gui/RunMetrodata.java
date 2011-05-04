@@ -18,13 +18,13 @@ public class RunMetrodata {
 	public static void main(String[] args)
 	{
 		//Her laster vi inn klassene som er lagret på fil og sender dem med som parametere til Metrovindu
-		Stedliste sl;
+		final Stedliste sl = new Stedliste();
 		
 		EventQueue.invokeLater(new Runnable() {
 												@Override
 												public void run()
 												{
-													new Metrovindu();
+													new Metrovindu(sl);
 												}
 											});
 	}
