@@ -1,17 +1,12 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import data.Sted;
@@ -21,33 +16,21 @@ import data.Sted;
  *	@version	1
  *	@since		1.6
  */
-public class VaerRegPanel
+public class VaerRegPanel extends MetroPanel
 {
-	private static final long serialVersionUID = 5190542424951093587L;
-	private JPanel panel,panel2,panel3;
+//	private JPanel panel3;
 	private JComboBox fylke,sted;
+	@SuppressWarnings("unused")
 	private JTextField minTemp, maxTemp, nedbør, dato; // TODO fikse dato!
 	private JButton registrer;
-	private Metrovindu mv;	// Trenger vi denne?
 	
-	public VaerRegPanel(Metrovindu mv)
+	public VaerRegPanel()
 	{
-		this.mv=mv;
+		super();
 		
-		/**
-		 * panel	GridLayout. Skal inneholde knapper og felt.
-		 * panel2	BorderLayout. Skal inneholde panel for å kunne plassere dette på PAGE_START.
-		 * panel3	KANSKJE FJERNE!?
-		 */
-		panel=new JPanel(new GridLayout(0,2,3,3));
-		
-		panel2=new JPanel(new BorderLayout());
-		panel2.add(panel,BorderLayout.PAGE_START);
-		panel2.setBorder(BorderFactory.createEmptyBorder(25, 35, 10, 35));
-		
-		panel3=new JPanel(new BorderLayout());
-		panel3.add(panel2,BorderLayout.PAGE_START);
-		panel3.setBorder(BorderFactory.createRaisedBevelBorder());
+//		panel3=new JPanel(new BorderLayout());
+//		panel3.add(panel2,BorderLayout.PAGE_START);
+//		panel3.setBorder(BorderFactory.createRaisedBevelBorder());
 		
 		/**
 		 * handlingslytter	En ActionListener for JComboBox'ene og JButton.
@@ -100,27 +83,18 @@ public class VaerRegPanel
 		/**
 		 * Legger inn alt av innhold i panelet.
 		 */
-		panel.add(new JLabel("Velg fylke"));
-		panel.add(fylke);
-		panel.add(new JLabel("Velg sted"));
-		panel.add(sted);
-		panel.add(new JLabel("Minimumstemperatur"));
-		panel.add(minTemp);
-		panel.add(new JLabel("Maksimumstemperatur"));
-		panel.add(maxTemp);
-		panel.add(new JLabel("Nedbørsmengde i mm"));
-		panel.add(nedbør);
-		panel.add(new JLabel(""));
-		panel.add(registrer);
-	}
-	
-	/**
-	 * Returnerer det panelet som skal brukes i hovedvinduet.
-	 * @return et objekt av typen JPanel.
-	 */
-	public JPanel getPanel()
-	{
-		return panel2;
+		grid.add(new JLabel("Velg fylke"));
+		grid.add(fylke);
+		grid.add(new JLabel("Velg sted"));
+		grid.add(sted);
+		grid.add(new JLabel("Minimumstemperatur"));
+		grid.add(minTemp);
+		grid.add(new JLabel("Maksimumstemperatur"));
+		grid.add(maxTemp);
+		grid.add(new JLabel("Nedbørsmengde i mm"));
+		grid.add(nedbør);
+		grid.add(new JLabel(""));
+		grid.add(registrer);
 	}
 	
 	/**

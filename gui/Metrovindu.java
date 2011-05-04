@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import javax.swing.*;
 
 /**
@@ -10,10 +9,9 @@ import javax.swing.*;
  *	@version	1
  *	@since		1.6
  */
-public class Metrovindu extends JFrame implements Serializable
-{
-	private static final long serialVersionUID = 7406892436505608180L;
-	
+@SuppressWarnings("serial")
+public class Metrovindu extends JFrame
+{	
 	/**
 	 * Knapper for å registrere sted, registrere data, finne sted og finne data.
 	 */
@@ -28,11 +26,6 @@ public class Metrovindu extends JFrame implements Serializable
 	 * Container c er containeren som holder på vindusobjektet.
 	 */
 	private Container c;
-	
-	/**
-	 * Metrovindu er en referanse til seg selv som kan brukes av andre objekter.
-	 */
-	private Metrovindu mv = this;
 	
 	/**
 	 * Hovedvinduet blir opprettet.
@@ -146,7 +139,7 @@ public class Metrovindu extends JFrame implements Serializable
 			if(e.getSource() == regSted)
 			{
 				c.remove(1);
-				StedRegPanel p = new StedRegPanel(mv);
+				StedRegPanel p = new StedRegPanel();
 				c.add(p.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
@@ -154,7 +147,7 @@ public class Metrovindu extends JFrame implements Serializable
 			if(e.getSource() == regData)
 			{
 				c.remove(1);
-				VaerRegPanel p = new VaerRegPanel(mv);
+				VaerRegPanel p = new VaerRegPanel();
 				c.add(p.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();

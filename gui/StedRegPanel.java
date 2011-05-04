@@ -2,7 +2,6 @@ package gui;
 
 import data.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 /**
@@ -10,16 +9,14 @@ import java.awt.event.*;
  *	@version	1
  *	@since		1.6
  */
-public class StedRegPanel
+public class StedRegPanel extends MetroPanel
 {
 	/**
-	 * panel	Det ytterste panelet som refereres/sendes til i hovedvinduet
 	 * navn		inputfelt for stedsnavn
 	 * fylke	listeboks med fylkene
 	 * regSted	knapp for å registrere
 	 * sl		refererer til klassen Stedsliste og brukes til aksessere Stedslistes metoder
 	 */
-	private JPanel panel;
 	private JTextField navn;
 	private JComboBox fylke;
 	JButton regSted;
@@ -32,11 +29,11 @@ public class StedRegPanel
 	 * Konstruktør. Oppretter felt og knapper, og setter inn i et gridlayout.
 	 * Setter gridlayoutet inn i et borderlayout.
 	 */
-	public StedRegPanel(Metrovindu mv)
+	public StedRegPanel()
 	{
+		super();
 		sl = new Stedliste(); //Må motta stedliste fra hovedvindu
 		
-		panel = new JPanel(new BorderLayout());
 		navn = new JTextField(20);
 		fylke = new JComboBox(Sted.fylkesliste);
 		regSted = new JButton("Registrer sted");
@@ -44,28 +41,13 @@ public class StedRegPanel
 		RegStedLytter regStedLytter = new RegStedLytter();
 		regSted.addActionListener(regStedLytter);
 		navn.addActionListener(regStedLytter);
-		
-		JPanel grid = new JPanel();
 
-		grid.setLayout(new GridLayout(0,2,3,3));
 		grid.add(new JLabel("Stedsnavn:"));
 		grid.add(navn);
 		grid.add(new JLabel("Fylke:"));
 		grid.add(fylke);
 		grid.add(new JLabel(""));
 		grid.add(regSted);
-		
-		panel.add(grid, BorderLayout.PAGE_START);
-		panel.setBorder(BorderFactory.createEmptyBorder(25, 35, 10, 35));
-	}
-	
-	/**
-	 * Returnerer hovedpanelet i klassen. Brukes i hovedvinduet for å få tak i dette panelet.
-	 * @return hovedpanelet i klassen, ytterste panel
-	 */
-	public JPanel getPanel()
-	{
-		return panel;
 	}
 	
 	/**
