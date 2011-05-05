@@ -134,7 +134,7 @@ public class Metrovindu extends JFrame
 	
 	/**
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
-	 * til venstre i hovedvinduet.
+	 * til venstre i hovedvinduet og til knappene til i menyen.
 	 * @author bOa
 	 *
 	 */
@@ -185,6 +185,12 @@ public class Metrovindu extends JFrame
 		}
 	}
 	
+	/**
+	 * Lytteklasse for vinduet. Sørger for at programmet lagrer og avslutter 
+	 * riktig ved bruk av avslutt-knappen oppe til høyre i vinduet.
+	 * @author bOa
+	 *
+	 */
 	private class Vinduslytter extends WindowAdapter
 	{
 		public void windowClosing(WindowEvent e)
