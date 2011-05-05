@@ -11,9 +11,9 @@ public class Filhåndterer
 {
 	//Denne klassen laster og lagrer data fra/til fil. Static-metoder.
 	
-	final String FILNAVN = "Metrodata.dta";
+	final static String FILNAVN = "Metrodata.dta";
 	
-	public Stedliste lastInnFil()
+	public static Stedliste lastInnFil()
 	{
 		Stedliste sl;
 		ObjectInputStream inn;
@@ -43,7 +43,7 @@ public class Filhåndterer
 		return sl;
 	}
 	
-	public void lagreFil(Stedliste sl)
+	public static void lagreFil(Stedliste sl)
 	{
 		ObjectOutputStream ut;
 		
