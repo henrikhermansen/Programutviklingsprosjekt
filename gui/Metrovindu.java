@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import data.Stedliste;
+import data.Filhåndterer;
 
 /**
  *	@author		Gruppe 3
@@ -26,6 +27,7 @@ public class Metrovindu extends JFrame
 	private JButton regSted, regData, finnSted, finnDato;
 	private JPanel hovedpanel;
 	private Container c;
+	private JMenuItem filAvslutt, filLagre;
 	
 	/**
 	 * Hovedvinduet blir opprettet.
@@ -57,6 +59,8 @@ public class Metrovindu extends JFrame
 		c = getContentPane();
 		c.setLayout(new BorderLayout());
 		
+		addWindowListener(new Vinduslytter());
+		
 		JMenuBar menylinje = new JMenuBar();
 		JMenu filmeny = new JMenu("Fil");
 		JMenu registrermeny = new JMenu("Registrer");
@@ -67,18 +71,14 @@ public class Metrovindu extends JFrame
 		statistikkmeny.setMnemonic('s');
 		hjelpmeny.setMnemonic('h');
 		
-		JMenuItem filLagre = new JMenuItem("Lagre");
+		filLagre = new JMenuItem("Lagre");
 		filLagre.setMnemonic('l');
+		filLagre.addActionListener(mklytter);
 		
-		JMenuItem filAvslutt = new JMenuItem("Avslutt");
+		filAvslutt = new JMenuItem("Avslutt");
 		filAvslutt.setMnemonic('a');
-		filAvslutt.addActionListener(new ActionListener() {
-			// TODO Fjerne/fikse dette
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"test","test",JOptionPane.ERROR_MESSAGE);
-				System.exit(0);
-			}
-		});
+		filAvslutt.addActionListener(mklytter); 
+
 		filmeny.add(filLagre);
 		filmeny.add(filAvslutt);
 		
@@ -172,6 +172,25 @@ public class Metrovindu extends JFrame
 				c.validate();
 				c.repaint();
 			}
+			if(e.getSource() == filAvslutt)
+			{
+				Filhåndterer.lagreFil(sl);
+				System.exit(0);
+			}
+			if(e.getSource() == filLagre)
+			{
+				Filhåndterer.lagreFil(sl);
+				JOptionPane.showMessageDialog(null,"Data er lagret til fil","Lagret",JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+	
+	private class Vinduslytter extends WindowAdapter
+	{
+		public void windowClosing(WindowEvent e)
+		{
+			Filhåndterer.lagreFil(sl);
+			System.exit(0);
 		}
 	}
 }
