@@ -13,6 +13,9 @@ public class Filhåndterer
 	
 	final static String FILNAVN = "Metrodata.dta";
 	
+	/**
+	 * Metode som laster inn fil ved oppstart av programmet.
+	 */
 	public static Stedliste lastInnFil()
 	{
 		Stedliste sl;
@@ -43,6 +46,10 @@ public class Filhåndterer
 		return sl;
 	}
 	
+	/**
+	 * Metode som lagrer fil. Metoden kobles til "avslutt-knappen", "lagre-knappen" 
+	 * og "vinduslukke-knappen".
+	 */
 	public static void lagreFil(Stedliste sl)
 	{
 		ObjectOutputStream ut;
