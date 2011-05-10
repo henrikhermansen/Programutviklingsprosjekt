@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.*;
 import javax.swing.*;
+
+import logic.Registrering;
 import data.Stedliste;
 
 /**
@@ -92,7 +94,10 @@ public class VaerRegPanel extends MetroPanel
 			if(e.getSource()==fylke)
 				hentSteder(fylke.getSelectedIndex());
 			if(e.getSource()==registrer)
-				return;
+			{
+				String resultat = Registrering.registrerData(minTemp, maxTemp, nedbør, sl, sted, fylke, lår, lmåned, ldag, panel);
+				JOptionPane.showMessageDialog(panel, resultat, "Registrering av værdata", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 	

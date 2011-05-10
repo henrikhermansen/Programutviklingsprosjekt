@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import logic.Registrering;
+
 /**
  * @author	Gruppe 3
  * @version	1
@@ -16,8 +18,11 @@ public class Dato implements Serializable
 	 * minTemp	Minimumstemperatur for denne dagen.
 	 * maxTemp	Maksimumstemperatur for denne dagen.
 	 * nedbør	Nedbørsmengde for denne dagen.
+	 * Disse blir satt til ugyldige verdier for å testes på senere om de er satt eller ikke.
 	 */
-	private double minTemp,maxTemp,nedbør;
+	private double minTemp = Registrering.MAXMAXTEMP + 1; 
+	private double maxTemp = Registrering.MAXMAXTEMP + 1;
+	private double nedbør = -1;
 	/**
 	 * Objekt av klassen GregorianCalendar for å lagre hvilken dag, måned og år dette er.
 	 */
