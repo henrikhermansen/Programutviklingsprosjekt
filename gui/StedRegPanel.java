@@ -4,6 +4,8 @@ import data.*;
 import javax.swing.*;
 import java.awt.event.*;
 
+import logic.Registrering;
+
 /**
  *	@author		Gruppe 3
  *	@version	1
@@ -54,21 +56,10 @@ public class StedRegPanel extends MetroPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			String n = navn.getText();
-			if (n == null || n.length() < 2)
-			{
-				JOptionPane.showMessageDialog(panel, "Skriv inn et stedsnavn", "Ufullstendig informasjon", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-			if (sl.finnSted(n, fylke.getSelectedIndex()) != null)
-			{
-				JOptionPane.showMessageDialog(panel, "Dette stedet eksisterer allerede i dette fylket", "Eksisterende stedsnavn", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-			sl.settInn(new Sted(n, fylke.getSelectedIndex()));
-			JOptionPane.showMessageDialog(panel, n+" ble registrert i "+fylke.getSelectedItem().toString(), "Sted registrert", JOptionPane.INFORMATION_MESSAGE);
-			navn.setText("");
-			fylke.setSelectedIndex(0);
+			JOptionPane.showMessageDialog(panel, 
+							Registrering.registrerSted(navn, fylke, sl), 
+							"Registrering av sted", 
+							JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }
