@@ -30,6 +30,7 @@ public class Metrovindu extends JFrame
 	private JMenuItem filAvslutt, filLagre;
 	
 	/**
+	 * @author Lars Smeby, Henrik Hermansen
 	 * Hovedvinduet blir opprettet.
 	 * UIManager.setLookAndFeel setter utseende på knapper etc lik windows utseende.
 	 * Hovedvinduet bygges opp med menybar i toppen felt for "fil", "registrer","statistikk"
@@ -122,6 +123,7 @@ public class Metrovindu extends JFrame
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Oppdaterer og setter hovedpanel/vindu til høyre.
 	 */
 	public void settHovedPanel()
@@ -135,7 +137,7 @@ public class Metrovindu extends JFrame
 	/**
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
 	 * til venstre i hovedvinduet og til knappene til i menyen.
-	 * @author bOa
+	 * @author Lars Smeby, Bård Skeie
 	 *
 	 */
 	private class MenyKnappelytter implements ActionListener
@@ -188,7 +190,7 @@ public class Metrovindu extends JFrame
 	/**
 	 * Lytteklasse for vinduet. Sørger for at programmet lagrer og avslutter 
 	 * riktig ved bruk av avslutt-knappen oppe til høyre i vinduet.
-	 * @author bOa
+	 * @author Bård Skeie
 	 *
 	 */
 	private class Vinduslytter extends WindowAdapter

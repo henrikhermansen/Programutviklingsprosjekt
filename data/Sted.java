@@ -54,6 +54,7 @@ public class Sted implements Serializable
 	private Datoliste datoliste;
 	
 	/**
+	 * @author Lars Smeby
 	 * Konstruktør
 	 * @param n	Navn på sted
 	 * @param f	Fylkesnummer på fylket som stedet ligger i
@@ -66,6 +67,7 @@ public class Sted implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer stedsnavnet
 	 * @return	stedsnavn
 	 */
@@ -75,6 +77,7 @@ public class Sted implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer fylkesnummeret (SSB)
 	 * @return	fylkesnummer
 	 */
@@ -84,6 +87,7 @@ public class Sted implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer datoliste-objektet
 	 * @return	datoliste
 	 */
@@ -93,6 +97,7 @@ public class Sted implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Endrer navnet på stedet
 	 * @param n	Navn
 	 */
@@ -102,6 +107,7 @@ public class Sted implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Endrer fylkesnummeret
 	 * @param f	fylkesnummer (SSB)
 	 */

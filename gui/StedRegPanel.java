@@ -21,7 +21,7 @@ public class StedRegPanel extends MetroPanel
 	JButton regSted;
 	
 	/**
-	 * 
+	 * @author Lars Smeby
 	 * @param sl	Referanse til stedlisten
 	 * 
 	 * Konstruktør. Oppretter felt og knapper.
@@ -46,6 +46,7 @@ public class StedRegPanel extends MetroPanel
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Indre klasse som lytter på knappen og tekstfelt.
 	 * Foretar inputvalidering og gir tilbakemelding.
 	 */
