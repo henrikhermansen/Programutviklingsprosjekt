@@ -1,6 +1,8 @@
 package logic;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import data.Dato;
@@ -16,7 +18,7 @@ import data.Stedliste;
 public class Registrering
 {
 	
-	private static final double MAXMINTEMP = -60, MAXMAXTEMP =  40, MAXNEDBØR = 300;
+	public static final double MAXMINTEMP = -60, MAXMAXTEMP =  40, MAXNEDBØR = 300;
 	/**
 	 * @author Lars Smeby
 	 * Metode for å registrere sted
@@ -46,13 +48,13 @@ public class Registrering
 	 * Metode som registrerer værdata for et sted.
 	 * @return String med tilbakemelding på resultat.
 	 */
-	public static String registrerData(JTextField min, JTextField max, JTextField ned, Stedliste stedliste, JComboBox navn, JComboBox fylke, JComboBox lår, JComboBox lmåned, JComboBox ldag )
+	public static String registrerData(JTextField min, JTextField max, JTextField ned, Stedliste stedliste, JComboBox navn, JComboBox fylke, JComboBox lår, JComboBox lmåned, JComboBox ldag, JPanel panel )
 	{
 		String minTempString = min.getText();
 		String maxTempString = max.getText();
 		String nedbørString = ned.getText();
 				
-		if(minTempString == "" && maxTempString == "" && nedbørString == "")
+		if((minTempString.length() == 0) && (maxTempString.length() == 0) && (nedbørString.length() == 0))
 			return "Ingen data er skrevet inn";
 		
 		double minTemp = -100;
@@ -79,17 +81,17 @@ public class Registrering
 		
 		try
 		{
-			if(minTempString != "")
+			if(minTempString.length() > 0)
 			{
 				minTemp = Double.parseDouble(minTempString);
 				minT = true;
 			}
-			if(maxTempString != "")
+			if(maxTempString.length() > 0)
 			{
 				maxTemp = Double.parseDouble(maxTempString);
 				maxT = true;
 			}
-			if(nedbørString != "")
+			if(nedbørString.length() > 0)
 			{
 				nedbør = Double.parseDouble(nedbørString);
 				nedB = true;
@@ -108,7 +110,7 @@ public class Registrering
 		if(nedB && ((nedbør < 0) || (nedbør > MAXNEDBØR)))
 			return "Nedbør kan ikke være negativ eller over " + MAXNEDBØR + ".";
 		if(minT && maxT && minTemp > maxTemp)
-			return "Makstemperatur kan ikke være større enn minimumstemperatur";
+			return "Maksimumstemperatur kan ikke være større enn minimumstemperatur";
 		if(minT && maxT && ((maxTemp < MAXMINTEMP || maxTemp > MAXMAXTEMP) || (minTemp < MAXMINTEMP || minTemp > MAXMAXTEMP)))
 			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + ".";
 		
@@ -125,8 +127,83 @@ public class Registrering
 			dl.settInn(d);
 		}
 		
+		double gammelMaksTemp = MAXMAXTEMP + 1;
+		double gammelMinTemp = MAXMAXTEMP + 1;
 		
+		Object[] valg = { "Ja", "Nei" }; //Valg til showOptionDialog-boksene.
 		
-		return "Hei";
+		if(nedB)
+		{
+			if(d.getNedbør() >= 0)
+			{
+				int svar = JOptionPane.showOptionDialog(panel, 
+						"Datoen har allerede registrert " + d.getNedbør() + "mm nedbør.\nVil du overskrive denne dataen med " + nedbør + "mm?", 
+						"Advarsel",
+				        JOptionPane.DEFAULT_OPTION, 
+				        JOptionPane.WARNING_MESSAGE,
+				        null, valg, valg[0]);
+				if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
+					nedB = false;					
+			}
+			if(nedB)
+			{
+				d.setNedbør(nedbør);
+			}
+		}
+		
+		if(minT)
+		{
+			if(d.getMinTemp() < MAXMAXTEMP)
+			{
+				int svar = JOptionPane.showOptionDialog(panel, 
+						"Datoen inneholder allerede en minimumstemperatur, " + d.getMinTemp() + "grader.\nVil du overskrive denne registreringen?", 
+						"Advarsel",
+				        JOptionPane.DEFAULT_OPTION, 
+				        JOptionPane.WARNING_MESSAGE,
+				        null, valg, valg[0]);
+				if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
+					minT = false;	
+				else
+					gammelMinTemp = d.getMinTemp();
+			}
+			if(minT)
+			{
+				d.setMinTemp(minTemp);
+			}
+		}
+		
+		if(maxT)
+		{
+			if(d.getMaxTemp() < MAXMAXTEMP)
+			{
+				int svar = JOptionPane.showOptionDialog(panel, 
+						"Datoen inneholder allerede en maksimumstemperatur, " + d.getMaxTemp() + "grader.\nVil du overskrive denne registreringen?", 
+						"Advarsel",
+				        JOptionPane.DEFAULT_OPTION, 
+				        JOptionPane.WARNING_MESSAGE,
+				        null, valg, valg[0]);
+				if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
+					maxT = false;	
+				else
+					gammelMaksTemp = d.getMaxTemp();
+			}
+			if(maxT)
+			{
+				d.setMaxTemp(maxTemp);
+			}
+		}
+		
+		if(!nedB && !minT && !maxT)
+			return "Ingen data registrert";
+		
+		if(minT && !maxT && d.getMaxTemp() < MAXMAXTEMP)
+		{
+			if(d.getMinTemp() > d.getMaxTemp())
+			{
+				// Gammel verdi skal settes tilbake
+			}
+		}
+		
+		return "Data ble satt inn i tabellen";
 	}
 }
