@@ -17,7 +17,7 @@ public class Dato implements Serializable
 	 * maxTemp	Maksimumstemperatur for denne dagen.
 	 * nedbør	Nedbørsmengde for denne dagen.
 	 */
-	private int minTemp,maxTemp,nedbør;
+	private double minTemp,maxTemp,nedbør;
 	/**
 	 * Objekt av klassen GregorianCalendar for å lagre hvilken dag, måned og år dette er.
 	 */
@@ -50,7 +50,7 @@ public class Dato implements Serializable
 	 * Setter laveste temperatur denne dagen.
 	 * @param minTemp	minimumstemperatur denne dagen.
 	 */
-	public void setMinTemp(int minTemp)
+	public void setMinTemp(double minTemp)
 	{
 		this.minTemp=minTemp;
 	}
@@ -60,7 +60,7 @@ public class Dato implements Serializable
 	 * Setter høyeste temperatur denne dagen.
 	 * @param maxTemp	maksimumstemperatur denne dagen.
 	 */
-	public void setMaxTemp(int maxTemp)
+	public void setMaxTemp(double maxTemp)
 	{
 		this.maxTemp=maxTemp;
 	}
@@ -71,7 +71,7 @@ public class Dato implements Serializable
 	 * Setter nedbørsmendge denne dagen.
 	 * @param nedbør	nedbørsmengde denne dagen.
 	 */
-	public void setNedbør(int nedbør)
+	public void setNedbør(double nedbør)
 	{
 		this.nedbør=nedbør;
 	}
@@ -104,7 +104,7 @@ public class Dato implements Serializable
 	 * Get-metode for laveste temperatur denne dagen.
 	 * @return	minimumstemperatur denne dagen.
 	 */
-	public int getMinTemp()
+	public double getMinTemp()
 	{
 		return this.minTemp;
 	}
@@ -114,7 +114,7 @@ public class Dato implements Serializable
 	 * Get-metode for høyeste temperatur denne dagen.
 	 * @return	maksimumstemperatur denne dagen.
 	 */
-	public int getMaxTemp()
+	public double getMaxTemp()
 	{
 		return this.maxTemp;
 	}
@@ -124,7 +124,7 @@ public class Dato implements Serializable
 	 * Get-metode for gjennomsnittstemperatur denne dagen.
 	 * @return	gjennomsnittstemperatur denne dagen.
 	 */
-	public int getAvgTemp()
+	public double getAvgTemp()
 	{
 		return (this.minTemp+this.maxTemp)/2;
 	}
@@ -134,7 +134,7 @@ public class Dato implements Serializable
 	 * Get-metoden for nedbørsmengde denne dagen.
 	 * @return	nedbørsmengden denne dagen.
 	 */
-	public int getNedbør()
+	public double getNedbør()
 	{
 		return this.nedbør;
 	}
