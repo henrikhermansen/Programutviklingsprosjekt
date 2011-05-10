@@ -85,17 +85,29 @@ public class VaerRegPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Henrik Hermansen
+	 * @author Henrik Hermansen, Bård Skeie
 	 * Privat lytterklasse av typen ActionListener.
 	 */
 	private class HandlingsLytter implements ActionListener
 	{
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e)
+		{
 			if(e.getSource()==fylke)
 				hentSteder(fylke.getSelectedIndex());
 			if(e.getSource()==registrer)
 			{
 				String resultat = Registrering.registrerData(minTemp, maxTemp, nedbør, sl, sted, fylke, lår, lmåned, ldag, panel);
+				if(resultat.equals("Data ble satt inn i tabellen")) //En svak test med tanke på endringer
+				{
+					fylke.setSelectedIndex(0);
+					sted.setSelectedIndex(0);
+					minTemp.setText("");
+					maxTemp.setText("");
+					nedbør.setText("");
+					ldag.setSelectedIndex(0);
+					lmåned.setSelectedIndex(0);
+					lår.setSelectedIndex(0);
+				}
 				JOptionPane.showMessageDialog(panel, resultat, "Registrering av værdata", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}

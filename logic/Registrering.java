@@ -1,14 +1,8 @@
 package logic;
 
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import data.Dato;
-import data.Datoliste;
-import data.Sted;
-import data.Stedliste;
+import data.*;
 
 /**
  *	@author		Gruppe 3
@@ -38,8 +32,6 @@ public class Registrering
 			return "Dette stedet eksisterer allerede i dette fylket";
 		
 		stedliste.settInn(new Sted(n, fylke.getSelectedIndex()));
-		navn.setText("");
-		fylke.setSelectedIndex(0);
 		return n+" ble registrert i "+fylke.getSelectedItem().toString();
 	}
 	
@@ -115,6 +107,8 @@ public class Registrering
 			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + ".";
 		
 		String n = (String) navn.getSelectedItem();
+		if(n == null)
+			return "Ingen steder valgt";
 		Sted sted = stedliste.finnSted(n, fylke.getSelectedIndex());
 		if(sted == null)
 			return "Ukjent programfeil! (B001)";
@@ -132,31 +126,12 @@ public class Registrering
 		
 		Object[] valg = { "Ja", "Nei" }; //Valg til showOptionDialog-boksene.
 		
-		if(nedB)
-		{
-			if(d.getNedbør() >= 0)
-			{
-				int svar = JOptionPane.showOptionDialog(panel, 
-						"Datoen har allerede registrert " + d.getNedbør() + "mm nedbør.\nVil du overskrive denne dataen med " + nedbør + "mm?", 
-						"Advarsel",
-				        JOptionPane.DEFAULT_OPTION, 
-				        JOptionPane.WARNING_MESSAGE,
-				        null, valg, valg[0]);
-				if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
-					nedB = false;					
-			}
-			if(nedB)
-			{
-				d.setNedbør(nedbør);
-			}
-		}
-		
 		if(minT)
 		{
 			if(d.getMinTemp() < MAXMAXTEMP)
 			{
 				int svar = JOptionPane.showOptionDialog(panel, 
-						"Datoen inneholder allerede en minimumstemperatur, " + d.getMinTemp() + "grader.\nVil du overskrive denne registreringen?", 
+						"Datoen inneholder allerede en minimumstemperatur, " + d.getMinTemp() + " grader.\nVil du overskrive denne dataen med " + minTemp + " grader?", 
 						"Advarsel",
 				        JOptionPane.DEFAULT_OPTION, 
 				        JOptionPane.WARNING_MESSAGE,
@@ -177,7 +152,7 @@ public class Registrering
 			if(d.getMaxTemp() < MAXMAXTEMP)
 			{
 				int svar = JOptionPane.showOptionDialog(panel, 
-						"Datoen inneholder allerede en maksimumstemperatur, " + d.getMaxTemp() + "grader.\nVil du overskrive denne registreringen?", 
+						"Datoen inneholder allerede en maksimumstemperatur, " + d.getMaxTemp() + " grader.\nVil du overskrive denne dataen med " + maxTemp + " grader?", 
 						"Advarsel",
 				        JOptionPane.DEFAULT_OPTION, 
 				        JOptionPane.WARNING_MESSAGE,
@@ -193,15 +168,49 @@ public class Registrering
 			}
 		}
 		
+		if(nedB)
+		{
+			if(d.getNedbør() >= 0)
+			{
+				int svar = JOptionPane.showOptionDialog(panel, 
+						"Datoen har allerede registrert " + d.getNedbør() + "mm nedbør.\nVil du overskrive denne dataen med " + nedbør + "mm?", 
+						"Advarsel",
+				        JOptionPane.DEFAULT_OPTION, 
+				        JOptionPane.WARNING_MESSAGE,
+				        null, valg, valg[0]);
+				if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
+					nedB = false;					
+			}
+			if(nedB)
+			{
+				d.setNedbør(nedbør);
+			}
+		}
+		
 		if(!nedB && !minT && !maxT)
 			return "Ingen data registrert";
 		
-		if(minT && !maxT && d.getMaxTemp() < MAXMAXTEMP)
+		/**
+		 * 	Hvis det kun er endret minimumstemperatur og maksimumstemperatur allerede eksisterer slår denne til
+		 */
+		if(minT && !maxT && d.getMaxTemp() < MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
 		{
-			if(d.getMinTemp() > d.getMaxTemp())
-			{
-				// Gammel verdi skal settes tilbake
-			}
+			d.setMinTemp(gammelMinTemp);
+			String feilretur = "Minimumstemperaturen er høyere enn allerede registrert maksimumstemperatur, og blir derfor ikke endret.";
+			if(nedB)
+				feilretur += " Nedbøren ble endret.";
+			return feilretur;
+		}
+		/**
+		 * 	Hvis det kun er endret maksimumstemperatur og minimumstemperatur allerede eksisterer slår denne til
+		 */
+		if(!minT && maxT && d.getMinTemp() < MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
+		{
+			d.setMaxTemp(gammelMaksTemp);
+			String feilretur = "Maksimumstemperaturen er lavere enn allerede registrert minimumstemperatur, og blir derfor ikke endret.";
+			if(nedB)
+				feilretur += " Nedbøren ble endret.";
+			return feilretur;
 		}
 		
 		return "Data ble satt inn i tabellen";

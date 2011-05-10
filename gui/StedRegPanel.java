@@ -60,6 +60,8 @@ public class StedRegPanel extends MetroPanel
 							Registrering.registrerSted(navn, fylke, sl), 
 							"Registrering av sted", 
 							JOptionPane.INFORMATION_MESSAGE);
+			navn.setText("");
+			fylke.setSelectedIndex(0);
 		}
 	}
 }

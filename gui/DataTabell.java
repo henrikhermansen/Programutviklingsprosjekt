@@ -7,22 +7,31 @@ import javax.swing.table.AbstractTableModel;
  *	@version	1
  *	@since		1.6
  */
-public class DataTabellModell extends AbstractTableModel
+@SuppressWarnings("serial")
+public class DataTabell extends AbstractTableModel
 {
+	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur"};
+	private Object[][] celler;
+	
+	public DataTabell(Object[][] celler)
+	{
+		this.celler = celler;
+	}
 	/**
 	 * @author Lars Smeby
 	 */
 	public String getColumnName(int kolonne)
 	{
-		return null;
+		return kolonnenavn[kolonne];
 	}
 	
 	/**
 	 * @author Lars Smeby
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Class getColumnClass(int kolonne)
 	{
-		return getValueAt(0, kolonne).getClass();
+		return celler[0][kolonne].getClass();
 	}
 	
 	/**
@@ -30,8 +39,7 @@ public class DataTabellModell extends AbstractTableModel
 	 */
 	public int getColumnCount()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return celler[0].length;
 	}
 
 	/**
@@ -39,8 +47,7 @@ public class DataTabellModell extends AbstractTableModel
 	 */
 	public int getRowCount()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return celler.length;
 	}
 
 	/**
@@ -48,8 +55,7 @@ public class DataTabellModell extends AbstractTableModel
 	 */
 	public Object getValueAt(int rad, int kolonne)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return celler[rad][kolonne];
 	}
 
 }
