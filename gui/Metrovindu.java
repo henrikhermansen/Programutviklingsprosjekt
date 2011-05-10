@@ -115,7 +115,7 @@ public class Metrovindu extends JFrame
 		finnmeny.add(finnDataSted);
 		finnmeny.add(finnDataDato);
 		
-		statistikkmeny.add(new JMenuItem("Statistikknapper"));
+		statistikkmeny.add(new JMenuItem("Statistikknapper") /*Medlertidig fyllknapp*/);
 		
 		hjelpmeny.add(hjelpHjelp);
 		hjelpmeny.add(hjelpOm);
@@ -191,14 +191,14 @@ public class Metrovindu extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			if(e.getSource() == regSted)
+			if(e.getSource() == regSted || e.getSource() == registrerSted)
 			{
 				c.remove(1);
 				c.add(srPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}
-			if(e.getSource() == regData)
+			if(e.getSource() == regData || e.getSource() == registrerData)
 			{
 				c.remove(1);
 				c.add(vrPanel.getPanel(), BorderLayout.CENTER);
@@ -206,7 +206,7 @@ public class Metrovindu extends JFrame
 				c.repaint();
 				vrPanel.hentSteder(vrPanel.getFylke());
 			}
-			if(e.getSource() == finnSted)
+			if(e.getSource() == finnSted || e.getSource() == finnDataSted)
 			{
 				c.remove(1);
 				c.add(sdPanel.getPanel(), BorderLayout.CENTER);
@@ -214,7 +214,7 @@ public class Metrovindu extends JFrame
 				c.repaint();
 				sdPanel.hentSteder(sdPanel.getFylke());
 			}
-			if(e.getSource() == finnDato)
+			if(e.getSource() == finnDato || e.getSource() == finnDataDato)
 			{
 				c.remove(1);
 				c.add(ddPanel.getPanel(), BorderLayout.CENTER);
