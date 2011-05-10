@@ -12,6 +12,7 @@ import java.awt.EventQueue;
 public class RunMetrodata {
 
 	/**
+	 * @author Lars Smeby
 	 * Starter hovedtråd og oppretter hovedvinduet.
 	 * @param args
 	 */

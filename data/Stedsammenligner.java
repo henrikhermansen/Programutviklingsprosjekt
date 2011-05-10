@@ -29,6 +29,7 @@ public class Stedsammenligner implements Serializable, Comparator<Sted>
 	private boolean fylkesøk;
 	
 	/**
+	 * @author Lars Smeby
 	 * Konstruktør
 	 * @param fs	Avgjør om fylket stedet ligger i skal være med i betraktningen
 	 */
@@ -48,6 +49,7 @@ public class Stedsammenligner implements Serializable, Comparator<Sted>
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Sammenlikningsmetoden implementert fra Comparator-interfacet
 	 */
 	@Override

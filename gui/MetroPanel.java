@@ -19,6 +19,10 @@ public abstract class MetroPanel
 	protected JComboBox fylke, sted, ldag, lmåned, lår;
 	private final int førsteår = 1900;
 	
+	/**
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten til hovedvinduet
+	 */
 	public MetroPanel(Stedliste sl)
 	{
 		this.sl = sl;
@@ -53,6 +57,7 @@ public abstract class MetroPanel
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer det panelet som skal brukes i hovedvinduet.
 	 * @return et objekt av typen JPanel.
 	 */
@@ -61,6 +66,10 @@ public abstract class MetroPanel
 		return panel;
 	}
 	
+	/**
+	 * @author Lars Smeby
+	 * @param fylke	Fylkesnummeret det skal vises steder for
+	 */
 	protected void hentSteder(int fylke)
 	{
 		sted.setModel(new DefaultComboBoxModel(sl.toString(fylke)));
@@ -68,6 +77,10 @@ public abstract class MetroPanel
 		sted.repaint();
 	}
 	
+	/**
+	 * @author Lars Smeby
+	 * @return	Indexen til det fylke som er valgt i fylkeslisten
+	 */
 	public int getFylke()
 	{
 		return fylke.getSelectedIndex();

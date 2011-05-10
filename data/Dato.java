@@ -17,13 +17,14 @@ public class Dato implements Serializable
 	 * maxTemp	Maksimumstemperatur for denne dagen.
 	 * nedbør	Nedbørsmengde for denne dagen.
 	 */
-	private int minTemp,maxTemp,nedbør;
+	private double minTemp,maxTemp,nedbør;
 	/**
 	 * Objekt av klassen GregorianCalendar for å lagre hvilken dag, måned og år dette er.
 	 */
 	private GregorianCalendar dato;
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter dag, måned og år.
 	 * @param dag	dato i måneden.
 	 * @param måned	måned i året.
@@ -35,6 +36,7 @@ public class Dato implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter dag, måned og år ved å gi et ferdig GregorianCalendar-objekt.
 	 * @param dato	et ferdig GregorianCalendar-objekt.
 	 */
@@ -44,34 +46,38 @@ public class Dato implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter laveste temperatur denne dagen.
 	 * @param minTemp	minimumstemperatur denne dagen.
 	 */
-	public void setMinTemp(int minTemp)
+	public void setMinTemp(double minTemp)
 	{
 		this.minTemp=minTemp;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter høyeste temperatur denne dagen.
 	 * @param maxTemp	maksimumstemperatur denne dagen.
 	 */
-	public void setMaxTemp(int maxTemp)
+	public void setMaxTemp(double maxTemp)
 	{
 		this.maxTemp=maxTemp;
 	}
 	
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter nedbørsmendge denne dagen.
 	 * @param nedbør	nedbørsmengde denne dagen.
 	 */
-	public void setNedbør(int nedbør)
+	public void setNedbør(double nedbør)
 	{
 		this.nedbør=nedbør;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metode for dato.
 	 * @return	datoen i form av et GregorianCalendar-objekt.
 	 */
@@ -81,6 +87,7 @@ public class Dato implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metode for dato som String.
 	 * @return	datoen i form av en String.
 	 */
@@ -93,42 +100,47 @@ public class Dato implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metode for laveste temperatur denne dagen.
 	 * @return	minimumstemperatur denne dagen.
 	 */
-	public int getMinTemp()
+	public double getMinTemp()
 	{
 		return this.minTemp;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metode for høyeste temperatur denne dagen.
 	 * @return	maksimumstemperatur denne dagen.
 	 */
-	public int getMaxTemp()
+	public double getMaxTemp()
 	{
 		return this.maxTemp;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metode for gjennomsnittstemperatur denne dagen.
 	 * @return	gjennomsnittstemperatur denne dagen.
 	 */
-	public int getAvgTemp()
+	public double getAvgTemp()
 	{
 		return (this.minTemp+this.maxTemp)/2;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Get-metoden for nedbørsmengde denne dagen.
 	 * @return	nedbørsmengden denne dagen.
 	 */
-	public int getNedbør()
+	public double getNedbør()
 	{
 		return this.nedbør;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * toString-metode som gir informasjon om dagen i form av en String.
 	 * @return	Dato, minimumstemperatur, maksimumstemperatur og nedbørsmengde som en String.
 	 */

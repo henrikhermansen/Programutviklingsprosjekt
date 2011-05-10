@@ -14,6 +14,10 @@ public class DatoDataPanel extends MetroPanel
 {
 	private JButton hentData;
 	
+	/**
+	 * @author Lars Smeby
+	 * @param sl	Mottar stedlisten til hovedvinduet
+	 */
 	public DatoDataPanel(Stedliste sl)
 	{
 		super(sl);

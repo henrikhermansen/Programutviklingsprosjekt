@@ -15,6 +15,7 @@ public class VaerRegPanel extends MetroPanel
 	private JButton registrer;
 	
 	/**
+	 * @author Henrik Hermansen
 	 * @param sl	Referanse til stedlisten
 	 */
 	public VaerRegPanel(Stedliste sl)
@@ -82,6 +83,7 @@ public class VaerRegPanel extends MetroPanel
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Privat lytterklasse av typen ActionListener.
 	 */
 	private class HandlingsLytter implements ActionListener
@@ -95,6 +97,7 @@ public class VaerRegPanel extends MetroPanel
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Privat lytterklasse av typen KeyListener.
 	 */
 	private class SkrivefeltLytter implements KeyListener

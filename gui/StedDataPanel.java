@@ -19,6 +19,10 @@ public class StedDataPanel extends MetroPanel
 	protected JRadioButton rdag, rmåned, rår;
 	private JButton hentData;
 	
+	/**
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten til hovedvinduet
+	 */
 	public StedDataPanel(Stedliste sl)
 	{
 		super(sl);
@@ -58,6 +62,9 @@ public class StedDataPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
+	/**
+	 * @author Lars Smeby
+	 */
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

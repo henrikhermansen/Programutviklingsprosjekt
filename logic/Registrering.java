@@ -1,6 +1,3 @@
-/**
- * 
- */
 package logic;
 
 import javax.swing.JComboBox;
@@ -12,7 +9,9 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 public class Registrering
 {

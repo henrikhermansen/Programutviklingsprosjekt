@@ -22,6 +22,7 @@ public class Datoliste implements Serializable
 	private ArrayList<Dato> liste=new ArrayList<Dato>();
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Setter Dato-objektet inn i listen liste.
 	 * @param dato	et ferdig objekt av klassen Dato.
 	 */
@@ -32,6 +33,7 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Sorterer Dato-objektene i listen liste i kronologisk rekkefølge.
 	 */
 	public void sorter()
@@ -40,6 +42,7 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
 	 * @param år	året i datoen det skal søkes etter.
 	 * @param måned	måneden i datoen det skal søkes etter.
@@ -53,6 +56,7 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Finner og returnerer et Dato-objekt ved å sammenligne med et allerede opprettet Dato-objekt.
 	 * @param gc	et GregorianCalendar-objekt.
 	 * @return		et Dato-objekt basert på søkekriteriet.
@@ -67,6 +71,7 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Finner og returnerer et Datoliste-objekt som inneholder registrerte datoer i det året det søkes etter.
 	 * @param år	det årstallet man vil hente datoer ut fra.
 	 * @return		et Datoliste-objekt.
@@ -76,12 +81,16 @@ public class Datoliste implements Serializable
 		Datoliste datoliste=new Datoliste();
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
-			if(iterator.next().getDato().get(Calendar.YEAR)==år)
-				datoliste.settInn(iterator.next());
+		{
+			Dato neste = iterator.next();
+			if(neste.getDato().get(Calendar.YEAR)==år)
+				datoliste.settInn(neste);
+		}
 		return datoliste;
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Finner og returnerer et Datoliste-objekt som inneholder registrete datoer i den måneden og det året det søkes etter.
 	 * @param år	det årstallet man vil hente datoer ut fra.
 	 * @param måned	den måneden man vil hente datoer ut fra.
@@ -92,8 +101,11 @@ public class Datoliste implements Serializable
 		Datoliste datoliste=new Datoliste();
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
-			if(iterator.next().getDato().get(Calendar.YEAR)==år && iterator.next().getDato().get(Calendar.MONTH)==måned)
-				datoliste.settInn(iterator.next());
+		{
+			Dato neste = iterator.next();
+			if(neste.getDato().get(Calendar.YEAR)==år && neste.getDato().get(Calendar.MONTH)==måned)
+				datoliste.settInn(neste);
+		}
 		return datoliste;
 	}
 }

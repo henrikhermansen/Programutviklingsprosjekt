@@ -27,9 +27,10 @@ public class Metrovindu extends JFrame
 	private JButton regSted, regData, finnSted, finnDato;
 	private JPanel hovedpanel;
 	private Container c;
-	private JMenuItem filAvslutt, filLagre;
+	private JMenuItem filAvslutt, filLagre, registrerSted, registrerData, finnDataSted, finnDataDato, hjelpHjelp, hjelpOm;
 	
 	/**
+	 * @author Lars Smeby, Henrik Hermansen
 	 * Hovedvinduet blir opprettet.
 	 * UIManager.setLookAndFeel setter utseende på knapper etc lik windows utseende.
 	 * Hovedvinduet bygges opp med menybar i toppen felt for "fil", "registrer","statistikk"
@@ -64,10 +65,12 @@ public class Metrovindu extends JFrame
 		JMenuBar menylinje = new JMenuBar();
 		JMenu filmeny = new JMenu("Fil");
 		JMenu registrermeny = new JMenu("Registrer");
+		JMenu finnmeny = new JMenu("Finn");
 		JMenu statistikkmeny = new JMenu("Statistikk");
 		JMenu hjelpmeny = new JMenu("Hjelp");
 		filmeny.setMnemonic('f');
 		registrermeny.setMnemonic('r');
+		finnmeny.setMnemonic('i');
 		statistikkmeny.setMnemonic('s');
 		hjelpmeny.setMnemonic('h');
 		
@@ -78,12 +81,48 @@ public class Metrovindu extends JFrame
 		filAvslutt = new JMenuItem("Avslutt");
 		filAvslutt.setMnemonic('a');
 		filAvslutt.addActionListener(mklytter); 
+		
+		registrerSted = new JMenuItem("Registrer sted");
+		registrerSted.setMnemonic('s');
+		registrerSted.addActionListener(mklytter);
+		
+		registrerData = new JMenuItem("Registrer værdata");
+		registrerData.setMnemonic('v');
+		registrerData.addActionListener(mklytter);
+		
+		finnDataSted = new JMenuItem("Værdata for sted");
+		finnDataSted.setMnemonic('s');
+		finnDataSted.addActionListener(mklytter);
+		
+		finnDataDato = new JMenuItem("Værdata for dato");
+		finnDataDato.setMnemonic('d');
+		finnDataDato.addActionListener(mklytter);
+		
+		hjelpHjelp = new JMenuItem("Hjelp til programmet");
+		hjelpHjelp.setMnemonic('h');
+		hjelpHjelp.addActionListener(mklytter);
+		
+		hjelpOm = new JMenuItem("Om");
+		hjelpOm.setMnemonic('o');
+		hjelpOm.addActionListener(mklytter);
 
 		filmeny.add(filLagre);
 		filmeny.add(filAvslutt);
 		
+		registrermeny.add(registrerSted);
+		registrermeny.add(registrerData);
+		
+		finnmeny.add(finnDataSted);
+		finnmeny.add(finnDataDato);
+		
+		statistikkmeny.add(new JMenuItem("Statistikknapper"));
+		
+		hjelpmeny.add(hjelpHjelp);
+		hjelpmeny.add(hjelpOm);
+		
 		menylinje.add(filmeny);
 		menylinje.add(registrermeny);
+		menylinje.add(finnmeny);
 		menylinje.add(statistikkmeny);
 		menylinje.add(hjelpmeny);
 		
@@ -122,6 +161,7 @@ public class Metrovindu extends JFrame
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Oppdaterer og setter hovedpanel/vindu til høyre.
 	 */
 	public void settHovedPanel()
@@ -133,9 +173,18 @@ public class Metrovindu extends JFrame
 	}
 	
 	/**
+	 * @author Lars Smeby
+	 * @return	Referanse til dette vinduet
+	 */
+	public Metrovindu getMetrovindu()
+	{
+		return this;
+	}
+	
+	/**
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
 	 * til venstre i hovedvinduet og til knappene til i menyen.
-	 * @author bOa
+	 * @author Lars Smeby, Bård Skeie
 	 *
 	 */
 	private class MenyKnappelytter implements ActionListener
@@ -180,7 +229,25 @@ public class Metrovindu extends JFrame
 			if(e.getSource() == filLagre)
 			{
 				Filhåndterer.lagreFil(sl);
-				JOptionPane.showMessageDialog(null,"Data er lagret til fil","Lagret",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(getMetrovindu(),"Data er lagret til fil","Lagret",JOptionPane.INFORMATION_MESSAGE);
+			}
+			if(e.getSource() == hjelpHjelp)
+			{
+				String hjelp = "Hjelp til programmet\n" +
+								"\n" +
+								"For å bruke programmet må du...";
+				JOptionPane.showMessageDialog(getMetrovindu(), hjelp, "Hjelp", JOptionPane.INFORMATION_MESSAGE);
+			}
+			if(e.getSource() == hjelpOm)
+			{
+				String om = "Metrologiske data\n" +
+							"\n" +
+							"Prosjektoppgave i programutvikling våren 2011\n" +
+							"Gruppe 3: Henrik Hermansen, Bård Skeie og Lars Smeby\n" +
+							"Programversjon: 1.0\n" +
+							"Sist oppdatdert: 10.05.2011\n" +
+							"Høyskolen i Oslo";
+				JOptionPane.showMessageDialog(getMetrovindu(), om, "Om", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
@@ -188,7 +255,7 @@ public class Metrovindu extends JFrame
 	/**
 	 * Lytteklasse for vinduet. Sørger for at programmet lagrer og avslutter 
 	 * riktig ved bruk av avslutt-knappen oppe til høyre i vinduet.
-	 * @author bOa
+	 * @author Bård Skeie
 	 *
 	 */
 	private class Vinduslytter extends WindowAdapter

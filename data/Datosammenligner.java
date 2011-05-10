@@ -13,6 +13,7 @@ public class Datosammenligner implements Comparator<Dato>, Serializable
 	private static final long serialVersionUID = 8291850317051193976L;
 
 	/**
+	 * @author Henrik Hermansen
 	 * Sammenligner to Dato-objekter ved å hente ut datoens GregorianCalendar-objekt(getDato()) og bruker GC sin comepareTo()-metode for sammenligning.
 	 * Comparator sin compare()-metode skal returnere negativ verdi hvis param1 er mindre enn param2, eller i dette tilfellet hvis nå er før da,
 	 * og dette er samme resultat som GC sin compareTo()-metode gir. Vi kan altså returnere denne direkte.

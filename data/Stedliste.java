@@ -17,6 +17,7 @@ public class Stedliste implements Serializable
 	private ArrayList<Sted> liste = new ArrayList<Sted>();
 	
 	/**
+	 * @author Lars Smeby
 	 * Setter inn et sted-objekt bakerst i listen
 	 * @param s	Sted-objekt
 	 */
@@ -27,6 +28,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Sorterer listen etter stedsnavn
 	 */
 	public void sorter()
@@ -35,6 +37,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer antall elementer i listen
 	 * @return	int antall elementer
 	 */
@@ -44,6 +47,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Returnerer iteratoren til listen
 	 * @return	Iterator<Sted> til listen
 	 */
@@ -53,6 +57,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
 	 * @return	Et sted-objekt hvis det finnes, ellers null
@@ -66,6 +71,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
 	 * @param fylke	Fylket stedet ligger i (SSBs fylkesnummer)
@@ -80,6 +86,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Henrik Hermansen
 	 * Returnerer en Stedliste med stedene i et gitt fylke
 	 * @param fylke	int fylkesnummeret
 	 * @return	Stedliste med Stedobjektene i et gitt fylke
@@ -98,6 +105,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
 	 * @param fylke	Fylkesnummer
 	 * @return	String-array av alle stedsnavnene i et gitt fylke
 	 */
