@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import logic.FinnData;
+
 import data.Stedliste;
 
 /**
@@ -83,7 +85,24 @@ public class StedDataPanel extends MetroPanel
 		{
 			if(e.getSource() == hentData)
 			{
-				genererTabell(null);
+				if(rdag.isSelected())
+				{
+					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, ldag, lmåned, lår);
+					if(data != null)
+						genererTabell(data);
+				}
+				if(rmåned.isSelected())
+				{
+					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lmåned, lår);
+					if(data != null)
+						genererTabell(data);
+				}
+				if(rår.isSelected())
+				{
+					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lår);
+					if(data != null)
+						genererTabell(data);
+				}
 			}
 			if(e.getSource() == fylke)
 			{

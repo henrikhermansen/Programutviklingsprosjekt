@@ -55,6 +55,7 @@ public abstract class MetroPanel
 		dato.add(lår);
 
 		panel.add(grid, BorderLayout.PAGE_START);
+		panel.add(new JLabel(""), BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createEmptyBorder(25, 35, 10, 35));
 	}
 	
@@ -103,6 +104,7 @@ public abstract class MetroPanel
 		JPanel tabellPanel = new JPanel(new GridLayout(1, 0));
 		tabellPanel.add(new JScrollPane(tabell));
 		tabellPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+		panel.remove(1);
 		panel.add(tabellPanel, BorderLayout.CENTER);
 	}
 }

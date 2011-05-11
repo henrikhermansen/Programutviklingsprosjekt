@@ -58,9 +58,12 @@ public class DatoDataPanel extends MetroPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			Object[][] data = FinnData.FinnDatoVaer(sl, fylke, lår, lmåned, ldag, panel);
-			if(data != null)
-				genererTabell(data);
+			if(e.getSource() == hentData)
+			{
+				Object[][] data = FinnData.FinnDatoVaer(sl, fylke, lår, lmåned, ldag, panel);
+				if(data != null)
+					genererTabell(data);
+			}
 		}
 	}
 }

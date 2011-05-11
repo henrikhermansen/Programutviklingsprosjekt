@@ -1,5 +1,7 @@
 package gui;
 
+import java.sql.Date;
+
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -28,10 +30,16 @@ public class DataTabell extends AbstractTableModel
 	/**
 	 * @author Lars Smeby
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Class getColumnClass(int kolonne)
+
+	public Class<?> getColumnClass(int kolonne)
 	{
-		return celler[0][kolonne].getClass();
+		// Grunnet muligheten for blanke celler settes klassetypene fast
+		switch(kolonne)
+		{
+		case 0:	return String.class;
+		case 1: return Date.class;
+		}
+		return Double.class;
 	}
 	
 	/**

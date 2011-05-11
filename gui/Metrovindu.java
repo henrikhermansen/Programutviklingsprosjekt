@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 import data.Stedliste;
 import data.Filhåndterer;
 
@@ -48,11 +49,20 @@ public class Metrovindu extends JFrame
 		sdPanel = new StedDataPanel(this.sl);
 		ddPanel = new DatoDataPanel(this.sl);
 		
-		try
-		{
+		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		} catch (Exception e) {
-			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		MenyKnappelytter mklytter = new MenyKnappelytter();

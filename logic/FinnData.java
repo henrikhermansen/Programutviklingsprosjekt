@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 import javax.swing.*;
@@ -14,6 +13,132 @@ import data.*;
  */
 public class FinnData
 {
+	
+	/**
+	 * Metode for å få tak i all data for et gitt sted en gitt dag.
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metodekallet gjøres fra
+	 * @param fylke	JComboBox fylkesliste
+	 * @param sted	JComboBox stedliste
+	 * @param ldag	JComboBox dagliste
+	 * @param lmåned	JComboBox månedsliste
+	 * @param lår	JComboBox årliste
+	 * @return	Object[][] array med en dato og igjen data for et gitt sted en gitt dag
+	 */
+	public static Object[][] finnDataSted(Stedliste sl, JPanel panel, JComboBox fylke, JComboBox sted, JComboBox ldag, JComboBox lmåned, JComboBox lår)
+	{
+		int f = fylke.getSelectedIndex();
+		String s = (String)sted.getSelectedItem();
+		int dag;
+		int måned = lmåned.getSelectedIndex();
+		int år;
+		if(s == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+		try
+		{
+			dag = Integer.parseInt((String)ldag.getSelectedItem());
+			år = Integer.parseInt((String)lår.getSelectedItem());
+		}
+		catch(NumberFormatException nfe)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L001)", "Feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		Sted st = sl.finnSted(s, f);
+		if(st == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L002)", "Feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		Dato dato = st.getDatoliste().finnDato(år, måned, dag);
+
+		if(dato == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
+		
+		Object[][] returarray = new Object[1][5];
+
+		returarray[0][0] = null;
+		returarray[0][1] = dato.getDato().getTime();
+		returarray[0][2] = dato.getNedbør() >= 0 ? dato.getNedbør() : null;
+		returarray[0][3] = dato.getMinTemp() <= Registrering.MAXMAXTEMP ? dato.getMinTemp() : null;
+		returarray[0][4] = dato.getMaxTemp() <= Registrering.MAXMAXTEMP ? dato.getMaxTemp() : null;
+		
+		return returarray;
+	}
+	
+	/**
+	 * Metode for å få tak i all data for et gitt sted en gitt måned.
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metodekallet gjøres fra
+	 * @param fylke	JComboBox fylkesliste
+	 * @param sted	JComboBox stedliste
+	 * @param lmåned	JComboBox månedsliste
+	 * @param lår	JComboBox årliste
+	 * @return	Object[][] array med datoer og igjen data for et gitt sted en gitt måned
+	 */
+	public static Object[][] finnDataSted(Stedliste sl, JPanel panel, JComboBox fylke, JComboBox sted, JComboBox lmåned, JComboBox lår)
+	{
+		int f = fylke.getSelectedIndex();
+		String s = (String)sted.getSelectedItem();
+		int måned = lmåned.getSelectedIndex();
+		int år;
+		if(s == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+		try
+		{
+			år = Integer.parseInt((String)lår.getSelectedItem());
+		}
+		catch(NumberFormatException nfe)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L003)", "Feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		Sted st = sl.finnSted(s, f);
+		if(st == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L004)", "Feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		
+		Datoliste månedliste = st.getDatoliste().finnDatoer(år, måned);
+		
+		int lengde = månedliste.size();
+		if(lengde == 0)
+		{
+			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
+		
+		Object[][] returarray = new Object[lengde][5];
+		
+		Iterator<Dato> iterator = månedliste.iterator();
+		
+		for(int i = 0; i < lengde; i++)
+		{
+			Dato neste = iterator.next();
+			returarray[i][0] = null;
+			returarray[i][1] = neste.getDato().getTime();
+			returarray[i][2] = neste.getNedbør() >= 0 ? neste.getNedbør() : null;
+			returarray[i][3] = neste.getMinTemp() <= Registrering.MAXMAXTEMP ? neste.getMinTemp() : null;
+			returarray[i][4] = neste.getMaxTemp() <= Registrering.MAXMAXTEMP ? neste.getMaxTemp() : null;
+		}
+		
+		return returarray;
+	}
 	
 	/**
 	 * Metode for å få tak i all data for et gitt sted et gitt år.
@@ -41,14 +166,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L001)", "Feil", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L005)", "Feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L002)", "Feil", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L006)", "Feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 		
@@ -58,6 +183,7 @@ public class FinnData
 		if(lengde == 0)
 		{
 			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			return null;
 		}
 		
 		Object[][] returarray = new Object[lengde][5];
@@ -67,11 +193,11 @@ public class FinnData
 		for(int i = 0; i < lengde; i++)
 		{
 			Dato neste = iterator.next();
-			returarray[i][0] = "";
+			returarray[i][0] = null;
 			returarray[i][1] = neste.getDato().getTime();
-			returarray[i][2] = new Double(neste.getNedbør());
-			returarray[i][3] = new Double(neste.getMinTemp());
-			returarray[9][4] = new Double(neste.getMaxTemp());
+			returarray[i][2] = neste.getNedbør() >= 0 ? neste.getNedbør() : null;
+			returarray[i][3] = neste.getMinTemp() <= Registrering.MAXMAXTEMP ? neste.getMinTemp() : null;
+			returarray[i][4] = neste.getMaxTemp() <= Registrering.MAXMAXTEMP ? neste.getMaxTemp() : null;
 		}
 		
 		return returarray;
@@ -134,10 +260,13 @@ public class FinnData
 		{
 			Sted neste = iterator.next();
 			returarray[i][0] = neste.getNavn();
-			returarray[i][1] = new GregorianCalendar(år, måned, dag).getTime();
-			returarray[i][2] = new Double(neste.getDatoliste().finnDato(år, måned, dag).getNedbør());
-			returarray[i][3] = new Double(neste.getDatoliste().finnDato(år, måned, dag).getMinTemp());
-			returarray[i][4] = new Double(neste.getDatoliste().finnDato(år, måned, dag).getMaxTemp());
+			returarray[i][1] = null;
+			returarray[i][2] = neste.getDatoliste().finnDato(år, måned, dag).getNedbør() >= 0
+								? neste.getDatoliste().finnDato(år, måned, dag).getNedbør() : null;
+			returarray[i][3] = neste.getDatoliste().finnDato(år, måned, dag).getMinTemp() <= Registrering.MAXMAXTEMP
+								? neste.getDatoliste().finnDato(år, måned, dag).getMinTemp() : null;
+			returarray[i][4] = neste.getDatoliste().finnDato(år, måned, dag).getMaxTemp() <= Registrering.MAXMAXTEMP
+								? neste.getDatoliste().finnDato(år, måned, dag).getMaxTemp() : null;
 		}
 
 		return returarray;
