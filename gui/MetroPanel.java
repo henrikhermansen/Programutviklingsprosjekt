@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.*;
+
 import data.Sted;
 import data.Stedliste;
 
@@ -17,6 +18,7 @@ public abstract class MetroPanel
 	protected JPanel panel, grid, dato;
 	protected Stedliste sl;
 	protected JComboBox fylke, sted, ldag, lmåned, lår;
+	protected JTable tabell;
 	private final int førsteår = 1900;
 	
 	/**
@@ -84,5 +86,19 @@ public abstract class MetroPanel
 	public int getFylke()
 	{
 		return fylke.getSelectedIndex();
+	}
+	
+	public void genererTabell(Object[][] data)
+	{
+		DataTabell modell = new DataTabell(data);
+		tabell = new JTable(modell);
+		tabell.getTableHeader().setReorderingAllowed(false);
+		tabell.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		tabell.setRowSelectionAllowed(true);
+		tabell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JPanel tabellPanel = new JPanel(new GridLayout(1, 0));
+		tabellPanel.add(new JScrollPane(tabell));
+		tabellPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+		panel.add(tabellPanel, BorderLayout.CENTER);
 	}
 }

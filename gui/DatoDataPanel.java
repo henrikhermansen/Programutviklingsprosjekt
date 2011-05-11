@@ -36,11 +36,19 @@ public class DatoDataPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
+	public void genererTabell(Object[][] data)
+	{
+		super.genererTabell(data);
+		tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+		panel.validate();
+		panel.repaint();
+	}
+	
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			
+			genererTabell(null);
 		}
 	}
 }
