@@ -36,6 +36,10 @@ public class DatoDataPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
+	/**
+	 * @author Lars Smeby
+	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
+	 */
 	public void genererTabell(Object[][] data)
 	{
 		super.genererTabell(data);
@@ -44,6 +48,10 @@ public class DatoDataPanel extends MetroPanel
 		panel.repaint();
 	}
 	
+	/**
+	 * @author Bård Skeie
+	 *
+	 */
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

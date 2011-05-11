@@ -64,6 +64,18 @@ public class StedDataPanel extends MetroPanel
 	
 	/**
 	 * @author Lars Smeby
+	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
+	 */
+	public void genererTabell(Object[][] data)
+	{
+		super.genererTabell(data);
+		tabell.removeColumn(tabell.getColumnModel().getColumn(0));
+		panel.validate();
+		panel.repaint();
+	}
+	
+	/**
+	 * @author Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener
 	{
@@ -71,15 +83,11 @@ public class StedDataPanel extends MetroPanel
 		{
 			if(e.getSource() == hentData)
 			{
-				
+				genererTabell(null);
 			}
 			if(e.getSource() == fylke)
 			{
 				hentSteder(fylke.getSelectedIndex());
-			}
-			if(e.getSource() == sted)
-			{
-				
 			}
 			if(rdag.isSelected())
 			{

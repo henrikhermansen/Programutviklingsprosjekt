@@ -42,6 +42,26 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * @author Lars Smeby
+	 * Returnerer antall elementer i listen
+	 * @return	int antall elementer
+	 */
+	public int size()
+	{
+		return liste.size();
+	}
+	
+	/**
+	 * @author Lars Smeby
+	 * Returnerer iteratoren til listen
+	 * @return	Iterator<Sted> til listen
+	 */
+	public Iterator<Dato> iterator()
+	{
+		return liste.iterator();
+	}
+	
+	/**
 	 * @author Henrik Hermansen
 	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
 	 * @param år	året i datoen det skal søkes etter.

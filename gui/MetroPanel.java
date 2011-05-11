@@ -88,6 +88,10 @@ public abstract class MetroPanel
 		return fylke.getSelectedIndex();
 	}
 	
+	/**
+	 * @author Lars Smeby
+	 * @param data	Arrayen som inneholder dataene som skal skrives ut i tabellen
+	 */
 	public void genererTabell(Object[][] data)
 	{
 		DataTabell modell = new DataTabell(data);

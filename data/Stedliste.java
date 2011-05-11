@@ -59,16 +59,17 @@ public class Stedliste implements Serializable
 	/**
 	 * @author Lars Smeby
 	 * Finner et sted-objekt hvis det finnes i listen
+	 * IKKE I BRUK
 	 * @param navn	Navn på sted
 	 * @return	Et sted-objekt hvis det finnes, ellers null
 	 */
-	public Sted finnSted(String navn)
-	{
-		int index = Collections.binarySearch(liste, new Sted(navn,0), new Stedsammenligner(false));
-		if(index<0)
-			return null;
-		return liste.get(index);
-	}
+//	public Sted finnSted(String navn)
+//	{
+//		int index = Collections.binarySearch(liste, new Sted(navn,0), new Stedsammenligner(false));
+//		if(index<0)
+//			return null;
+//		return liste.get(index);
+//	}
 	
 	/**
 	 * @author Lars Smeby
