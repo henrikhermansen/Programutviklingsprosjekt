@@ -1,5 +1,9 @@
 package gui;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -11,11 +15,15 @@ import javax.swing.table.AbstractTableModel;
 public class DataTabell extends AbstractTableModel
 {
 	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur"};
-	private Object[][] celler;
+	private Object[][] celler = {
+									{"Oslo", new Date(), new Double(0.2), new Double(8.3), new Double(12.9)},
+									{"Asker", new GregorianCalendar(2001, Calendar.SEPTEMBER, 11).getTime(), new Double(5.3), new Double(5), new Double(5.1)},
+									{"Bærum", new GregorianCalendar(1956, Calendar.FEBRUARY, 1).getTime(), new Double(3.2), new Double(22), new Double(25.9)}
+								};
 	
 	public DataTabell(Object[][] celler)
 	{
-		this.celler = celler;
+		//this.celler = celler;
 	}
 	/**
 	 * @author Lars Smeby
