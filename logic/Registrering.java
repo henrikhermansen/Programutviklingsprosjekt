@@ -58,7 +58,7 @@ public class Registrering
 		boolean nedB = false;
 		
 		int år = -100;
-		int måned = lmåned.getSelectedIndex() + 1;
+		int måned = lmåned.getSelectedIndex();
 		int dag = -100;
 		
 		try
@@ -193,7 +193,7 @@ public class Registrering
 		/**
 		 * 	Hvis det kun er endret minimumstemperatur og maksimumstemperatur allerede eksisterer slår denne til
 		 */
-		if(minT && !maxT && d.getMaxTemp() < MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
+		if(minT && !maxT && d.getMaxTemp() <= MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
 		{
 			d.setMinTemp(gammelMinTemp);
 			String feilretur = "Minimumstemperaturen er høyere enn allerede registrert maksimumstemperatur, og blir derfor ikke endret.";
@@ -204,7 +204,7 @@ public class Registrering
 		/**
 		 * 	Hvis det kun er endret maksimumstemperatur og minimumstemperatur allerede eksisterer slår denne til
 		 */
-		if(!minT && maxT && d.getMinTemp() < MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
+		if(!minT && maxT && d.getMinTemp() <= MAXMAXTEMP && d.getMinTemp() > d.getMaxTemp())
 		{
 			d.setMaxTemp(gammelMaksTemp);
 			String feilretur = "Maksimumstemperaturen er lavere enn allerede registrert minimumstemperatur, og blir derfor ikke endret.";
