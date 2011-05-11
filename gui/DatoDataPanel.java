@@ -3,6 +3,8 @@ package gui;
 import java.awt.event.*;
 import javax.swing.*;
 
+import logic.FinnData;
+
 import data.Stedliste;
 
 /**
@@ -44,11 +46,18 @@ public class DatoDataPanel extends MetroPanel
 		panel.repaint();
 	}
 	
+	/**
+	 * 
+	 * @author Bård Skeie
+	 * Handlingslytter til værdata for dato.
+	 */
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			genererTabell(null);
+			Object[][] data = FinnData.FinnDatoVaer(sl, fylke, lår, lmåned, ldag, panel);
+			if(data != null)
+				genererTabell(data);
 		}
 	}
 }
