@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,6 +36,10 @@ public class UtviklingPanel extends MetroPanel
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		
+		fylke.setEnabled(false);
+		sted.setEnabled(false);
+		lmåned.setEnabled(false);
+		
 		omfangsgruppe = new ButtonGroup();
 		rland = new JRadioButton("Hele landet", true);
 		rfylke = new JRadioButton("", false);
@@ -49,8 +52,12 @@ public class UtviklingPanel extends MetroPanel
 		omfangsgruppe.add(rsted);
 		
 		datogruppe = new ButtonGroup();
-		rmåned = new JRadioButton("", true);
-		rår = new JRadioButton("", false);
+		rmåned = new JRadioButton("", false);
+		rår = new JRadioButton("", true);
+		rmåned.addActionListener(handlingslytter);
+		rår.addActionListener(handlingslytter);
+		datogruppe.add(rmåned);
+		datogruppe.add(rår);
 		
 		fylkepanel = new JPanel(new BorderLayout());
 		fylkepanel.add(rfylke, BorderLayout.LINE_START);
@@ -59,6 +66,14 @@ public class UtviklingPanel extends MetroPanel
 		stedpanel = new JPanel(new BorderLayout());
 		stedpanel.add(rsted, BorderLayout.LINE_START);
 		stedpanel.add(sted, BorderLayout.CENTER);
+		
+		årpanel = new JPanel(new BorderLayout());
+		årpanel.add(rår, BorderLayout.LINE_START);
+		årpanel.add(lår, BorderLayout.CENTER);
+		
+		månedpanel = new JPanel(new BorderLayout());
+		månedpanel.add(rmåned, BorderLayout.LINE_START);
+		månedpanel.add(lmåned, BorderLayout.CENTER);
 		
 		hentData = new JButton("Generer oversikt");
 		hentData.addActionListener(handlingslytter);
@@ -69,15 +84,59 @@ public class UtviklingPanel extends MetroPanel
 		grid.add(fylkepanel);
 		grid.add(new JLabel(""));
 		grid.add(stedpanel);
+		grid.add(new JLabel("Velg tidsperiode"));
+		grid.add(årpanel);
+		grid.add(new JLabel(""));
+		grid.add(månedpanel);
 		grid.add(new JLabel(""));
 		grid.add(hentData);
+	}
+	
+	public void genererGrafikk()
+	{
+		double[] data = {20, 29.0, 2.5, -1, 18.7, 20.1, 300, 0, 5.6, 0.2, 15.0, -1};
+		Utviklingsgrafikk grafikkpanel = new Utviklingsgrafikk(data);
+		panel.remove(1);
+		panel.add(grafikkpanel, BorderLayout.CENTER);
+		panel.validate();
+		panel.repaint();
 	}
 	
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			
+			if(e.getSource() == fylke)
+			{
+				hentSteder(fylke.getSelectedIndex());
+			}
+			if(rland.isSelected())
+			{
+				fylke.setEnabled(false);
+				sted.setEnabled(false);
+			}
+			if(rfylke.isSelected())
+			{
+				fylke.setEnabled(true);
+				sted.setEnabled(false);
+			}
+			if(rsted.isSelected())
+			{
+				fylke.setEnabled(true);
+				sted.setEnabled(true);
+			}
+			if(rår.isSelected())
+			{
+				lmåned.setEnabled(false);
+			}
+			if(rmåned.isSelected())
+			{
+				lmåned.setEnabled(true);
+			}
+			if(e.getSource() == hentData)
+			{
+				genererGrafikk();
+			}
 		}
 	}
 }
