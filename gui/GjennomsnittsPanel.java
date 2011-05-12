@@ -9,8 +9,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import logic.Gjennomsnitt;
 
 import data.Stedliste;
 
@@ -57,14 +60,12 @@ public class GjennomsnittsPanel extends MetroPanel
 		super.genererTabell(data);
 		tabell.removeColumn(tabell.getColumnModel().getColumn(1));
 		tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
-		tabell.getColumnModel().getColumn(2).setHeaderValue("Total nedbør");
-		tabell.getColumnModel().getColumn(3).setHeaderValue("Gjennomsnittsnedbør");
-		tabell.getColumnModel().getColumn(4).setHeaderValue("Gjennomsnittstemperatur");
+		tabell.getColumnModel().getColumn(1).setHeaderValue("Total nedbør");
+		tabell.getColumnModel().getColumn(2).setHeaderValue("Gjennomsnittsnedbør");
+		tabell.getColumnModel().getColumn(3).setHeaderValue("Gjennomsnittstemperatur");
 		panel.validate();
 		panel.repaint();
 	}
-	
-	
 	
 	private class HandlingsLytter implements ActionListener
 	{
@@ -76,11 +77,15 @@ public class GjennomsnittsPanel extends MetroPanel
 			}
 			if(e.getSource() == hentData)
 			{
-				
+				if(sted.getSelectedItem() == null)
+				{
+					JOptionPane.showMessageDialog(panel, "Sted er ikke valgt", "Feil", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				Object[][] data = Gjennomsnitt.finnGjennomsnitt(sl, lår, panel, fylke, sted);
+				if(data != null)
+					genererTabell(data);
 			}
-				
-
 		}
 	}
-
 }
