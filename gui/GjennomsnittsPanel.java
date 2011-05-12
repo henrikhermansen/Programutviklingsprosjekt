@@ -22,7 +22,7 @@ import data.Stedliste;
  */
 public class GjennomsnittsPanel extends MetroPanel 
 {
-	private JPanel datotype;
+	private JPanel datotype, gjdato;
 	private ButtonGroup datotypegruppe;
 	private JButton hentData;
 	protected JRadioButton rmåned, rår;
@@ -36,7 +36,6 @@ public class GjennomsnittsPanel extends MetroPanel
 		
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
-		sted.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		
 		datotype = new JPanel(new GridLayout(0,2));
@@ -50,8 +49,12 @@ public class GjennomsnittsPanel extends MetroPanel
 		datotype.add(rmåned);
 		datotype.add(rår);
 		
-		hentData = new JButton("Hent registrerte data");
+		hentData = new JButton("Hent Gjennomsnittsverdier");
 		hentData.addActionListener(handlingslytter);
+		
+		gjdato = new JPanel(new GridLayout(0,2));
+		gjdato.add(lmåned);
+		gjdato.add(lår);
 		
 		grid.add(new JLabel("Velg fylke"));
 		grid.add(fylke);
@@ -60,7 +63,7 @@ public class GjennomsnittsPanel extends MetroPanel
 		grid.add(new JLabel("Velg type søk"));
 		grid.add(datotype);
 		grid.add(new JLabel("Velg dato"));
-		grid.add(dato);
+		grid.add(gjdato);
 		grid.add(new JLabel(""));
 		grid.add(hentData);
 	}
@@ -85,19 +88,29 @@ public class GjennomsnittsPanel extends MetroPanel
 			}
 			if(rmåned.isSelected())
 			{
-				Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lmåned, lår);
-				if(data != null)
-					genererTabell(data);
+				ldag.setEnabled(false);
+				lmåned.setEnabled(true);
 			}
 			if(rår.isSelected())
 			{
-				Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lår);
-				if(data != null)
-					genererTabell(data);
+				ldag.setEnabled(false);
+				lmåned.setEnabled(false);
 			}
 			if(e.getSource() == hentData)
 			{
-				return;
+				if(rmåned.isSelected())
+				{
+					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lmåned, lår);
+					if(data != null)
+						genererTabell(data);
+				}
+				if(rår.isSelected())
+				{
+					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lår);
+					if(data != null)
+						genererTabell(data);
+					return;
+				}
 			}
 				
 
