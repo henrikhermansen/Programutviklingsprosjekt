@@ -24,11 +24,11 @@ public class Metrovindu extends JFrame
 	 * c		Container c er containeren som holder på vindusobjektet
 	 */
 	private Stedliste sl;
-	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel;
-	private JButton regSted, regData, finnSted, finnDato;
+	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel;
+	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp;
 	private JPanel hovedpanel;
 	private Container c;
-	private JMenuItem filAvslutt, filLagre, registrerSted, registrerData, finnDataSted, finnDataDato, hjelpHjelp, hjelpOm;
+	private JMenuItem filAvslutt, filLagre, registrerSted, registrerData, finnDataSted, finnDataDato, finnGjennomsnitt, finnEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
 	
 	/**
 	 * @author Lars Smeby, Henrik Hermansen
@@ -48,6 +48,9 @@ public class Metrovindu extends JFrame
 		vrPanel = new VaerRegPanel(this.sl);
 		sdPanel = new StedDataPanel(this.sl);
 		ddPanel = new DatoDataPanel(this.sl);
+//		gsPanel = new GjennomsnittsPanel(this.sl);
+//		evPanel = new EkstremverdiPanel(this.sl);
+		utPanel = new UtviklingPanel(this.sl);
 		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -108,6 +111,18 @@ public class Metrovindu extends JFrame
 		finnDataDato.setMnemonic('d');
 		finnDataDato.addActionListener(mklytter);
 		
+		finnGjennomsnitt = new JMenuItem("Gjennomsnittsverdier");
+		finnGjennomsnitt.setMnemonic('g');
+		finnGjennomsnitt.addActionListener(mklytter);
+		
+		finnEkstrem = new JMenuItem("Ekstremverdier");
+		finnEkstrem.setMnemonic('e');
+		finnEkstrem.addActionListener(mklytter);
+		
+		statUtvikling = new JMenuItem("Utvikling over tid");
+		statUtvikling.setMnemonic('u');
+		statUtvikling.addActionListener(mklytter);
+		
 		hjelpHjelp = new JMenuItem("Hjelp til programmet");
 		hjelpHjelp.setMnemonic('h');
 		hjelpHjelp.addActionListener(mklytter);
@@ -124,8 +139,10 @@ public class Metrovindu extends JFrame
 		
 		finnmeny.add(finnDataSted);
 		finnmeny.add(finnDataDato);
+		finnmeny.add(finnGjennomsnitt);
+		finnmeny.add(finnEkstrem);
 		
-		statistikkmeny.add(new JMenuItem("Statistikknapper") /*Medlertidig fyllknapp*/);
+		statistikkmeny.add(statUtvikling);
 		
 		hjelpmeny.add(hjelpHjelp);
 		hjelpmeny.add(hjelpOm);
@@ -139,20 +156,29 @@ public class Metrovindu extends JFrame
 		JPanel sidewrapper = new JPanel();
 		JPanel sidepanel = new JPanel(new BorderLayout());
 		JPanel sidemeny = new JPanel();
-		GridLayout knapperekke = new GridLayout(5,0);
+		GridLayout knapperekke = new GridLayout(7,0);
 		sidemeny.setLayout(knapperekke);
 		regSted = new JButton("Registrer sted");
 		regData = new JButton("Register værdata");
 		finnSted = new JButton("Værdata for sted");
 		finnDato = new JButton("Værdata for dato");
+		gjennomsnittKnapp = new JButton("Gjennomsnittsverdier");
+		ekstremKnapp = new JButton("Ekstremverdier");
+		utviklingKnapp = new JButton("Utvikling over tid");
 		regSted.addActionListener(mklytter);
 		regData.addActionListener(mklytter);
 		finnSted.addActionListener(mklytter);
 		finnDato.addActionListener(mklytter);
+		gjennomsnittKnapp.addActionListener(mklytter);
+		ekstremKnapp.addActionListener(mklytter);
+		utviklingKnapp.addActionListener(mklytter);
 		sidemeny.add(regSted);
 		sidemeny.add(regData);
 		sidemeny.add(finnSted);
 		sidemeny.add(finnDato);
+		sidemeny.add(gjennomsnittKnapp);
+		sidemeny.add(ekstremKnapp);
+		sidemeny.add(utviklingKnapp);
 		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
 		sidepanel.setBorder(BorderFactory.createLoweredBevelBorder());
 		sidewrapper.add(sidepanel);
@@ -231,6 +257,27 @@ public class Metrovindu extends JFrame
 				c.validate();
 				c.repaint();
 			}
+			if(e.getSource() == gjennomsnittKnapp || e.getSource() == finnGjennomsnitt)
+			{
+//				c.remove(1);
+//				c.add(gsPanel.getPanel(), BorderLayout.CENTER);
+//				c.validate();
+//				c.repaint();
+			}
+			if(e.getSource() == ekstremKnapp || e.getSource() == finnEkstrem)
+			{
+//				c.remove(1);
+//				c.add(evPanel.getPanel(), BorderLayout.CENTER);
+//				c.validate();
+//				c.repaint();
+			}
+			if(e.getSource() == utviklingKnapp || e.getSource() == statUtvikling)
+			{
+				c.remove(1);
+				c.add(utPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+			}
 			if(e.getSource() == filAvslutt)
 			{
 				Filhåndterer.lagreFil(sl);
@@ -255,7 +302,7 @@ public class Metrovindu extends JFrame
 							"Prosjektoppgave i programutvikling våren 2011\n" +
 							"Gruppe 3: Henrik Hermansen, Bård Skeie og Lars Smeby\n" +
 							"Programversjon: 1.0\n" +
-							"Sist oppdatdert: 10.05.2011\n" +
+							"Sist oppdatdert: 12.05.2011\n" +
 							"Høyskolen i Oslo";
 				JOptionPane.showMessageDialog(getMetrovindu(), om, "Om", JOptionPane.INFORMATION_MESSAGE);
 			}
