@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Utviklingsgrafikk extends JPanel
 {	
-	private double[] dataarray;
+	private double[][] dataarray;
 	
-	public Utviklingsgrafikk(double[] dataarray)
+	public Utviklingsgrafikk(double[][] dataarray)
 	{
 		this.dataarray = dataarray;
 	}
@@ -30,33 +30,33 @@ public class Utviklingsgrafikk extends JPanel
 	
 	private void tegnNedbørsData(Graphics2D g2d, Color c)
 	{
-		int mellomrom = this.getWidth()/dataarray.length;
+		int mellomrom = this.getWidth()/dataarray[0].length;
 		int bredde = mellomrom/2;
 		int forrigeX = 0;
 		int forrigeY = 0;
-		g2d.setStroke(new BasicStroke(5.0F));
-		for(int i = 0; i < dataarray.length; i++)
+		g2d.setStroke(new BasicStroke(2.0F));
+		for(int i = 0; i < dataarray[0].length; i++)
 		{
-			if(dataarray[i] >= 0)
+			if(dataarray[0][i] >= 0)
 			{
 				if(i != 0 && forrigeX != 0)
 				{
 					g2d.setColor(c);
-					g2d.drawLine(forrigeX, forrigeY, bredde, this.getHeight()-(int)dataarray[i]-30);
+					g2d.drawLine(forrigeX, forrigeY, bredde, this.getHeight()-(int)dataarray[0][i]-30);
 				}
 				forrigeX = bredde;
-				forrigeY = this.getHeight()-(int)dataarray[i]-30;
+				forrigeY = this.getHeight()-(int)dataarray[0][i]-30;
 				bredde += mellomrom;
 				g2d.setColor(Color.BLACK);
-				g2d.drawString(Double.toString(dataarray[i]), forrigeX, forrigeY-10);
+				g2d.drawString(Double.toString(dataarray[0][i]), forrigeX, forrigeY-10);
 			}
 			else
 				bredde += mellomrom;
 		}
 		g2d.setColor(Color.BLACK);
-		int labelmellomrom = this.getWidth()/dataarray.length;
+		int labelmellomrom = this.getWidth()/dataarray[0].length;
 		int labelbredde = labelmellomrom/2;
-		for(int i = 0; i < dataarray.length; i++)
+		for(int i = 0; i < dataarray[0].length; i++)
 		{
 			g2d.drawString(Integer.toString(i+1), labelbredde, this.getHeight()-10);
 			labelbredde += labelmellomrom;

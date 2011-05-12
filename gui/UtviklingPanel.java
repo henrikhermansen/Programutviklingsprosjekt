@@ -4,11 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
+
+import logic.Utvikling;
 
 import data.Stedliste;
 
@@ -92,9 +90,8 @@ public class UtviklingPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
-	public void genererGrafikk()
+	public void genererGrafikk(double[][] data)
 	{
-		double[] data = {20, 29.0, 2.5, -1, 18.7, 20.1, 300, 0, 5.6, 0.2, 15.0, -1};
 		Utviklingsgrafikk grafikkpanel = new Utviklingsgrafikk(data);
 		panel.remove(1);
 		panel.add(grafikkpanel, BorderLayout.CENTER);
@@ -135,7 +132,9 @@ public class UtviklingPanel extends MetroPanel
 			}
 			if(e.getSource() == hentData)
 			{
-				genererGrafikk();
+				double[][] data = Utvikling.dataTilGrafikk(sl, panel, rland,rfylke,rsted,rår,rmåned,fylke,sted,lår,lmåned);
+				if(data != null)
+					genererGrafikk(data);
 			}
 		}
 	}

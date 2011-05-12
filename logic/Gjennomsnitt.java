@@ -15,47 +15,28 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- * @author Bård Skeie
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 public class Gjennomsnitt 
 {
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
 	 * @author Bård Skeie
-	 * @param stedliste - referanse til stedlisten.
-	 * @param lår - valgt år fra panelet.
-	 * @param panel - panelet metoden kalles fra.
-	 * @param fylke - valgt fylke.
-	 * @param jsted - valgt sted.
-	 * @return
+	 * @param stedliste	referanse til stedlisten
+	 * @param år	aktuelt år
+	 * @param panel	panelet metoden kalles fra
+	 * @param f	fylkesnummer
+	 * @param s	sted
+	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JComboBox lår, JPanel panel, JComboBox fylke, JComboBox jsted)
+	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int f, String s)
 	{
-		//Finner steder i fylket
-		int f = fylke.getSelectedIndex();
-		String s = (String) jsted.getSelectedItem();
-		if(s == null)
-		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
-			return null;
-		}
 		Sted sted = stedliste.finnSted(s, f);
 		if(sted == null)
 		{
 			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
-			return null;
-		}
-		
-		//Finner året og registreringer tilhørende stedet på datoer 
-		int år;		
-		try
-		{
-			år = Integer.parseInt((String)lår.getSelectedItem());
-		}
-		catch(NumberFormatException nfe)
-		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B006)", "System feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 		
@@ -104,41 +85,20 @@ public class Gjennomsnitt
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
 	 * @author Bård Skeie
-	 * @param stedliste - referanse til stedlisten.
-	 * @param lår - valgt år fra panelet.
-	 * @param lmåned - valgt måned fra panelet.
-	 * @param panel - referanse til panelet metoden kalles fra.
-	 * @param fylke - valgt fylke.
-	 * @param jsted - valgt sted.
-	 * @return
+	 * @param stedliste	referanse til stedlisten
+	 * @param år	aktuelt år
+	 * @param måned	aktuell måned
+	 * @param panel	referanse til panelet metoden kalles fra
+	 * @param f	aktuelt fylke
+	 * @param s	aktuelt sted
+	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JComboBox lår, int måned, JPanel panel, JComboBox fylke, JComboBox jsted)
+	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int måned, int f, String s)
 	{
-		//Finner steder i fylket
-		int f = fylke.getSelectedIndex();
-		String s = (String) jsted.getSelectedItem();
-		if(s == null)
-		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
-			return null;
-		}
 		Sted sted = stedliste.finnSted(s, f);
 		if(sted == null)
 		{
 			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B008)", "System feil", JOptionPane.ERROR_MESSAGE);
-			return null;
-		}
-		
-		//Finner året og registreringer tilhørende stedet på datoer 
-		int år;	
-		
-		try
-		{
-			år = Integer.parseInt((String)lår.getSelectedItem());
-		}
-		catch(NumberFormatException nfe)
-		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 		
@@ -184,15 +144,37 @@ public class Gjennomsnitt
 		return returarray;
 	}
 	
-	public static Object[][] finnGjennomsnitt(Stedliste stedliste, JComboBox lår, JPanel panel, JComboBox fylke, JComboBox jsted)
+	/**
+	 * Metode som returnerer et flerdimensjonalt Object-array til bruk i tabell
+	 * @author Bård Skeie
+	 * @param stedliste	Stedliste med alle data
+	 * @param lår	årvelger
+	 * @param panel	aktuelt panel
+	 * @param fylke	fylkesvelger
+	 * @param jsted	stedvelger
+	 * @return	2-dim. Object-array med gjennomsnittsdata, en linje per måned samt en for år
+	 */
+	public static Object[][] finnGjennomsnittSted(Stedliste stedliste, JComboBox lår, JPanel panel, JComboBox fylke, JComboBox jsted)
 	{
-		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
+		int f = fylke.getSelectedIndex();
+		String s = (String) jsted.getSelectedItem();
+		int år;		
+		try
+		{
+			år = Integer.parseInt((String)lår.getSelectedItem());
+		}
+		catch(NumberFormatException nfe)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B006)", "System feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
 		
+		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
 		Object[][] returarray = new Object[13][5];
 		
 		for(int i = 0; i < returarray.length - 1; i++)
 		{
-			double[] mndArray = gjennomsnitt(stedliste, lår, i, panel, fylke, jsted);
+			double[] mndArray = gjennomsnitt(stedliste, panel, år, i, f, s);
 			returarray[i][0] = måneder[i];
 			returarray[i][1] = null;
 			returarray[i][2] = mndArray[0] >= 0 ? mndArray[0] : null;
@@ -200,7 +182,7 @@ public class Gjennomsnitt
 			returarray[i][4] = mndArray[2] <= Registrering.MAXMAXTEMP ? mndArray[2] : null;
 		}
 		
-		double[] årArray = gjennomsnitt(stedliste, lår, panel, fylke, jsted);
+		double[] årArray = gjennomsnitt(stedliste, panel, år, f, s);
 		
 		returarray[returarray.length-1][0] = måneder[returarray.length-1];
 		returarray[returarray.length-1][1] = null;
