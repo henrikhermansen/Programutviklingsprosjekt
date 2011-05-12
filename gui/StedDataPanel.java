@@ -31,7 +31,6 @@ public class StedDataPanel extends MetroPanel
 		
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
-		sted.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		
 		datotype = new JPanel(new GridLayout(0,3));

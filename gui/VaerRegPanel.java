@@ -35,7 +35,6 @@ public class VaerRegPanel extends MetroPanel
 		 * En JComboBox med liste over alle fylkene. handlingslytter legges på som ActionListener.
 		 */
 		fylke.addActionListener(handlingslytter);
-		sted.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		/**
 		 * Oppretter tekstfelt for værdataene.
