@@ -204,7 +204,7 @@ public class FinnData
 	}
 	
 	/**
-	 * Klasse for å finne værdata for et gitt sted på en gitt dato.
+	 * Metode for å finne værdata for et gitt sted på en gitt dato.
 	 * @author Bård Skeie
 	 * @param navn
 	 * @param fylke
