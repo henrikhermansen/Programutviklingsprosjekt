@@ -7,13 +7,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import logic.FinnData;
 import data.Stedliste;
 
 /**
@@ -22,8 +20,7 @@ import data.Stedliste;
  */
 public class GjennomsnittsPanel extends MetroPanel 
 {
-	private JPanel datotype, gjdato;
-	private ButtonGroup datotypegruppe;
+	private JPanel gjdato;
 	private JButton hentData;
 	protected JRadioButton rmåned, rår;
 
@@ -37,32 +34,19 @@ public class GjennomsnittsPanel extends MetroPanel
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
-		
-		datotype = new JPanel(new GridLayout(0,2));
-		datotypegruppe = new ButtonGroup();
-		rmåned = new JRadioButton("Måned", false);
-		rår = new JRadioButton("År", false);
-		rmåned.addActionListener(handlingslytter);
-		rår.addActionListener(handlingslytter);
-		datotypegruppe.add(rmåned);
-		datotypegruppe.add(rår);
-		datotype.add(rmåned);
-		datotype.add(rår);
-		
+						
 		hentData = new JButton("Hent Gjennomsnittsverdier");
 		hentData.addActionListener(handlingslytter);
 		
-		gjdato = new JPanel(new GridLayout(0,2));
-		gjdato.add(lmåned);
+		gjdato = new JPanel(new GridLayout(0,1));
 		gjdato.add(lår);
 		
 		grid.add(new JLabel("Velg fylke"));
 		grid.add(fylke);
 		grid.add(new JLabel("Velg sted"));
 		grid.add(sted);
-		grid.add(new JLabel("Velg type søk"));
-		grid.add(datotype);
-		grid.add(new JLabel("Velg dato"));
+		
+		grid.add(new JLabel("Velg år"));
 		grid.add(gjdato);
 		grid.add(new JLabel(""));
 		grid.add(hentData);
@@ -71,7 +55,11 @@ public class GjennomsnittsPanel extends MetroPanel
 	public void genererTabell(Object[][] data)
 	{
 		super.genererTabell(data);
-		tabell.removeColumn(tabell.getColumnModel().getColumn(0));
+		tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+		tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
+		tabell.getColumnModel().getColumn(2).setHeaderValue("Total nedbør");
+		tabell.getColumnModel().getColumn(3).setHeaderValue("Gjennomsnittsnedbør");
+		tabell.getColumnModel().getColumn(4).setHeaderValue("Gjennomsnittstemperatur");
 		panel.validate();
 		panel.repaint();
 	}
@@ -86,31 +74,9 @@ public class GjennomsnittsPanel extends MetroPanel
 			{
 				hentSteder(fylke.getSelectedIndex());
 			}
-			if(rmåned.isSelected())
-			{
-				ldag.setEnabled(false);
-				lmåned.setEnabled(true);
-			}
-			if(rår.isSelected())
-			{
-				ldag.setEnabled(false);
-				lmåned.setEnabled(false);
-			}
 			if(e.getSource() == hentData)
 			{
-				if(rmåned.isSelected())
-				{
-					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lmåned, lår);
-					if(data != null)
-						genererTabell(data);
-				}
-				if(rår.isSelected())
-				{
-					Object[][] data = FinnData.finnDataSted(sl, panel, fylke, sted, lår);
-					if(data != null)
-						genererTabell(data);
-					return;
-				}
+				
 			}
 				
 
