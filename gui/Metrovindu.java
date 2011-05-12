@@ -49,7 +49,7 @@ public class Metrovindu extends JFrame
 		sdPanel = new StedDataPanel(this.sl);
 		ddPanel = new DatoDataPanel(this.sl);
 		gsPanel = new GjennomsnittsPanel(this.sl);
-//		evPanel = new EkstremverdiPanel(this.sl);
+		evPanel = new EkstremverdiPanel(this.sl);
 		utPanel = new UtviklingPanel(this.sl);
 		
 		try {
@@ -266,10 +266,10 @@ public class Metrovindu extends JFrame
 			}
 			if(e.getSource() == ekstremKnapp || e.getSource() == finnEkstrem)
 			{
-//				c.remove(1);
-//				c.add(evPanel.getPanel(), BorderLayout.CENTER);
-//				c.validate();
-//				c.repaint();
+				c.remove(1);
+				c.add(evPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
 			}
 			if(e.getSource() == utviklingKnapp || e.getSource() == statUtvikling)
 			{
