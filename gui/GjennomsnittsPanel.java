@@ -36,7 +36,6 @@ public class GjennomsnittsPanel extends MetroPanel
 		
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
-		sted.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		
 		datotype = new JPanel(new GridLayout(0,2));

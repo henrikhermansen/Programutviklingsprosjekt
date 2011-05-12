@@ -131,7 +131,13 @@ public class Dato implements Serializable
 	 */
 	public double getAvgTemp()
 	{
-		return (this.minTemp+this.maxTemp)/2;
+		if(this.minTemp <= Registrering.MAXMAXTEMP && this.maxTemp <= Registrering.MAXMAXTEMP)
+			return (this.minTemp+this.maxTemp)/2;
+		if(this.minTemp <= Registrering.MAXMAXTEMP && this.maxTemp > Registrering.MAXMAXTEMP)
+			return this.minTemp;
+		if(this.minTemp > Registrering.MAXMAXTEMP && this.maxTemp <= Registrering.MAXMAXTEMP)
+			return this.maxTemp;
+		return this.minTemp;
 	}
 	
 	/**
