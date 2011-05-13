@@ -62,10 +62,10 @@ public class Utvikling
 			JOptionPane.showMessageDialog(panel, "Sted er ikke valgt", "Feil", JOptionPane.WARNING_MESSAGE);
 			return null;
 		}
-		Sted sted = stedliste.finnSted(s, f);
-		if(sted == null)
+		Sted st = sl.finnSted(s, f);
+		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L008)", "Feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 		
@@ -73,24 +73,24 @@ public class Utvikling
 		{
 			if(rår.isSelected())
 			{
-				return stedData(sl,panel,f,s,år);
+				return stedData(panel,f,st,år);
 			}
 			if(rmåned.isSelected())
 			{
 				int måned = lmåned.getSelectedIndex();
-				return stedData(sl,panel,f,s,år,måned);
+				return stedData(panel,f,st,år,måned);
 			}
 		}
 		return null; //Programmet kommer aldri hit, men kompilatoren krever det.
 	}
 	
-	public static double[][] stedData(Stedliste sl, JPanel panel, int fylke, String sted, int år)
+	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år)
 	{
 		double[][] returarray = new double[2][12];
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
-			double[] temp = Gjennomsnitt.gjennomsnitt(sl, panel, år, i, fylke, sted);
+			double[] temp = Gjennomsnitt.gjennomsnitt(panel, år, i, fylke, sted);
 			returarray[0][i] = temp[1];
 			returarray[1][i] = temp[2];
 		}
@@ -98,7 +98,7 @@ public class Utvikling
 		return returarray;
 	}
 	
-	public static double[][] stedData(Stedliste sl, JPanel panel, int fylke, String sted, int år, int måned)
+	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år, int måned)
 	{
 		return null;
 	}
