@@ -76,7 +76,7 @@ public abstract class MetroPanel
 		sted.repaint();
 	}
 	
-	protected void hentDager()
+	protected void hentDager(int valgtDag)
 	{
 		int år;
 		try
@@ -100,6 +100,14 @@ public abstract class MetroPanel
 		ldag.setModel(new DefaultComboBoxModel(dager));
 		ldag.validate();
 		ldag.repaint();
+		try
+		{
+			ldag.setSelectedIndex(valgtDag);
+		}
+		catch(IllegalArgumentException iae)
+		{
+			ldag.setSelectedIndex(0);
+		}
 	}
 	
 	/**

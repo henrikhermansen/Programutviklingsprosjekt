@@ -18,7 +18,7 @@ public class DataTabell extends AbstractTableModel
 	/**
 	 * Oppretter tabell ved motta verdier til cellene
 	 * @author Lars Smeby
-	 * @param celler
+	 * @param celler	2-dim Object-array
 	 */
 	public DataTabell(Object[][] celler)
 	{
