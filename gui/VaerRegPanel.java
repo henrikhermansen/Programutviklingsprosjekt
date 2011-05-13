@@ -104,7 +104,15 @@ public class VaerRegPanel extends MetroPanel
 				if(resultat.equals("Data ble satt inn i tabellen")) //En svak test med tanke på endringer
 				{
 					fylke.setSelectedIndex(0);
+					try
+					{
 					sted.setSelectedIndex(0);
+					}
+					catch(IllegalArgumentException iae)
+					{
+						//Forekommer hvis det ikke er registrert noen steder i Akershus
+						hentSteder(fylke.getSelectedIndex());
+					}
 					minTemp.setText("");
 					maxTemp.setText("");
 					nedbør.setText("");
