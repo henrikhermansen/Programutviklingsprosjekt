@@ -28,7 +28,7 @@ public class Gjennomsnitt
 	 * @param år	aktuelt år
 	 * @param panel	panelet metoden kalles fra
 	 * @param f	fylkesnummer
-	 * @param s	sted
+	 * @param sted	sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
 	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int f, Sted sted)
@@ -85,7 +85,7 @@ public class Gjennomsnitt
 	 * @param måned	aktuell måned
 	 * @param panel	referanse til panelet metoden kalles fra
 	 * @param f	aktuelt fylke
-	 * @param s	aktuelt sted
+	 * @param sted	aktuelt sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
 	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int måned, int f, Sted sted)
