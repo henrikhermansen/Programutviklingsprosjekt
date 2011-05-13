@@ -1,10 +1,13 @@
 package logic;
 
+import java.util.GregorianCalendar;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import data.Dato;
 import data.Sted;
 import data.Stedliste;
 
@@ -32,7 +35,7 @@ public class Utvikling
 		{
 			if(rår.isSelected())
 			{
-				return null;
+				return landData(sl, panel, år);
 			}
 			if(rmåned.isSelected())
 			{
@@ -47,7 +50,7 @@ public class Utvikling
 		{
 			if(rår.isSelected())
 			{
-				return null;
+				return fylkeData(sl, panel, f, år);
 			}
 			if(rmåned.isSelected())
 			{
@@ -84,6 +87,51 @@ public class Utvikling
 		return null; //Programmet kommer aldri hit, men kompilatoren krever det.
 	}
 	
+	public static double[][] landData(Stedliste sl, JPanel panel, int år)
+	{
+		double[][] returarray = new double[2][12];
+		double[][] temparray = Gjennomsnitt.gjennomsnittLand(sl, panel, år);
+		
+		for(int i = 0; i < returarray[0].length; i++)
+		{
+			returarray[0][i] = temparray[i][1];
+			returarray[1][i] = temparray[i][2];
+		}
+		
+		return returarray;
+	}
+	
+	public static double[][] landData(Stedliste sl, JPanel panel, int år, int måned)
+	{
+		return null; //TODO
+	}
+	
+	public static double[][] fylkeData(Stedliste sl, JPanel panel, int fylke, int år)
+	{
+		Stedliste fylkesl = sl.finnSted(fylke);
+		if(fylkesl == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
+		
+		double[][] returarray = new double[2][12];
+		double[][] temparray = Gjennomsnitt.gjennomsnittFylke(fylkesl, panel, fylke, år);
+		
+		for(int i = 0; i < returarray[0].length; i++)
+		{
+			returarray[0][i] = temparray[i][1];
+			returarray[1][i] = temparray[i][2];
+		}
+		
+		return returarray;
+	}
+	
+	public static double[][] fylkeData(JPanel panel, int fylke, int år, int måned)
+	{
+		return null; //TODO
+	}
+	
 	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år)
 	{
 		double[][] returarray = new double[2][12];
@@ -100,6 +148,26 @@ public class Utvikling
 	
 	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år, int måned)
 	{
-		return null;
+		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);
+		int antallDager = kal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+		
+		double[][] returarray = new double[2][antallDager];
+		
+		for(int i = 0; i < returarray[0].length; i++)
+		{
+			Dato dato = sted.getDatoliste().finnDato(år, måned, i+1);
+			if(dato != null)
+			{
+				returarray[0][i] = dato.getNedbør();
+				returarray[1][i] = dato.getAvgTemp();
+			}
+			else
+			{
+				returarray[0][i] = -1;
+				returarray[1][i] = Registrering.MAXMAXTEMP + 1;
+			}
+		}
+		
+		return returarray;
 	}
 }
