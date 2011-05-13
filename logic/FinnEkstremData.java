@@ -97,10 +97,38 @@ public class FinnEkstremData
 	 */
 	private static Object[][] finnDataForSted(Stedliste sl, JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
+		Datoliste datoliste=new Datoliste();
+		String tabelldato=null;
+		if(rdag.isSelected())
+		{
+			Dato dato=sted.getDatoliste().finnDato(år,måned,dag);
+			if(dato!=null)
+			{
+				datoliste.settInn(dato);
+				tabelldato=dag+"-"+måned+"-"+år;
+			}
+		}
+		if(rmåned.isSelected())
+		{
+			datoliste = sted.getDatoliste().finnDatoer(år,måned);
+			tabelldato=måned+"-"+år;
+		}
+		if(rår.isSelected())
+		{
+			datoliste = sted.getDatoliste().finnDatoer(år);
+			tabelldato=år+"";
+		}
+		
+		int lengde = datoliste.size();
+		if(lengde == 0)
+		{
+			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSted(sl,panel,sted,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp);
+			return finnEnkelverdiForSted(datoliste,tabelldato,rNedbør,rMintemp,rMaxtemp);
 		if(rAvgverdi.isSelected())
-			return finnAvgverdiForSted(sl,panel,sted,rmåned,rår,måned,år,rNedbør,rMintemp,rMaxtemp);
+			return finnAvgverdiForSted(datoliste,tabelldato,rNedbør,rMintemp,rMaxtemp);
 		return null;
 	}
 
@@ -138,28 +166,8 @@ public class FinnEkstremData
 	 * @param rMaxtemp
 	 * @return
 	 */
-	private static Object[][] finnAvgverdiForSted(Stedliste sl, JPanel panel, Sted sted, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
-	{
-		Datoliste datoliste=new Datoliste();
-		String tabelldato=null;
-		if(rmåned.isSelected())
-		{
-			datoliste = sted.getDatoliste().finnDatoer(år,måned);
-			tabelldato=måned+"-"+år;
-		}
-		if(rår.isSelected())
-		{
-			datoliste = sted.getDatoliste().finnDatoer(år);
-			tabelldato=år+"";
-		}
-		
-		int lengde = datoliste.size();
-		if(lengde == 0)
-		{
-			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
-			return null;
-		}
-		
+	private static Object[][] finnAvgverdiForSted(Datoliste datoliste, String tabelldato, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	{		
 		Object[][] returarray = new Object[1][5];
 		
 		returarray[0][0] = tabelldato;
@@ -170,10 +178,17 @@ public class FinnEkstremData
 		
 		return returarray;
 	}
-	private static Object[][] finnEnkelverdiForSted(Stedliste sl, JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, String tabelldato, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Object[][] returarray = new Object[1][5];
+		
+		returarray[0][0] = tabelldato;
+		returarray[0][1] = null;
+		returarray[0][2] = rNedbør.isSelected() ? datoliste.getMaxNedbør() : null;
+		returarray[0][3] = rMintemp.isSelected() ? datoliste.getMinTemp() : null;
+		returarray[0][4] = rMaxtemp.isSelected() ? datoliste.getMaxTemp() : null;
+		
+		return returarray;
 	}
 	private static Object[][] finnAvgverdiForFylke(Stedliste sl, JPanel panel, int fylke, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{

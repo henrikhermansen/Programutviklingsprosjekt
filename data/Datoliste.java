@@ -178,7 +178,7 @@ public class Datoliste implements Serializable
 				temp=neste.getMaxTemp();
 			if(type.equals("min"))
 				temp=neste.getMinTemp();
-			if(temp>Registrering.MAXMINTEMP && temp<Registrering.MAXMAXTEMP)
+			if(temp>=Registrering.MAXMINTEMP && temp<=Registrering.MAXMAXTEMP)
 			{
 				totalTemp+=temp;
 				antDatoer++;
@@ -249,7 +249,7 @@ public class Datoliste implements Serializable
 		{
 			Dato neste = iterator.next();
 			nedbør=neste.getNedbør();
-			if(nedbør>=0 && nedbør<Registrering.MAXNEDBØR)
+			if(nedbør>=0 && nedbør<=Registrering.MAXNEDBØR)
 			{
 				totalNedbør+=nedbør;
 				antDatoer++;
