@@ -31,13 +31,13 @@ public class Metrovindu extends JFrame
 	private JMenuItem filAvslutt, filLagre, registrerSted, registrerData, finnDataSted, finnDataDato, finnGjennomsnitt, finnEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
 	
 	/**
-	 * @author Lars Smeby, Henrik Hermansen
-	 * Hovedvinduet blir opprettet.
+	 * Konstruktør, hovedvinduet blir opprettet.
 	 * UIManager.setLookAndFeel setter utseende på knapper etc lik windows utseende.
 	 * Hovedvinduet bygges opp med menybar i toppen felt for "fil", "registrer","statistikk"
 	 * og "hjelp".
 	 * Menyen på venstre side i hovedvinduet blir opprettet samt plassen til panelvinduet 
 	 * på venstre siden.
+	 * @author Lars Smeby, Henrik Hermansen
 	 */
 	public Metrovindu(Stedliste sl)
 	{
@@ -208,8 +208,8 @@ public class Metrovindu extends JFrame
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Oppdaterer og setter hovedpanel/vindu til høyre.
+	 * @author Lars Smeby
 	 */
 	public void settHovedPanel()
 	{
@@ -220,6 +220,7 @@ public class Metrovindu extends JFrame
 	}
 	
 	/**
+	 * Returnerer en referanse til dette vinduet
 	 * @author Lars Smeby
 	 * @return	Referanse til dette vinduet
 	 */
@@ -231,8 +232,8 @@ public class Metrovindu extends JFrame
 	/**
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
 	 * til venstre i hovedvinduet og til knappene til i menyen.
+	 * Tar seg av skifting av de forskjellige panelene.
 	 * @author Lars Smeby, Bård Skeie
-	 *
 	 */
 	private class MenyKnappelytter implements ActionListener
 	{

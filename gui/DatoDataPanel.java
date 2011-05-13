@@ -17,6 +17,7 @@ public class DatoDataPanel extends MetroPanel
 	private JButton hentData;
 	
 	/**
+	 * Konstruktør som setter opp layoutet
 	 * @author Lars Smeby
 	 * @param sl	Mottar stedlisten til hovedvinduet
 	 */
@@ -42,6 +43,7 @@ public class DatoDataPanel extends MetroPanel
 	}
 	
 	/**
+	 * Genererer en tabell og tegner den ut på panelet
 	 * @author Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
@@ -54,8 +56,8 @@ public class DatoDataPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Bård Skeie
 	 * Handlingslytter til værdata for dato.
+	 * @author Bård Skeie
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

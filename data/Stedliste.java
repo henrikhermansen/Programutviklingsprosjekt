@@ -17,8 +17,8 @@ public class Stedliste implements Serializable
 	private ArrayList<Sted> liste = new ArrayList<Sted>();
 	
 	/**
-	 * @author Lars Smeby
 	 * Setter inn et sted-objekt bakerst i listen
+	 * @author Lars Smeby
 	 * @param s	Sted-objekt
 	 */
 	public void settInn(Sted s)
@@ -28,8 +28,8 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Sorterer listen etter stedsnavn
+	 * @author Lars Smeby
 	 */
 	public void sorter()
 	{
@@ -37,8 +37,8 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Returnerer antall elementer i listen
+	 * @author Lars Smeby
 	 * @return	int antall elementer
 	 */
 	public int size()
@@ -47,8 +47,8 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Returnerer iteratoren til listen
+	 * @author Lars Smeby
 	 * @return	Iterator<Sted> til listen
 	 */
 	public Iterator<Sted> iterator()
@@ -57,23 +57,8 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * Finner et sted-objekt hvis det finnes i listen, bruker binærsøk
 	 * @author Lars Smeby
-	 * Finner et sted-objekt hvis det finnes i listen
-	 * IKKE I BRUK
-	 * @param navn	Navn på sted
-	 * @return	Et sted-objekt hvis det finnes, ellers null
-	 */
-//	public Sted finnSted(String navn)
-//	{
-//		int index = Collections.binarySearch(liste, new Sted(navn,0), new Stedsammenligner(false));
-//		if(index<0)
-//			return null;
-//		return liste.get(index);
-//	}
-	
-	/**
-	 * @author Lars Smeby
-	 * Finner et sted-objekt hvis det finnes i listen
 	 * @param navn	Navn på sted
 	 * @param fylke	Fylket stedet ligger i (SSBs fylkesnummer)
 	 * @return	Et sted-objekt hvis det finnes, ellers null
@@ -96,8 +81,8 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Returnerer en Stedliste med stedene i et gitt fylke
+	 * @author Henrik Hermansen
 	 * @param fylke	int fylkesnummeret
 	 * @return	Stedliste med Stedobjektene i et gitt fylke
 	 */
@@ -115,6 +100,7 @@ public class Stedliste implements Serializable
 	}
 	
 	/**
+	 * Metode for å få tak i en array med alle stedene i et gitt fylke
 	 * @author Lars Smeby
 	 * @param fylke	Fylkesnummer
 	 * @return	String-array av alle stedsnavnene i et gitt fylke
@@ -134,6 +120,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Sletter et sted og alle dets data fra listen (Alle værdata går også tapt)
+	 * @author Lars Smeby
 	 * @param s	Sted-objekt
 	 */
 	public void slettSted(Sted s)

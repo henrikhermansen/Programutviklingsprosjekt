@@ -11,11 +11,13 @@ import data.*;
  */
 public class Registrering
 {
-	
+	/**
+	 * Fastsatte variabler som testes mot i hele programmet.
+	 */
 	public static final double MAXMINTEMP = -60, MAXMAXTEMP =  40, MAXNEDBØR = 300;
 	/**
-	 * @author Lars Smeby
 	 * Metode for å registrere sted
+	 * @author Lars Smeby
 	 * @param navn JTextField med navn på sted
 	 * @param fylke JComboBox med fylke
 	 * @param stedliste Stedlisten med alle data
@@ -36,8 +38,8 @@ public class Registrering
 	}
 	
 	/**
-	 * @author Bård Skeie
 	 * Metode som registrerer værdata for et sted.
+	 * @author Bård Skeie
 	 * @return String med tilbakemelding på resultat.
 	 */
 	public static String registrerData(JTextField min, JTextField max, JTextField ned, Stedliste stedliste, JComboBox navn, JComboBox fylke, JComboBox lår, JComboBox lmåned, JComboBox ldag, JPanel panel )

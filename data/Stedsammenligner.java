@@ -1,6 +1,5 @@
 package data;
 
-import java.io.Serializable;
 import java.text.*;
 import java.util.Comparator;
 
@@ -9,7 +8,7 @@ import java.util.Comparator;
  * @version	1
  * @since	1.6
  */
-public class Stedsammenligner implements Serializable, Comparator<Sted>
+public class Stedsammenligner implements Comparator<Sted>
 {
 	private static final long serialVersionUID = 1295791362365552918L;
 	/**
@@ -29,8 +28,8 @@ public class Stedsammenligner implements Serializable, Comparator<Sted>
 	private boolean fylkesøk;
 	
 	/**
-	 * @author Lars Smeby
 	 * Konstruktør
+	 * @author Lars Smeby
 	 * @param fs	Avgjør om fylket stedet ligger i skal være med i betraktningen
 	 */
 	public Stedsammenligner(boolean fs)
@@ -49,8 +48,8 @@ public class Stedsammenligner implements Serializable, Comparator<Sted>
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Sammenlikningsmetoden implementert fra Comparator-interfacet
+	 * @author Lars Smeby
 	 */
 	@Override
 	public int compare(Sted a, Sted b)

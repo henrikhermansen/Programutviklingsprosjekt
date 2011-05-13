@@ -9,6 +9,8 @@ import data.Sted;
 import data.Stedliste;
 
 /**
+ * Klasse som fungerer som superklasse til alle andre paneler.
+ * Knapper, lister, felt og metoder som går mye igjen ligger her.
  *	@author		Gruppe 3
  *	@version	1
  *	@since		1.6
@@ -22,6 +24,7 @@ public abstract class MetroPanel
 	private final int førsteår = 1900;
 	
 	/**
+	 * Konstruktør som tegner opp panelet
 	 * @author Lars Smeby
 	 * @param sl	Stedlisten til hovedvinduet
 	 */
@@ -56,8 +59,8 @@ public abstract class MetroPanel
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Returnerer det panelet som skal brukes i hovedvinduet.
+	 * @author Lars Smeby
 	 * @return et objekt av typen JPanel.
 	 */
 	public JPanel getPanel()
@@ -66,6 +69,7 @@ public abstract class MetroPanel
 	}
 	
 	/**
+	 * Oppdaterer stedlisten i gui etter hvilket fylke som er valgt
 	 * @author Lars Smeby
 	 * @param fylke	Fylkesnummeret det skal vises steder for
 	 */
@@ -76,6 +80,11 @@ public abstract class MetroPanel
 		sted.repaint();
 	}
 	
+	/**
+	 * Oppdaterer daglisten i gui slik at det vises korrekte datoer i hver måned i året, også ved skuddår.
+	 * @author Lars Smeby
+	 * @param valgtDag	Den dagen som allerede er valgt, så den beholdes som aktiv selv om listen oppdateres
+	 */
 	protected void hentDager(int valgtDag)
 	{
 		int år;
@@ -111,6 +120,7 @@ public abstract class MetroPanel
 	}
 	
 	/**
+	 * Brukes til å kunne aksessere fylkeslisten utenfor denne klassen og dens subklasser
 	 * @author Lars Smeby
 	 * @return	Indexen til det fylke som er valgt i fylkeslisten
 	 */
@@ -120,6 +130,7 @@ public abstract class MetroPanel
 	}
 	
 	/**
+	 * Genererer en tabell og tegner den ut på panelet. Denne må overrides og validate()/repaint() i subklassene
 	 * @author Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives ut i tabellen
 	 */

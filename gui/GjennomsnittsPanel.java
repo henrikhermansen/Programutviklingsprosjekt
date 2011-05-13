@@ -11,8 +11,9 @@ import logic.Gjennomsnitt;
 import data.Stedliste;
 
 /**
- * @author Bård Skeie
- *
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
  */
 public class GjennomsnittsPanel extends MetroPanel 
 {
@@ -23,7 +24,8 @@ public class GjennomsnittsPanel extends MetroPanel
 	
 
 	/**
-	 * @param sl
+	 * Konstruktør som setter layoutet på panelet
+	 * @param sl	Stedlisten med alle lagrede data
 	 */
 	public GjennomsnittsPanel(Stedliste sl) 
 	{
@@ -70,6 +72,11 @@ public class GjennomsnittsPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
+	/**
+	 * Genererer en tabell og tegner den ut på panelet
+	 * @author Lars Smeby
+	 * @param data	Dataen som tabellen skal inneholde
+	 */
 	public void genererTabell(Object[][] data)
 	{
 		super.genererTabell(data);
@@ -82,6 +89,10 @@ public class GjennomsnittsPanel extends MetroPanel
 		panel.repaint();
 	}
 	
+	/**
+	 * Lytter på knapper og felt
+	 * @author Lars
+	 */
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

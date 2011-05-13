@@ -23,6 +23,7 @@ public class UtviklingPanel extends MetroPanel
 	private JRadioButton rland, rfylke, rsted, rmåned, rår;
 
 	/**
+	 * Konstruktør, tegner ut panelet
 	 * @author Lars Smeby
 	 * @param sl	Referanse til Stedlisten med all lagret data
 	 */
@@ -90,6 +91,11 @@ public class UtviklingPanel extends MetroPanel
 		grid.add(hentData);
 	}
 	
+	/**
+	 * Oppretter et grafikkpanel og sender med data, og tegner det ut i panelet
+	 * @author Lars Smeby
+	 * @param data	Dataen som skal tegnes ut som grafikk
+	 */
 	public void genererGrafikk(double[][] data)
 	{
 		Utviklingsgrafikk grafikkpanel = new Utviklingsgrafikk(data);
@@ -99,6 +105,10 @@ public class UtviklingPanel extends MetroPanel
 		panel.repaint();
 	}
 	
+	/**
+	 * Lytter på knapper og felt
+	 * @author Lars Smeby
+	 */
 	private class HandlingsLytter implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

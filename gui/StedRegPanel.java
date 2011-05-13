@@ -13,20 +13,13 @@ import logic.Registrering;
  */
 public class StedRegPanel extends MetroPanel
 {
-	/**
-	 * navn		inputfelt for stedsnavn
-	 * fylke	listeboks med fylkene
-	 * regSted	knapp for å registrere
-	 * sl		refererer til klassen Stedsliste og brukes til aksessere Stedslistes metoder
-	 */
 	private JTextField navn;
-	JButton regSted;
+	private JButton regSted;
 	
 	/**
+	 * Konstruktør. Oppretter felt og knapper.
 	 * @author Lars Smeby
 	 * @param sl	Referanse til stedlisten
-	 * 
-	 * Konstruktør. Oppretter felt og knapper.
 	 */
 	public StedRegPanel(Stedliste sl)
 	{
@@ -48,9 +41,8 @@ public class StedRegPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Lars Smeby
 	 * Indre klasse som lytter på knappen og tekstfelt.
-	 * Foretar inputvalidering og gir tilbakemelding.
+	 * @author Lars Smeby
 	 */
 	private class RegStedLytter implements ActionListener
 	{

@@ -3,10 +3,7 @@ package logic;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 
 import data.Dato;
 import data.Sted;
@@ -19,6 +16,22 @@ import data.Stedliste;
  */
 public class Utvikling
 {
+	/**
+	 * Tar imot alle input-objektene i panelet den kalles fra og konverterer dem, før så og sende de korrekte verdiene videre. Returnerer data til grafikk.
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metoden kalles fra
+	 * @param rland	Radioknapp "Hele landet"
+	 * @param rfylke	Radioknapp for fylke
+	 * @param rsted	Radioknapp for sted
+	 * @param rår	Radioknapp for år
+	 * @param rmåned	Radioknapp for måned
+	 * @param fylke	Fylkeslisten i panelet
+	 * @param sted	Stedlisten i panelet
+	 * @param lår	Årlisten i panelet
+	 * @param lmåned	Månedslisten i panelet
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] dataTilGrafikk(Stedliste sl, JPanel panel, JRadioButton rland,JRadioButton rfylke, JRadioButton rsted, JRadioButton rår, JRadioButton rmåned, JComboBox fylke, JComboBox sted, JComboBox lår, JComboBox lmåned)
 	{
 		int år;		
@@ -88,6 +101,14 @@ public class Utvikling
 		return null; //Programmet kommer aldri hit, men kompilatoren krever det.
 	}
 	
+	/**
+	 * Henter gjennomsnittsdata for hele landet et gitt år, en verdi for hver måned, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metoden ble kalt fra
+	 * @param år	Året søket skal gjøres på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] landData(Stedliste sl, JPanel panel, int år)
 	{
 		double[][] returarray = new double[2][12];
@@ -102,11 +123,28 @@ public class Utvikling
 		return returarray;
 	}
 	
+	/**
+	 * Henter gjennomsnittsdata for hele landet en gitt måned, en verdi for hver dag, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param år	Året det skal søkes på
+	 * @param måned	Måneden det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] landData(Stedliste sl, int år, int måned)
 	{
 		return månedsdata(sl, år, måned);
 	}
 	
+	/**
+	 * Henter gjennomsnittsdata for et fylke et gitt år, en verdi for hver måned, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metoden kalles fra
+	 * @param fylke	Fylket det skal søkes på
+	 * @param år	Året det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] fylkeData(Stedliste sl, JPanel panel, int fylke, int år)
 	{
 		Stedliste fylkesl = sl.finnSted(fylke);
@@ -128,6 +166,16 @@ public class Utvikling
 		return returarray;
 	}
 	
+	/**
+	 * Henter gjennomsnittsdata for et fylke en gitt måned, en verdi for hver dag, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metoden kalles fra
+	 * @param fylke	Fylket det skal søkes på
+	 * @param år	Året det skal søkes på
+	 * @param måned	Måneden det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] fylkeData(Stedliste sl, JPanel panel, int fylke, int år, int måned)
 	{
 		Stedliste fylkesl = sl.finnSted(fylke);
@@ -140,6 +188,15 @@ public class Utvikling
 		return månedsdata(fylkesl, år, måned);
 	}
 	
+	/**
+	 * Henter gjennomsnittsdata for et sted et gitt år, en verdi for hver måned, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param panel	Panelet metoden kalles fra
+	 * @param fylke	Fylket det skal søkes på
+	 * @param sted	Stedet det skal søkes på
+	 * @param år	Året det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år)
 	{
 		double[][] returarray = new double[2][12];
@@ -154,6 +211,16 @@ public class Utvikling
 		return returarray;
 	}
 	
+	/**
+	 * Henter data for et sted en gitt måned, en verdi for hver dag, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param panel	Panelet metoden kalles fra
+	 * @param fylke	Fylket det skal søkes på
+	 * @param sted	Stedet det skal søkes på
+	 * @param år	Året det skal søkes på
+	 * @param måned	Måneden det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år, int måned)
 	{
 		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);
@@ -179,6 +246,14 @@ public class Utvikling
 		return returarray;
 	}
 	
+	/**
+	 * Hjelpemetode for søk på gjennomsnitt for en måned, for enten alle steder eller steder i et gitt fylke. Returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param stedliste	En vilkårlig stedliste som skal brukes i beregningen
+	 * @param år	Året det skal søkes på
+	 * @param måned	Måneden det skal søkes på
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
 	public static double[][] månedsdata(Stedliste stedliste, int år, int måned)
 	{
 		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);

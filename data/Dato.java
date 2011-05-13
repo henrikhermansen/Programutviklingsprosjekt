@@ -29,8 +29,8 @@ public class Dato implements Serializable
 	private GregorianCalendar dato;
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Setter dag, måned og år.
+	 * @author Henrik Hermansen
 	 * @param dag	dato i måneden.
 	 * @param måned	måned i året.
 	 * @param år	årstall.
@@ -41,8 +41,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Setter dag, måned og år ved å gi et ferdig GregorianCalendar-objekt.
+	 * @author Henrik Hermansen
 	 * @param dato	et ferdig GregorianCalendar-objekt.
 	 */
 	public Dato(GregorianCalendar dato)
@@ -51,8 +51,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Setter laveste temperatur denne dagen.
+	 * @author Henrik Hermansen
 	 * @param minTemp	minimumstemperatur denne dagen.
 	 */
 	public void setMinTemp(double minTemp)
@@ -61,8 +61,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Setter høyeste temperatur denne dagen.
+	 * @author Henrik Hermansen
 	 * @param maxTemp	maksimumstemperatur denne dagen.
 	 */
 	public void setMaxTemp(double maxTemp)
@@ -72,8 +72,8 @@ public class Dato implements Serializable
 	
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Setter nedbørsmendge denne dagen.
+	 * @author Henrik Hermansen
 	 * @param nedbør	nedbørsmengde denne dagen.
 	 */
 	public void setNedbør(double nedbør)
@@ -82,8 +82,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metode for dato.
+	 * @author Henrik Hermansen
 	 * @return	datoen i form av et GregorianCalendar-objekt.
 	 */
 	public GregorianCalendar getDato()
@@ -92,8 +92,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metode for dato som String.
+	 * @author Henrik Hermansen
 	 * @return	datoen i form av en String.
 	 */
 	public String getDatoString()
@@ -105,8 +105,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metode for laveste temperatur denne dagen.
+	 * @author Henrik Hermansen
 	 * @return	minimumstemperatur denne dagen.
 	 */
 	public double getMinTemp()
@@ -115,8 +115,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metode for høyeste temperatur denne dagen.
+	 * @author Henrik Hermansen
 	 * @return	maksimumstemperatur denne dagen.
 	 */
 	public double getMaxTemp()
@@ -125,8 +125,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metode for gjennomsnittstemperatur denne dagen.
+	 * @author Henrik Hermansen
 	 * @return	gjennomsnittstemperatur denne dagen.
 	 */
 	public double getAvgTemp()
@@ -141,8 +141,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * Get-metoden for nedbørsmengde denne dagen.
+	 * @author Henrik Hermansen
 	 * @return	nedbørsmengden denne dagen.
 	 */
 	public double getNedbør()
@@ -151,8 +151,8 @@ public class Dato implements Serializable
 	}
 	
 	/**
-	 * @author Henrik Hermansen
 	 * toString-metode som gir informasjon om dagen i form av en String.
+	 * @author Henrik Hermansen
 	 * @return	Dato, minimumstemperatur, maksimumstemperatur og nedbørsmengde som en String.
 	 */
 	public String toString()

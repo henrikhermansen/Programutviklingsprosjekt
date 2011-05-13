@@ -22,6 +22,7 @@ public class StedDataPanel extends MetroPanel
 	private JButton hentData;
 	
 	/**
+	 * Konstruktør, oppretter og tegner panelet.
 	 * @author Lars Smeby
 	 * @param sl	Stedlisten til hovedvinduet
 	 */
@@ -67,6 +68,7 @@ public class StedDataPanel extends MetroPanel
 	}
 	
 	/**
+	 * Genererer en tabell og tegner den ut på panelet
 	 * @author Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
@@ -79,6 +81,7 @@ public class StedDataPanel extends MetroPanel
 	}
 	
 	/**
+	 * Lytteklasse som lytter på knapper og felt
 	 * @author Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener

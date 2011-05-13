@@ -12,13 +12,12 @@ import java.awt.EventQueue;
 public class RunMetrodata {
 
 	/**
-	 * @author Lars Smeby
 	 * Starter hovedtråd og oppretter hovedvinduet.
+	 * @author Lars Smeby
 	 * @param args
 	 */
 	public static void main(String[] args)
 	{
-		//Her laster vi inn klassene som er lagret på fil og sender dem med som parametere til Metrovindu
 		final Stedliste sl = Filhåndterer.lastInnFil();
 		
 		EventQueue.invokeLater(new Runnable() {

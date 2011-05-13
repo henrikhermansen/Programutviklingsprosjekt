@@ -16,7 +16,7 @@ public class DataTabell extends AbstractTableModel
 	private Object[][] celler;
 	
 	/**
-	 * Oppretter tabell ved motta verdier til cellene
+	 * Oppretter tabell ved å motta verdier til cellene
 	 * @author Lars Smeby
 	 * @param celler	2-dim Object-array
 	 */
@@ -24,8 +24,12 @@ public class DataTabell extends AbstractTableModel
 	{
 		this.celler = celler;
 	}
+	
 	/**
+	 * Returnerer kolonnenavnet
 	 * @author Lars Smeby
+	 * @param kolonne	Kolonnenummeret det skal hentes navn for
+	 * @return	Kolonnenavn
 	 */
 	public String getColumnName(int kolonne)
 	{
@@ -33,9 +37,11 @@ public class DataTabell extends AbstractTableModel
 	}
 	
 	/**
+	 * Returnerer klassen kolonnen skal formatteres etter
 	 * @author Lars Smeby
+	 * @param kolonne	Kolonnenummeret det gjelder
+	 * @return	Klassetypen til kolonnen
 	 */
-
 	public Class<?> getColumnClass(int kolonne)
 	{
 		// Grunnet muligheten for blanke celler settes klassetypene fast
@@ -48,7 +54,9 @@ public class DataTabell extends AbstractTableModel
 	}
 	
 	/**
+	 * Returnerer antall kolonner i tabellen
 	 * @author Lars Smeby
+	 * @return	Antall kolonner i tabellen
 	 */
 	public int getColumnCount()
 	{
@@ -56,7 +64,9 @@ public class DataTabell extends AbstractTableModel
 	}
 
 	/**
+	 * Returnerer antall rader i tabellen
 	 * @author Lars Smeby
+	 * @return	Antall rader i tabellen
 	 */
 	public int getRowCount()
 	{
@@ -64,11 +74,14 @@ public class DataTabell extends AbstractTableModel
 	}
 
 	/**
+	 * Returnerer innholdet i en celle
 	 * @author Lars Smeby
+	 * @param rad	Radnummer
+	 * @param kolonne	Kolonnenummer
+	 * @return	Celleinnholdet som et objekt
 	 */
 	public Object getValueAt(int rad, int kolonne)
 	{
 		return celler[rad][kolonne];
 	}
-
 }

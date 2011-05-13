@@ -22,6 +22,12 @@ public class Utviklingsgrafikk extends JPanel
 	private Color nedbFarge, tempFarge, labelFarge;
 	private DecimalFormat df;
 	
+	/**
+	 * Konstruktør, tar imot data til uttegning og setter parametere
+	 * @author Lars Smeby
+	 * @param dataarray	Data som skal tegnes ut. På formatet double[2][x]
+	 * der 2 er nedbørsdata og temperaturdata, og x er dataverdier.
+	 */
 	public Utviklingsgrafikk(double[][] dataarray)
 	{
 		this.dataarray = dataarray;
@@ -31,6 +37,11 @@ public class Utviklingsgrafikk extends JPanel
 		df = new DecimalFormat("#.##");
 	}
 	
+	/**
+	 * Tegner ut grafikken på panelet, kalles automatisk
+	 * @author Lars Smeby
+	 * @param g	JPanels Graphics
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -44,6 +55,11 @@ public class Utviklingsgrafikk extends JPanel
 		tegnLegend(g2d);
 	}
 	
+	/**
+	 * Tegner en graf samt tallverdier for nedbørsdata
+	 * @author Lars Smeby
+	 * @param g2d	Grafikktegneren fra paintComponent
+	 */
 	private void tegnNedbørsData(Graphics2D g2d)
 	{
 		double høydefaktor = 0;
@@ -106,6 +122,11 @@ public class Utviklingsgrafikk extends JPanel
 		
 	}
 	
+	/**
+	 * Tegner en graf samt tallverdier for temperaturdata
+	 * @author Lars Smeby
+	 * @param g2d	Grafikktegneren fra paintComponent
+	 */
 	private void tegnTemperaturData(Graphics2D g2d)
 	{
 		double høydefaktor = 0;
@@ -170,6 +191,11 @@ public class Utviklingsgrafikk extends JPanel
 		}
 	}
 	
+	/**
+	 * Tegner labeler (tall) nederst på panelet basert på antall dataverdier mottatt
+	 * @author Lars Smeby
+	 * @param g2d	Grafikktegneren fra paintComponent
+	 */
 	private void tegnLabeler(Graphics2D g2d)
 	{
 		g2d.setColor(labelFarge);
@@ -186,6 +212,11 @@ public class Utviklingsgrafikk extends JPanel
 		g2d.setStroke(new BasicStroke(2.0F));
 	}
 	
+	/**
+	 * Tegner forklaringer på strekfarger øverst i panelet
+	 * @author Lars Smeby
+	 * @param g2d	Grafikktegneren fra paintComponent
+	 */
 	private void tegnLegend(Graphics2D g2d)
 	{
 		g2d.setColor(labelFarge);
