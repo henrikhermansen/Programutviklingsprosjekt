@@ -80,7 +80,16 @@ public class Stedliste implements Serializable
 	 */
 	public Sted finnSted(String navn, int fylke)
 	{
-		int index = Collections.binarySearch(liste, new Sted(navn, fylke), new Stedsammenligner(true));
+		int index=-1;
+		try
+		{
+			index = Collections.binarySearch(liste, new Sted(navn, fylke), new Stedsammenligner(true));
+		}
+		catch(NullPointerException npe)
+		{
+			System.out.println("Kan ikke søke etter et sted der navn er null.");
+			return null;
+		}
 		if(index<0)
 			return null;
 		return liste.get(index);

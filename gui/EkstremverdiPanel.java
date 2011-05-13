@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -118,6 +119,34 @@ public class EkstremverdiPanel extends MetroPanel
 	}
 	
 	/**
+	 * @author Lars Smeby
+	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
+	 */
+	public void genererTabell(Object[][] data,JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
+	{
+		super.genererTabell(data);
+		tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+		if(rNedbør.isSelected())
+		{
+			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+		}
+		if(rMintemp.isSelected())
+		{
+			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+		}
+		if(rMaxtemp.isSelected())
+		{
+			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+		}
+		tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
+		panel.validate();
+		panel.repaint();
+	}
+	
+	/**
 	 * Privat lytterklasse for elementene i panelet.
 	 * @author Henrik Hermansen
 	 */
@@ -129,7 +158,7 @@ public class EkstremverdiPanel extends MetroPanel
 			{
 				Object[][] data = FinnEkstremData.finnData(sl, panel, stedLandet, stedFylke, stedSted, fylke, sted, rdag, rmåned, rår, ldag, lmåned, lår, rEnkelverdi, rAvgverdi, rNedbør, rMintemp, rMaxtemp);
 				if(data != null)
-					genererTabell(data);
+					genererTabell(data,rNedbør,rMintemp,rMaxtemp);
 			}
 			if(e.getSource() == fylke)
 			{
@@ -167,14 +196,18 @@ public class EkstremverdiPanel extends MetroPanel
 			}
 			if(rEnkelverdi.isSelected())
 			{
-				ldag.setEnabled(true);
+				if(rmåned.isSelected() || rår.isSelected())
+					ldag.setEnabled(false);
+				else
+					ldag.setEnabled(true);
 				rdag.setEnabled(true);
 			}
 			if(rAvgverdi.isSelected())
 			{
 				ldag.setEnabled(false);
 				rdag.setEnabled(false);
-				rmåned.setSelected(true);
+				if(!rmåned.isSelected() && !rår.isSelected())
+					rmåned.setSelected(true);
 			}
 		}
 	}
