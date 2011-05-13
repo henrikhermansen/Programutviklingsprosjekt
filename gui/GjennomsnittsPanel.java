@@ -105,22 +105,9 @@ public class GjennomsnittsPanel extends MetroPanel
 				fylke.setEnabled(true);
 				sted.setEnabled(true);
 			}
-			if(e.getSource() == hentData && rland.isSelected())
+			if(e.getSource() == hentData)
 			{
-				
-			}
-			if(e.getSource() == hentData && rfylke.isSelected())
-			{
-				
-			}
-			if(e.getSource() == hentData && rsted.isSelected())
-			{
-				if(sted.getSelectedItem() == null)
-				{
-					JOptionPane.showMessageDialog(panel, "Sted er ikke valgt", "Feil", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				Object[][] data = Gjennomsnitt.finnGjennomsnittSted(sl, lår, panel, fylke, sted);
+				Object[][] data = Gjennomsnitt.finnGjennomsnitt(sl, lår, panel, fylke, sted, rland, rfylke, rsted);
 				if(data != null)
 					genererTabell(data);
 			}
