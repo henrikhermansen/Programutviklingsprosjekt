@@ -15,6 +15,11 @@ public class DataTabell extends AbstractTableModel
 	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur"};
 	private Object[][] celler;
 	
+	/**
+	 * Oppretter tabell ved motta verdier til cellene
+	 * @author Lars Smeby
+	 * @param celler
+	 */
 	public DataTabell(Object[][] celler)
 	{
 		this.celler = celler;

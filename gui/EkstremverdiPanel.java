@@ -35,8 +35,10 @@ public class EkstremverdiPanel extends MetroPanel
 
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
-		sted.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
+		lår.addActionListener(handlingslytter);
+		lmåned.addActionListener(handlingslytter);
+		hentDager();
 		
 		stedtype = new JPanel(new GridLayout(0,3));
 		stedtypegruppe = new ButtonGroup();
@@ -163,6 +165,10 @@ public class EkstremverdiPanel extends MetroPanel
 			if(e.getSource() == fylke)
 			{
 				hentSteder(fylke.getSelectedIndex());
+			}
+			if(e.getSource() == lår || e.getSource() == lmåned)
+			{
+				hentDager();
 			}
 			if(stedLandet.isSelected())
 			{

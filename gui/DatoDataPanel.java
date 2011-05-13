@@ -26,6 +26,9 @@ public class DatoDataPanel extends MetroPanel
 		
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
+		lår.addActionListener(handlingslytter);
+		lmåned.addActionListener(handlingslytter);
+		hentDager();
 		
 		hentData = new JButton("Hent registrerte data");
 		hentData.addActionListener(handlingslytter);
@@ -64,6 +67,8 @@ public class DatoDataPanel extends MetroPanel
 				if(data != null)
 					genererTabell(data);
 			}
+			if(e.getSource() == lår || e.getSource() == lmåned)
+				hentDager();
 		}
 	}
 }

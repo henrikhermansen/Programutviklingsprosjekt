@@ -159,7 +159,7 @@ public class Metrovindu extends JFrame
 		GridLayout knapperekke = new GridLayout(7,0);
 		sidemeny.setLayout(knapperekke);
 		regSted = new JButton("Registrer sted");
-		regData = new JButton("Register værdata");
+		regData = new JButton("Registrer værdata");
 		finnSted = new JButton("Værdata for sted");
 		finnDato = new JButton("Værdata for dato");
 		gjennomsnittKnapp = new JButton("Gjennomsnittsverdier");
@@ -191,9 +191,20 @@ public class Metrovindu extends JFrame
 		c.add(hovedpanel, BorderLayout.CENTER);
 		setJMenuBar(menylinje);
 		setVisible(true);
-		setSize(800,600);
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fjernes etterhvert
+		setResizable(true);
+		
+		int bredde = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int høyde = Toolkit.getDefaultToolkit().getScreenSize().height;
+		if(bredde < 800 || høyde < 600)
+		{
+			setSize((int)(bredde*0.9),(int)(høyde*0.9));
+			setLocation(0, 0);
+		}
+		else
+		{
+			setSize(800,600);
+			setLocation((bredde-800)/2, (høyde-600)/2);
+		}
 	}
 	
 	/**

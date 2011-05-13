@@ -32,6 +32,9 @@ public class StedDataPanel extends MetroPanel
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
+		lår.addActionListener(handlingslytter);
+		lmåned.addActionListener(handlingslytter);
+		hentDager();
 		
 		datotype = new JPanel(new GridLayout(0,3));
 		datotypegruppe = new ButtonGroup();
@@ -106,6 +109,10 @@ public class StedDataPanel extends MetroPanel
 			if(e.getSource() == fylke)
 			{
 				hentSteder(fylke.getSelectedIndex());
+			}
+			if(e.getSource() == lår || e.getSource() == lmåned)
+			{
+				hentDager();
 			}
 			if(rdag.isSelected())
 			{

@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -40,7 +41,7 @@ public class Utvikling
 			if(rmåned.isSelected())
 			{
 				int måned = lmåned.getSelectedIndex();
-				return null;
+				return landData(sl, år, måned);
 			}
 		}
 		
@@ -55,7 +56,7 @@ public class Utvikling
 			if(rmåned.isSelected())
 			{
 				int måned = lmåned.getSelectedIndex();
-				return null;
+				return fylkeData(sl, panel, f, år, måned);
 			}
 		}
 		
@@ -101,9 +102,9 @@ public class Utvikling
 		return returarray;
 	}
 	
-	public static double[][] landData(Stedliste sl, JPanel panel, int år, int måned)
+	public static double[][] landData(Stedliste sl, int år, int måned)
 	{
-		return null; //TODO
+		return månedsdata(sl, år, måned);
 	}
 	
 	public static double[][] fylkeData(Stedliste sl, JPanel panel, int fylke, int år)
@@ -127,9 +128,16 @@ public class Utvikling
 		return returarray;
 	}
 	
-	public static double[][] fylkeData(JPanel panel, int fylke, int år, int måned)
+	public static double[][] fylkeData(Stedliste sl, JPanel panel, int fylke, int år, int måned)
 	{
-		return null; //TODO
+		Stedliste fylkesl = sl.finnSted(fylke);
+		if(fylkesl == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		}
+		
+		return månedsdata(fylkesl, år, måned);
 	}
 	
 	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år)
@@ -166,6 +174,55 @@ public class Utvikling
 				returarray[0][i] = -1;
 				returarray[1][i] = Registrering.MAXMAXTEMP + 1;
 			}
+		}
+		
+		return returarray;
+	}
+	
+	public static double[][] månedsdata(Stedliste stedliste, int år, int måned)
+	{
+		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);
+		int antallDager = kal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+		
+		double[][] returarray = new double[2][antallDager];
+		double[][] tellerarray = new double[2][antallDager];
+		
+		Iterator<Sted> iterator = stedliste.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Sted neste = iterator.next();
+			
+			for(int i = 0; i < returarray[0].length; i++)
+			{
+				Dato dato = neste.getDatoliste().finnDato(år, måned, i+1);
+				if(dato != null)
+				{
+					if(dato.getNedbør() >= 0)
+					{
+						returarray[0][i] += dato.getNedbør();
+						tellerarray[0][i]++;
+					}
+					if(dato.getAvgTemp() <= Registrering.MAXMAXTEMP)
+					{
+						returarray[1][i] += dato.getAvgTemp();
+						tellerarray[1][i]++;
+					}
+				}
+			}
+		}
+		
+		for(int i = 0; i < returarray[0].length; i++)
+		{
+			if(tellerarray[0][i] > 0)
+				returarray[0][i] = returarray[0][i]/tellerarray[0][i];
+			else
+				returarray[0][i] = -1;
+			
+			if(tellerarray[1][i] <= Registrering.MAXMAXTEMP)
+				returarray[1][i] = returarray[1][i]/tellerarray[1][i];
+			else
+				returarray[1][i] = Registrering.MAXMAXTEMP + 1;
 		}
 		
 		return returarray;

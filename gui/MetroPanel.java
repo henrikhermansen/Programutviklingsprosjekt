@@ -32,10 +32,6 @@ public abstract class MetroPanel
 		panel = new JPanel(new BorderLayout());
 		grid = new JPanel(new GridLayout(0,2,3,3));
 		
-		String[] dager = new String[31];
-		for(int i = 0; i < dager.length; i++)
-			dager[i] = Integer.toString(i+1);
-		
 		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 		
 		int detteår = new GregorianCalendar().get(Calendar.YEAR);
@@ -45,7 +41,7 @@ public abstract class MetroPanel
 		
 		fylke = new JComboBox(Sted.fylkesliste);
 		sted = new JComboBox();
-		ldag = new JComboBox(dager);
+		ldag = new JComboBox();
 		lmåned = new JComboBox(måneder);
 		lår = new JComboBox(årliste);
 		
@@ -78,6 +74,32 @@ public abstract class MetroPanel
 		sted.setModel(new DefaultComboBoxModel(sl.toString(fylke)));
 		sted.validate();
 		sted.repaint();
+	}
+	
+	protected void hentDager()
+	{
+		int år;
+		try
+		{
+			år = Integer.parseInt((String)lår.getSelectedItem());
+		}
+		catch(NumberFormatException nfe)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L009)", "Feil", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		int måned = lmåned.getSelectedIndex();
+		
+		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);
+		int antallDager = kal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+		
+		String[] dager = new String[antallDager];
+		for(int i = 0; i < dager.length; i++)
+			dager[i] = Integer.toString(i+1);
+		
+		ldag.setModel(new DefaultComboBoxModel(dager));
+		ldag.validate();
+		ldag.repaint();
 	}
 	
 	/**

@@ -36,6 +36,9 @@ public class VaerRegPanel extends MetroPanel
 		 */
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
+		lår.addActionListener(handlingslytter);
+		lmåned.addActionListener(handlingslytter);
+		hentDager();
 		/**
 		 * Oppretter tekstfelt for værdataene.
 		 */
@@ -93,6 +96,8 @@ public class VaerRegPanel extends MetroPanel
 		{
 			if(e.getSource()==fylke)
 				hentSteder(fylke.getSelectedIndex());
+			if(e.getSource()==lår || e.getSource()== lmåned)
+				hentDager();
 			if(e.getSource()==registrer)
 			{
 				String resultat = Registrering.registrerData(minTemp, maxTemp, nedbør, sl, sted, fylke, lår, lmåned, ldag, panel);
