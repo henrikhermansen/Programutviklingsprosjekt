@@ -14,6 +14,7 @@ import data.Stedliste;
 
 public class FinnEkstremData
 {
+	// =========================== NIVÅ 1 =========================== NIVÅ 1 =========================== NIVÅ 1 =========================== NIVÅ 1 ===========================
 	/**
 	 * Hovedmetode som sender parametere videre til korrekt undermetode
 	 * @author Henrik Hermansen
@@ -75,6 +76,7 @@ public class FinnEkstremData
 		return null;
 	}
 
+	// =========================== NIVÅ 2 =========================== NIVÅ 2 =========================== NIVÅ 2 =========================== NIVÅ 2 ===========================
 	/**
 	 * Undermetoder som sender parametere videre til korrekt undermetode
 	 * @author Henrik Hermansen
@@ -150,6 +152,7 @@ public class FinnEkstremData
 		return null;
 	}
 	
+	// =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 ===========================
 	/**
 	 * Undermetoder bla bla
 	 * @author Henrik Hermansen
