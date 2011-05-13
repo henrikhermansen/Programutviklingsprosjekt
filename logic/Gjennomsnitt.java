@@ -31,14 +31,9 @@ public class Gjennomsnitt
 	 * @param s	sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int f, String s)
+	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int f, Sted sted)
 	{
-		Sted sted = stedliste.finnSted(s, f);
-		if(sted == null)
-		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
-			return null;
-		}
+		
 		
 		Datoliste stedDatoer = sted.getDatoliste().finnDatoer(år);
 			
@@ -93,15 +88,8 @@ public class Gjennomsnitt
 	 * @param s	aktuelt sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int måned, int f, String s)
+	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int måned, int f, Sted sted)
 	{
-		Sted sted = stedliste.finnSted(s, f);
-		if(sted == null)
-		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B008)", "System feil", JOptionPane.ERROR_MESSAGE);
-			return null;
-		}
-		
 		Datoliste stedDatoer = sted.getDatoliste().finnDatoer(år, måned);
 			
 		Iterator<Dato> iterator = stedDatoer.iterator();
@@ -168,13 +156,19 @@ public class Gjennomsnitt
 			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B006)", "System feil", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
+		Sted sted = stedliste.finnSted(s, f);
+		if(sted == null)
+		{
+			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
 		
 		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
 		Object[][] returarray = new Object[13][5];
 		
 		for(int i = 0; i < returarray.length - 1; i++)
 		{
-			double[] mndArray = gjennomsnitt(stedliste, panel, år, i, f, s);
+			double[] mndArray = gjennomsnitt(stedliste, panel, år, i, f, sted);
 			returarray[i][0] = måneder[i];
 			returarray[i][1] = null;
 			returarray[i][2] = mndArray[0] >= 0 ? mndArray[0] : null;
@@ -182,7 +176,7 @@ public class Gjennomsnitt
 			returarray[i][4] = mndArray[2] <= Registrering.MAXMAXTEMP ? mndArray[2] : null;
 		}
 		
-		double[] årArray = gjennomsnitt(stedliste, panel, år, f, s);
+		double[] årArray = gjennomsnitt(stedliste, panel, år, f, sted);
 		
 		returarray[returarray.length-1][0] = måneder[returarray.length-1];
 		returarray[returarray.length-1][1] = null;
