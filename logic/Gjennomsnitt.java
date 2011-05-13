@@ -24,14 +24,13 @@ public class Gjennomsnitt
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
 	 * @author Bård Skeie
-	 * @param stedliste	referanse til stedlisten
 	 * @param år	aktuelt år
 	 * @param panel	panelet metoden kalles fra
 	 * @param f	fylkesnummer
 	 * @param sted	sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int f, Sted sted)
+	public static double[] gjennomsnitt(JPanel panel, int år, int f, Sted sted)
 	{
 		
 		
@@ -80,7 +79,6 @@ public class Gjennomsnitt
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
 	 * @author Bård Skeie
-	 * @param stedliste	referanse til stedlisten
 	 * @param år	aktuelt år
 	 * @param måned	aktuell måned
 	 * @param panel	referanse til panelet metoden kalles fra
@@ -88,7 +86,7 @@ public class Gjennomsnitt
 	 * @param sted	aktuelt sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(Stedliste stedliste, JPanel panel, int år, int måned, int f, Sted sted)
+	public static double[] gjennomsnitt(JPanel panel, int år, int måned, int f, Sted sted)
 	{
 		Datoliste stedDatoer = sted.getDatoliste().finnDatoer(år, måned);
 			
@@ -168,7 +166,7 @@ public class Gjennomsnitt
 		
 		for(int i = 0; i < returarray.length - 1; i++)
 		{
-			double[] mndArray = gjennomsnitt(stedliste, panel, år, i, f, sted);
+			double[] mndArray = gjennomsnitt(panel, år, i, f, sted);
 			returarray[i][0] = måneder[i];
 			returarray[i][1] = null;
 			returarray[i][2] = mndArray[0] >= 0 ? mndArray[0] : null;
@@ -176,7 +174,7 @@ public class Gjennomsnitt
 			returarray[i][4] = mndArray[2] <= Registrering.MAXMAXTEMP ? mndArray[2] : null;
 		}
 		
-		double[] årArray = gjennomsnitt(stedliste, panel, år, f, sted);
+		double[] årArray = gjennomsnitt(panel, år, f, sted);
 		
 		returarray[returarray.length-1][0] = måneder[returarray.length-1];
 		returarray[returarray.length-1][1] = null;
