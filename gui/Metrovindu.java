@@ -24,11 +24,11 @@ public class Metrovindu extends JFrame
 	 * c		Container c er containeren som holder på vindusobjektet
 	 */
 	private Stedliste sl;
-	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel;
+	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel, ssPanel;
 	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp;
 	private JPanel hovedpanel;
 	private Container c;
-	private JMenuItem filAvslutt, filLagre, registrerSted, registrerData, finnDataSted, finnDataDato, finnGjennomsnitt, finnEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
+	private JMenuItem filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, finnGjennomsnitt, finnEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
 	
 	/**
 	 * Konstruktør, hovedvinduet blir opprettet.
@@ -51,6 +51,7 @@ public class Metrovindu extends JFrame
 		gsPanel = new GjennomsnittsPanel(this.sl);
 		evPanel = new EkstremverdiPanel(this.sl);
 		utPanel = new UtviklingPanel(this.sl);
+		ssPanel = new StedSlettPanel(this.sl);
 		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -99,6 +100,10 @@ public class Metrovindu extends JFrame
 		registrerSted.setMnemonic('s');
 		registrerSted.addActionListener(mklytter);
 		
+		slettSted = new JMenuItem("Slett sted");
+		slettSted.setMnemonic('d');
+		slettSted.addActionListener(mklytter);
+		
 		registrerData = new JMenuItem("Registrer værdata");
 		registrerData.setMnemonic('v');
 		registrerData.addActionListener(mklytter);
@@ -135,6 +140,7 @@ public class Metrovindu extends JFrame
 		filmeny.add(filAvslutt);
 		
 		registrermeny.add(registrerSted);
+		registrermeny.add(slettSted);
 		registrermeny.add(registrerData);
 		
 		finnmeny.add(finnDataSted);
@@ -287,6 +293,13 @@ public class Metrovindu extends JFrame
 			{
 				c.remove(1);
 				c.add(utPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+			}
+			if(e.getSource() == slettSted)
+			{
+				c.remove(1);
+				c.add(ssPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}
