@@ -5,12 +5,11 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import logic.Registrering;
 
+import logic.Registrering;
+import logic.SkrivMelding;
 import data.Stedliste;
 
 /**
@@ -72,16 +71,10 @@ public class StedSlettPanel extends MetroPanel
 			
 			if(e.getSource()==sletteSted)
 			{
-				String stedString = (String) sted.getSelectedItem();
-				if(stedString == null)
-				{
-					JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Slett sted", JOptionPane.ERROR_MESSAGE);
+				String resultat = Registrering.slettSted(fylke, sted, sl, panel);
+				if(resultat == null)
 					return;
-				}
-				String resultat = Registrering.slettSted(fylke, stedString, sl, panel);
-				if(resultat == "")
-					return;
-				JOptionPane.showMessageDialog(panel, resultat, "Sted slettet", JOptionPane.INFORMATION_MESSAGE);
+				SkrivMelding.skriv(resultat, panel);
 				hentSteder(fylke.getSelectedIndex());
 			}
 		}

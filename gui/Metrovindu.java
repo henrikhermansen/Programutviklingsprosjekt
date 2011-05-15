@@ -26,9 +26,9 @@ public class Metrovindu extends JFrame
 	private Stedliste sl;
 	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel, ssPanel;
 	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp;
-	private JPanel hovedpanel;
+	private JPanel startpanel;
 	private Container c;
-	private JMenuItem filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, finnGjennomsnitt, finnEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
+	private JMenuItem filStart, filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, statGjennomsnitt, statEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
 	
 	/**
 	 * Konstruktør, hovedvinduet blir opprettet.
@@ -88,6 +88,10 @@ public class Metrovindu extends JFrame
 		statistikkmeny.setMnemonic('s');
 		hjelpmeny.setMnemonic('h');
 		
+		filStart = new JMenuItem("Velkomstskjerm");
+		filStart.setMnemonic('v');
+		filStart.addActionListener(mklytter);
+		
 		filLagre = new JMenuItem("Lagre");
 		filLagre.setMnemonic('l');
 		filLagre.addActionListener(mklytter);
@@ -99,14 +103,14 @@ public class Metrovindu extends JFrame
 		registrerSted = new JMenuItem("Registrer sted");
 		registrerSted.setMnemonic('s');
 		registrerSted.addActionListener(mklytter);
+
+		registrerData = new JMenuItem("Registrer værdata");
+		registrerData.setMnemonic('v');
+		registrerData.addActionListener(mklytter);
 		
 		slettSted = new JMenuItem("Slett sted");
 		slettSted.setMnemonic('d');
 		slettSted.addActionListener(mklytter);
-		
-		registrerData = new JMenuItem("Registrer værdata");
-		registrerData.setMnemonic('v');
-		registrerData.addActionListener(mklytter);
 		
 		finnDataSted = new JMenuItem("Værdata for sted");
 		finnDataSted.setMnemonic('s');
@@ -116,13 +120,13 @@ public class Metrovindu extends JFrame
 		finnDataDato.setMnemonic('d');
 		finnDataDato.addActionListener(mklytter);
 		
-		finnGjennomsnitt = new JMenuItem("Gjennomsnittsverdier");
-		finnGjennomsnitt.setMnemonic('g');
-		finnGjennomsnitt.addActionListener(mklytter);
+		statGjennomsnitt = new JMenuItem("Gjennomsnittsverdier");
+		statGjennomsnitt.setMnemonic('g');
+		statGjennomsnitt.addActionListener(mklytter);
 		
-		finnEkstrem = new JMenuItem("Ekstremverdier");
-		finnEkstrem.setMnemonic('e');
-		finnEkstrem.addActionListener(mklytter);
+		statEkstrem = new JMenuItem("Ekstremverdier");
+		statEkstrem.setMnemonic('e');
+		statEkstrem.addActionListener(mklytter);
 		
 		statUtvikling = new JMenuItem("Utvikling over tid");
 		statUtvikling.setMnemonic('u');
@@ -136,18 +140,19 @@ public class Metrovindu extends JFrame
 		hjelpOm.setMnemonic('o');
 		hjelpOm.addActionListener(mklytter);
 
+		filmeny.add(filStart);
 		filmeny.add(filLagre);
 		filmeny.add(filAvslutt);
 		
 		registrermeny.add(registrerSted);
-		registrermeny.add(slettSted);
 		registrermeny.add(registrerData);
+		registrermeny.add(slettSted);
 		
 		finnmeny.add(finnDataSted);
 		finnmeny.add(finnDataDato);
 		
-		statistikkmeny.add(finnGjennomsnitt);
-		statistikkmeny.add(finnEkstrem);
+		statistikkmeny.add(statGjennomsnitt);
+		statistikkmeny.add(statEkstrem);
 		statistikkmeny.add(statUtvikling);
 		
 		hjelpmeny.add(hjelpHjelp);
@@ -162,9 +167,11 @@ public class Metrovindu extends JFrame
 		JPanel sidewrapper = new JPanel();
 		JPanel sidepanel = new JPanel(new BorderLayout());
 		JPanel sidemeny = new JPanel();
-		GridLayout knapperekke = new GridLayout(7,0);
+		GridLayout knapperekke = new GridLayout(0,1);
+		knapperekke.setVgap(10);
 		sidemeny.setLayout(knapperekke);
 		regSted = new JButton("Registrer sted");
+		regSted.setPreferredSize(new Dimension(50, 50));
 		regData = new JButton("Registrer værdata");
 		finnSted = new JButton("Værdata for sted");
 		finnDato = new JButton("Værdata for dato");
@@ -185,16 +192,20 @@ public class Metrovindu extends JFrame
 		sidemeny.add(gjennomsnittKnapp);
 		sidemeny.add(ekstremKnapp);
 		sidemeny.add(utviklingKnapp);
+		sidemeny.setBackground(Color.LIGHT_GRAY);
 		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
-		sidepanel.setBorder(BorderFactory.createLoweredBevelBorder());
+		sidepanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		sidepanel.setBackground(Color.LIGHT_GRAY);
 		sidewrapper.add(sidepanel);
-		sidewrapper.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		sidewrapper.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
+		sidewrapper.setBackground(Color.LIGHT_GRAY);
 		
-		hovedpanel = new JPanel();
-		hovedpanel.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER));
+		startpanel = new JPanel(new BorderLayout());
+		startpanel.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER), BorderLayout.PAGE_START);
+		startpanel.add(new Bildepanel(), BorderLayout.CENTER);
 		
 		c.add(sidewrapper, BorderLayout.LINE_START);
-		c.add(hovedpanel, BorderLayout.CENTER);
+		c.add(startpanel, BorderLayout.CENTER);
 		setJMenuBar(menylinje);
 		setVisible(true);
 		setResizable(true);
@@ -211,18 +222,6 @@ public class Metrovindu extends JFrame
 			setSize(800,600);
 			setLocation((bredde-800)/2, (høyde-600)/2);
 		}
-	}
-	
-	/**
-	 * Oppdaterer og setter hovedpanel/vindu til høyre.
-	 * @author Lars Smeby
-	 */
-	public void settHovedPanel()
-	{
-		c.remove(1);
-		c.add(hovedpanel, BorderLayout.CENTER);
-		c.validate();
-		c.repaint();
 	}
 	
 	/**
@@ -275,14 +274,14 @@ public class Metrovindu extends JFrame
 				c.validate();
 				c.repaint();
 			}
-			if(e.getSource() == gjennomsnittKnapp || e.getSource() == finnGjennomsnitt)
+			if(e.getSource() == gjennomsnittKnapp || e.getSource() == statGjennomsnitt)
 			{
 				c.remove(1);
 				c.add(gsPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}
-			if(e.getSource() == ekstremKnapp || e.getSource() == finnEkstrem)
+			if(e.getSource() == ekstremKnapp || e.getSource() == statEkstrem)
 			{
 				c.remove(1);
 				c.add(evPanel.getPanel(), BorderLayout.CENTER);
@@ -300,6 +299,13 @@ public class Metrovindu extends JFrame
 			{
 				c.remove(1);
 				c.add(ssPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
+			}
+			if(e.getSource() == filStart)
+			{
+				c.remove(1);
+				c.add(startpanel, BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
 			}
