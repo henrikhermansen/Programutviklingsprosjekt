@@ -122,7 +122,7 @@ public class EkstremverdiPanel extends MetroPanel
 	public void genererTabell(Object[][] data,JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
 	{
 		super.genererTabell(data);
-		tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+		tabell.removeColumn(tabell.getColumnModel().getColumn(0));
 		if(rNedbør.isSelected())
 		{
 			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
@@ -138,7 +138,7 @@ public class EkstremverdiPanel extends MetroPanel
 			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
 			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
 		}
-		tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
+		//tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
 		panel.validate();
 		panel.repaint();
 	}
@@ -169,16 +169,24 @@ public class EkstremverdiPanel extends MetroPanel
 			{
 				fylke.setEnabled(false);
 				sted.setEnabled(false);
+				rAvgverdi.setEnabled(true);
 			}
 			if(stedFylke.isSelected())
 			{
 				fylke.setEnabled(true);
 				sted.setEnabled(false);
+				rAvgverdi.setEnabled(true);
 			}
 			if(stedSted.isSelected())
 			{
 				fylke.setEnabled(true);
 				sted.setEnabled(true);
+				if(rAvgverdi.isSelected())
+					rEnkelverdi.setSelected(true);
+				rAvgverdi.setEnabled(false);
+				if(rdag.isSelected())
+					rmåned.setSelected(true);
+				rdag.setEnabled(false);
 			}
 			if(rdag.isSelected())
 			{
@@ -201,7 +209,9 @@ public class EkstremverdiPanel extends MetroPanel
 					ldag.setEnabled(false);
 				else
 					ldag.setEnabled(true);
-				rdag.setEnabled(true);
+				if(!stedSted.isSelected())
+					rdag.setEnabled(true);
+				stedSted.setEnabled(true);
 			}
 			if(rAvgverdi.isSelected())
 			{
@@ -209,6 +219,9 @@ public class EkstremverdiPanel extends MetroPanel
 				rdag.setEnabled(false);
 				if(!rmåned.isSelected() && !rår.isSelected())
 					rmåned.setSelected(true);
+				if(stedSted.isSelected())
+					stedFylke.setSelected(true);
+				stedSted.setEnabled(false);
 			}
 		}
 	}

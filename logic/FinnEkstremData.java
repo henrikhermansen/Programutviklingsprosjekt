@@ -100,8 +100,9 @@ public class FinnEkstremData
 	private static Object[][] finnDataForSted(Stedliste sl, JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
 		Datoliste datoliste=new Datoliste();
-		String tabelldato=null;
-		if(rdag.isSelected())
+		// Dag er disablet for Sted. Følgende kode er unødvendig.
+		// TODO Fjerne denne koden.
+		/*if(rdag.isSelected())
 		{
 			Dato dato=sted.getDatoliste().finnDato(år,måned,dag);
 			if(dato!=null)
@@ -109,16 +110,14 @@ public class FinnEkstremData
 				datoliste.settInn(dato);
 				tabelldato=dag+"-"+måned+"-"+år;
 			}
-		}
+		}*/
 		if(rmåned.isSelected())
 		{
 			datoliste = sted.getDatoliste().finnDatoer(år,måned);
-			tabelldato=måned+"-"+år;
 		}
 		if(rår.isSelected())
 		{
 			datoliste = sted.getDatoliste().finnDatoer(år);
-			tabelldato=år+"";
 		}
 		
 		int lengde = datoliste.size();
@@ -127,10 +126,14 @@ public class FinnEkstremData
 			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
+		if(rNedbør.isSelected())
+			datoliste=datoliste.getMaxNedbør();
+		if(rMintemp.isSelected())
+			datoliste=datoliste.getMinTemp();
+		if(rMaxtemp.isSelected())
+			datoliste=datoliste.getMaxTemp();
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSted(datoliste,tabelldato,rNedbør,rMintemp,rMaxtemp);
-		if(rAvgverdi.isSelected())
-			return finnAvgverdiForSted(datoliste,tabelldato,rNedbør,rMintemp,rMaxtemp);
+			return finnEnkelverdiForSted(datoliste,rNedbør,rMintemp,rMaxtemp);
 		return null;
 	}
 
@@ -169,27 +172,22 @@ public class FinnEkstremData
 	 * @param rMaxtemp
 	 * @return
 	 */
-	private static Object[][] finnAvgverdiForSted(Datoliste datoliste, String tabelldato, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
-	{		
-		Object[][] returarray = new Object[1][5];
-		
-		returarray[0][0] = tabelldato;
-		returarray[0][1] = null;
-		returarray[0][2] = rNedbør.isSelected() ? datoliste.getAvgNedbør() : null;
-		returarray[0][3] = rMintemp.isSelected() ? datoliste.getAvgMinTemp() : null;
-		returarray[0][4] = rMaxtemp.isSelected() ? datoliste.getAvgMaxTemp() : null;
-		
-		return returarray;
-	}
-	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, String tabelldato, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+
+	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
-		Object[][] returarray = new Object[1][5];
-		
-		returarray[0][0] = tabelldato;
-		returarray[0][1] = null;
-		returarray[0][2] = rNedbør.isSelected() ? datoliste.getMaxNedbør() : null;
-		returarray[0][3] = rMintemp.isSelected() ? datoliste.getMinTemp() : null;
-		returarray[0][4] = rMaxtemp.isSelected() ? datoliste.getMaxTemp() : null;
+		Object[][] returarray = new Object[datoliste.size()][5];
+		int i=0;
+		Iterator<Dato> iterator=datoliste.iterator();
+		while(iterator.hasNext())
+		{
+			Dato dato=iterator.next();
+			returarray[i][0] = null;
+			returarray[i][1] = dato.getDato().getTime();
+			returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
+			returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
+			returarray[i][4] = rMaxtemp.isSelected() ? dato.getMaxTemp() : null;
+			i++;
+		}
 		
 		return returarray;
 	}

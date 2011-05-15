@@ -191,47 +191,55 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
-	 * Finner det dato-objektet i datolisten som har den laveste minimumstemperaturen
+	 * Finner de dato-objektene i datolisten som har den laveste minimumstemperaturen
 	 * @author Henrik Hermansen
-	 * @return en double-verdi med laveste mintemp
+	 * @return en datoliste med de datoene med laveste mintemp
 	 */
-	public double getMinTemp()
+	public Datoliste getMinTemp()
 	{
 		double minTemp=Registrering.MAXMAXTEMP+1;
-		Dato svar=null;
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
 			if(neste.getMinTemp()<minTemp)
-			{
-				svar=neste;
-				minTemp=svar.getMinTemp();
-			}
+				minTemp=neste.getMinTemp();
 		}
-		return svar.getMinTemp();
+		Datoliste svar=new Datoliste();
+		iterator = liste.iterator();
+		while(iterator.hasNext())
+		{
+			Dato neste = iterator.next();
+			if(neste.getMinTemp()==minTemp)
+				svar.settInn(neste);
+		}
+		return svar;
 	}
 	
 	/**
-	 * Finner det dato-objektet i datolisten som har den høyeste maksimumstemperaturen
+	 * Finner de dato-objektene i datolisten som har den høyeste maksimumstemperaturen
 	 * @author Henrik Hermansen
-	 * @return en double-verdi med høyeste maxtemp
+	 * @return en datliste med de datoene med høyeste maxtemp
 	 */
-	public double getMaxTemp()
+	public Datoliste getMaxTemp()
 	{
 		double maxTemp=Registrering.MAXMINTEMP-1;
-		Dato svar=null;
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
 			if(neste.getMaxTemp()>maxTemp)
-			{
-				svar=neste;
-				maxTemp=svar.getMaxTemp();
-			}
+				maxTemp=neste.getMaxTemp();
 		}
-		return svar.getMaxTemp();
+		Datoliste svar=new Datoliste();
+		iterator = liste.iterator();
+		while(iterator.hasNext())
+		{
+			Dato neste = iterator.next();
+			if(neste.getMaxTemp()==maxTemp)
+				svar.settInn(neste);
+		}
+		return svar;
 	}
 	
 	/**
@@ -262,46 +270,54 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
-	 * Finner det dato-objektet i datolisten som har den laveste nedbørsmengden
+	 * Finner de dato-objektene i datolisten som har den laveste nedbørsmengden
 	 * @author Henrik Hermansen
-	 * @return en double-verdi med laveste nedbørsmengde
+	 * @return en datoliste med datoene med laveste nedbørsmengde
 	 */
-	public double getMinNedbør()
+	public Datoliste getMinNedbør()
 	{
 		double minNedbør=Registrering.MAXNEDBØR+1;
-		Dato svar=null;
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
 			if(neste.getNedbør()<minNedbør)
-			{
-				svar=neste;
-				minNedbør=svar.getNedbør();
-			}
+				minNedbør=neste.getNedbør();
 		}
-		return svar.getNedbør();
+		Datoliste svar=new Datoliste();
+		iterator = liste.iterator();
+		while(iterator.hasNext())
+		{
+			Dato neste = iterator.next();
+			if(neste.getNedbør()==minNedbør)
+				svar.settInn(neste);
+		}
+		return svar;
 	}
 	
 	/**
-	 * Finner det dato-objektet i datolisten som har den høyeste maksimumstemperaturen
+	 * Finner de dato-objektene i datolisten som har den høyeste maksimumstemperaturen
 	 * @author Henrik Hermansen
-	 * @return en double-verdi med høyeste nedbørsmengde
+	 * @return en datoliste med datoene med høyeste nedbørsmengde
 	 */
-	public double getMaxNedbør()
+	public Datoliste getMaxNedbør()
 	{
 		double maxNedbør=-1;
-		Dato svar=null;
 		Iterator<Dato> iterator = liste.iterator();
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
 			if(neste.getNedbør()>maxNedbør)
-			{
-				svar=neste;
-				maxNedbør=svar.getNedbør();
-			}
+				maxNedbør=neste.getNedbør();
 		}
-		return svar.getNedbør();
+		Datoliste svar=new Datoliste();
+		iterator = liste.iterator();
+		while(iterator.hasNext())
+		{
+			Dato neste = iterator.next();
+			if(neste.getNedbør()==maxNedbør)
+				svar.settInn(neste);
+		}
+		return svar;
 	}
 }
