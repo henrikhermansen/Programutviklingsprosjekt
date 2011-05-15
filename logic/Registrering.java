@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.GregorianCalendar;
+
 import javax.swing.*;
 
 import data.*;
@@ -28,13 +30,13 @@ public class Registrering
 		String n = navn.getText();
 		
 		if (n == null || n.length() < 2)
-			return "Skriv inn et stedsnavn";
+			return "Skriv inn et stedsnavn/W";
 
 		if (stedliste.finnSted(n, fylke.getSelectedIndex()) != null)
-			return "Dette stedet eksisterer allerede i dette fylket";
+			return "Dette stedet eksisterer allerede i dette fylket/I";
 		
 		stedliste.settInn(new Sted(n, fylke.getSelectedIndex()));
-		return n+" ble registrert i "+fylke.getSelectedItem().toString();
+		return n+" ble registrert i "+fylke.getSelectedItem().toString()+"/I";
 	}
 	
 	/**
@@ -49,19 +51,19 @@ public class Registrering
 		String nedbørString = ned.getText();
 				
 		if((minTempString.length() == 0) && (maxTempString.length() == 0) && (nedbørString.length() == 0))
-			return "Ingen data er skrevet inn";
+			return "Ingen data er skrevet inn/W";
 		
-		double minTemp = -100;
-		double maxTemp = -100;
-		double nedbør = -100;
+		double minTemp = MAXMAXTEMP + 1;
+		double maxTemp = MAXMAXTEMP + 1;
+		double nedbør = -1;
 		
 		boolean minT = false;
 		boolean maxT = false;
 		boolean nedB = false;
 		
-		int år = -100;
+		int år = -1;
 		int måned = lmåned.getSelectedIndex();
-		int dag = -100;
+		int dag = -1;
 		
 		try
 		{
@@ -70,8 +72,13 @@ public class Registrering
 		}
 		catch(NumberFormatException nfe)
 		{
-			return "Ukjent programfeil (B002)";
+			return "Ukjent programfeil (B002)/E";
 		}
+		
+		GregorianCalendar dato = new GregorianCalendar(år, måned, dag);
+		GregorianCalendar idag = new GregorianCalendar();
+		if(dato.after(idag))
+			return "Du kan ikke registrere data for en dato som ikke har vært/W";
 		
 		try
 		{
@@ -94,7 +101,7 @@ public class Registrering
 		
 		catch(NumberFormatException nfe)
 		{
-			return "Feil i tallformatet";
+			return "Feil i tallformatet/W";
 		}
 		
 		/**
@@ -102,18 +109,18 @@ public class Registrering
 		 * før registrering kan utføres.
 		 */
 		if(nedB && ((nedbør < 0) || (nedbør > MAXNEDBØR)))
-			return "Nedbør kan ikke være negativ eller over " + MAXNEDBØR + ".";
+			return "Nedbør kan ikke være negativ eller over " + MAXNEDBØR + "./W";
 		if(minT && maxT && minTemp > maxTemp)
-			return "Maksimumstemperatur kan ikke være større enn minimumstemperatur";
+			return "Maksimumstemperatur kan ikke være større enn minimumstemperatur/W";
 		if(minT && maxT && ((maxTemp < MAXMINTEMP || maxTemp > MAXMAXTEMP) || (minTemp < MAXMINTEMP || minTemp > MAXMAXTEMP)))
-			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + ".";
+			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + "./W";
 		
 		String n = (String) navn.getSelectedItem();
 		if(n == null)
-			return "Ingen steder valgt";
+			return "Ingen steder valgt/W";
 		Sted sted = stedliste.finnSted(n, fylke.getSelectedIndex());
 		if(sted == null)
-			return "Ukjent programfeil! (B001)";
+			return "Ukjent programfeil! (B001)/E";
 		
 		Datoliste dl = sted.getDatoliste();
 		Dato d = dl.finnDato(år, måned, dag);
@@ -190,7 +197,7 @@ public class Registrering
 		}
 		
 		if(!nedB && !minT && !maxT)
-			return "Ingen data registrert";
+			return "Ingen data registrert/I";
 		
 		/**
 		 * 	Hvis det kun er endret minimumstemperatur og maksimumstemperatur allerede eksisterer slår denne til
@@ -201,6 +208,7 @@ public class Registrering
 			String feilretur = "Minimumstemperaturen er høyere enn allerede registrert maksimumstemperatur, og blir derfor ikke endret.";
 			if(nedB)
 				feilretur += " Nedbøren ble endret.";
+			feilretur += "/W";
 			return feilretur;
 		}
 		/**
@@ -212,9 +220,10 @@ public class Registrering
 			String feilretur = "Maksimumstemperaturen er lavere enn allerede registrert minimumstemperatur, og blir derfor ikke endret.";
 			if(nedB)
 				feilretur += " Nedbøren ble endret.";
+			feilretur += "/W";
 			return feilretur;
 		}
 		
-		return "Data ble satt inn i tabellen";
+		return "Data ble satt inn i tabellen/I";
 	}
 }

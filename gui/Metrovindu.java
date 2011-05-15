@@ -139,9 +139,9 @@ public class Metrovindu extends JFrame
 		
 		finnmeny.add(finnDataSted);
 		finnmeny.add(finnDataDato);
-		finnmeny.add(finnGjennomsnitt);
-		finnmeny.add(finnEkstrem);
 		
+		statistikkmeny.add(finnGjennomsnitt);
+		statistikkmeny.add(finnEkstrem);
 		statistikkmeny.add(statUtvikling);
 		
 		hjelpmeny.add(hjelpHjelp);
@@ -298,7 +298,7 @@ public class Metrovindu extends JFrame
 			if(e.getSource() == filLagre)
 			{
 				Filhåndterer.lagreFil(sl);
-				JOptionPane.showMessageDialog(getMetrovindu(),"Data er lagret til fil","Lagret",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(getMetrovindu(), "Data er lagret til fil", "Lagret", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if(e.getSource() == hjelpHjelp)
 			{
@@ -314,7 +314,7 @@ public class Metrovindu extends JFrame
 							"Prosjektoppgave i programutvikling våren 2011\n" +
 							"Gruppe 3: Henrik Hermansen, Bård Skeie og Lars Smeby\n" +
 							"Programversjon: 1.0\n" +
-							"Sist oppdatdert: 12.05.2011\n" +
+							"Sist oppdatdert: 15.05.2011\n" +
 							"Høyskolen i Oslo";
 				JOptionPane.showMessageDialog(getMetrovindu(), om, "Om", JOptionPane.INFORMATION_MESSAGE);
 			}

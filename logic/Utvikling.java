@@ -41,7 +41,7 @@ public class Utvikling
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L007)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L007)/E", panel);
 			return null;
 		}
 		
@@ -76,13 +76,13 @@ public class Utvikling
 		String s = (String) sted.getSelectedItem();
 		if(s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Sted er ikke valgt", "Feil", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Sted er ikke valgt/W", panel);
 			return null;
 		}
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L008)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L008)/E", panel);
 			return null;
 		}
 		
@@ -150,7 +150,7 @@ public class Utvikling
 		Stedliste fylkesl = sl.finnSted(fylke);
 		if(fylkesl == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
 			return null;
 		}
 		
@@ -181,7 +181,7 @@ public class Utvikling
 		Stedliste fylkesl = sl.finnSted(fylke);
 		if(fylkesl == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
 			return null;
 		}
 		

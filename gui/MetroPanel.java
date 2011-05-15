@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.*;
 
+import logic.SkrivMelding;
+
 import data.Sted;
 import data.Stedliste;
 
@@ -37,7 +39,7 @@ public abstract class MetroPanel
 		
 		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 		
-		int detteår = new GregorianCalendar().get(Calendar.YEAR);
+		int detteår = new GregorianCalendar().get(GregorianCalendar.YEAR);
 		String[] årliste = new String[detteår-(førsteår-1)];
 		for(int i = 0; i < årliste.length; i++)
 			årliste[i] = Integer.toString(detteår--);
@@ -94,7 +96,7 @@ public abstract class MetroPanel
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L009)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L009)/E", panel);
 			return;
 		}
 		int måned = lmåned.getSelectedIndex();

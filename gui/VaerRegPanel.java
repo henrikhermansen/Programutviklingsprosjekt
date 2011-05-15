@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import logic.Registrering;
+import logic.SkrivMelding;
 import data.Stedliste;
 
 /**
@@ -85,7 +86,7 @@ public class VaerRegPanel extends MetroPanel
 			if(e.getSource()==registrer)
 			{
 				String resultat = Registrering.registrerData(minTemp, maxTemp, nedbør, sl, sted, fylke, lår, lmåned, ldag, panel);
-				if(resultat.equals("Data ble satt inn i tabellen")) //En svak test med tanke på endringer
+				if(resultat.equals("Data ble satt inn i tabellen/I")) //En svak test med tanke på endringer
 				{
 					fylke.setSelectedIndex(0);
 					try
@@ -104,7 +105,7 @@ public class VaerRegPanel extends MetroPanel
 					lmåned.setSelectedIndex(0);
 					lår.setSelectedIndex(0);
 				}
-				JOptionPane.showMessageDialog(panel, resultat, "Registrering av værdata", JOptionPane.INFORMATION_MESSAGE);
+				SkrivMelding.skriv(resultat, panel);
 			}
 		}
 	}

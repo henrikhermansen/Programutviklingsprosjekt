@@ -287,7 +287,7 @@ public class Gjennomsnitt
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B006)", "System feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (B006)/E", panel);
 			return null;
 		}
 		if(rland.isSelected())
@@ -304,14 +304,14 @@ public class Gjennomsnitt
 		String s = (String) jsted.getSelectedItem();
 		if(s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Sted er ikke valgt", "Feil", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Sted er ikke valgt/W", panel);
 			return null;
 		}
 		
 		Sted sted = stedliste.finnSted(s, f);
 		if(sted == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B007)", "System feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (B007)/E", panel);
 			return null;
 		}
 		if(rsted.isSelected())
@@ -372,7 +372,7 @@ public class Gjennomsnitt
 		Stedliste fylkesl = sl.finnSted(f);
 		if(fylkesl == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
 			return null;
 		}
 		

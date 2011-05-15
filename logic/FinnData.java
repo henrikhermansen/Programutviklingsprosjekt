@@ -35,7 +35,7 @@ public class FinnData
 		int år;
 		if(s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Ingen steder valgt/W", panel);
 			return null;
 		}
 		try
@@ -45,14 +45,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L001)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L001)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L002)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L002)/E", panel);
 			return null;
 		}
 		
@@ -60,7 +60,7 @@ public class FinnData
 
 		if(dato == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
 		
@@ -94,7 +94,7 @@ public class FinnData
 		int år;
 		if(s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Ingen steder valgt/W", panel);
 			return null;
 		}
 		try
@@ -103,14 +103,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L003)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L003)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L004)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L004)/E", panel);
 			return null;
 		}
 		
@@ -119,7 +119,7 @@ public class FinnData
 		int lengde = månedliste.size();
 		if(lengde == 0)
 		{
-			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
 		
@@ -157,7 +157,7 @@ public class FinnData
 		int år;
 		if(s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Ingen steder valgt/W", panel);
 			return null;
 		}
 		try
@@ -166,14 +166,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L005)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L005)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (L006)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (L006)/E", panel);
 			return null;
 		}
 		
@@ -182,7 +182,7 @@ public class FinnData
 		int lengde = årliste.size();
 		if(lengde == 0)
 		{
-			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
 		
@@ -217,7 +217,7 @@ public class FinnData
 		Stedliste sted = stedliste.finnSted(f);
 		if(sted == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen registrerte steder", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
 			return null;
 		}
 		Iterator<Sted> iterator = sted.iterator();
@@ -233,7 +233,7 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (B004)", "System feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (B004)/E", panel);
 			return null;
 		}
 		
@@ -248,7 +248,7 @@ public class FinnData
 		int lengde = stedDatoListe.size();
 		if(lengde == 0)
 		{
-			JOptionPane.showMessageDialog(panel, "Fylket har ingen data", "Ingen registreringer", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Fylket har ingen data/I", panel);
 			return null;
 		}
 		

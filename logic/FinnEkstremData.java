@@ -47,7 +47,7 @@ public class FinnEkstremData
 		int dag;
 		if(stedSted.isSelected() && s == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ingen steder valgt", "Fant ikke sted", JOptionPane.WARNING_MESSAGE);
+			SkrivMelding.skriv("Ingen steder valgt/W", panel);
 			return null;
 		}
 		try
@@ -57,14 +57,14 @@ public class FinnEkstremData
 		}
 		catch(NumberFormatException nfe)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (H001)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (H001)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(stedSted.isSelected() && st == null)
 		{
-			JOptionPane.showMessageDialog(panel, "Ukjent programfeil (H002)", "Feil", JOptionPane.ERROR_MESSAGE);
+			SkrivMelding.skriv("Ukjent programfeil (H002)/E", panel);
 			return null;
 		}
 		if(stedLandet.isSelected())
@@ -124,7 +124,7 @@ public class FinnEkstremData
 		int lengde = datoliste.size();
 		if(lengde == 0)
 		{
-			JOptionPane.showMessageDialog(panel, "Det eksisterer ikke data for dette stedet i denne tidsperioden", "Fant ikke data", JOptionPane.INFORMATION_MESSAGE);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
 		if(rEnkelverdi.isSelected())

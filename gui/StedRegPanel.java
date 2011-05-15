@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 import logic.Registrering;
+import logic.SkrivMelding;
 
 /**
  *	@author		Gruppe 3
@@ -48,10 +49,8 @@ public class StedRegPanel extends MetroPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			JOptionPane.showMessageDialog(panel, 
-							Registrering.registrerSted(navn, fylke, sl), 
-							"Registrering av sted", 
-							JOptionPane.INFORMATION_MESSAGE);
+			String melding = Registrering.registrerSted(navn, fylke, sl);
+			SkrivMelding.skriv(melding, panel);
 			navn.setText("");
 			fylke.setSelectedIndex(0);
 		}
