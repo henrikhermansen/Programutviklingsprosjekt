@@ -40,6 +40,36 @@ public class Registrering
 	}
 	
 	/**
+	 * Metode for å¨slette steder. Data tilknyttet stedet blir også slettet.
+	 * @author Bård Skeie
+	 * @param fylke Fylket som stedet hører til.
+	 * @param sted Stedsnavn på stedet som skal slettes.
+	 * @param sl Referanse til stedslisten.
+	 * @param panel Referanse til panelet som metoden kalles fra.
+	 * @return Returnerer en string som forteller om resultatet.
+	 */
+	public static String slettSted(JComboBox fylke, String sted, Stedliste sl, JPanel panel )
+	{
+		Object[] valg = { "Ja", "Nei" }; //Valg til showOptionDialog-boksene.
+		int svar = JOptionPane.showOptionDialog(panel, 
+				"Er du helt sikker på at du vil slette " + sted + "?\nAlle data som er registerrt om " + sted + " vil også slettes!", 
+				"Advarsel",
+		        JOptionPane.DEFAULT_OPTION, 
+		        JOptionPane.WARNING_MESSAGE,
+		        null, valg, valg[0]);
+		if(svar == 1 || svar == JOptionPane.CLOSED_OPTION)
+			return "";	
+		else
+		{
+			Sted slettSted = sl.finnSted(sted, fylke.getSelectedIndex());
+			if(slettSted == null)
+				return "Ukjent programfeil! (B008)";
+			sl.slettSted(slettSted);
+			return sted + " og alle tilhørende data ble slettet fra registeret.";
+		}
+	}
+	
+	/**
 	 * Metode som registrerer værdata for et sted.
 	 * @author Bård Skeie
 	 * @return String med tilbakemelding på resultat.
