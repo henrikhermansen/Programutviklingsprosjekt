@@ -2,7 +2,11 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
+
 import javax.swing.*;
+
+import logic.LastIkon;
 
 import data.Stedliste;
 import data.Filhåndterer;
@@ -53,19 +57,12 @@ public class Metrovindu extends JFrame
 		utPanel = new UtviklingPanel(this.sl);
 		ssPanel = new StedSlettPanel(this.sl);
 		
-		try {
+		try
+		{
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		
@@ -82,62 +79,62 @@ public class Metrovindu extends JFrame
 		JMenu finnmeny = new JMenu("Finn");
 		JMenu statistikkmeny = new JMenu("Statistikk");
 		JMenu hjelpmeny = new JMenu("Hjelp");
-		filmeny.setMnemonic('f');
-		registrermeny.setMnemonic('r');
-		finnmeny.setMnemonic('i');
-		statistikkmeny.setMnemonic('s');
-		hjelpmeny.setMnemonic('h');
+		filmeny.setMnemonic(KeyEvent.VK_F);
+		registrermeny.setMnemonic(KeyEvent.VK_R);
+		finnmeny.setMnemonic(KeyEvent.VK_I);
+		statistikkmeny.setMnemonic(KeyEvent.VK_S);
+		hjelpmeny.setMnemonic(KeyEvent.VK_H);
 		
-		filStart = new JMenuItem("Velkomstskjerm");
-		filStart.setMnemonic('v');
+		filStart = new JMenuItem("Velkomstskjerm", LastIkon.last("Home16.gif"));
+		filStart.setMnemonic(KeyEvent.VK_V);
 		filStart.addActionListener(mklytter);
 		
-		filLagre = new JMenuItem("Lagre");
-		filLagre.setMnemonic('l');
+		filLagre = new JMenuItem("Lagre", LastIkon.last("Save16.gif"));
+		filLagre.setMnemonic(KeyEvent.VK_L);
 		filLagre.addActionListener(mklytter);
 		
-		filAvslutt = new JMenuItem("Avslutt");
-		filAvslutt.setMnemonic('a');
+		filAvslutt = new JMenuItem("Avslutt", LastIkon.last("exit16.gif"));
+		filAvslutt.setMnemonic(KeyEvent.VK_A);
 		filAvslutt.addActionListener(mklytter); 
 		
-		registrerSted = new JMenuItem("Registrer sted");
-		registrerSted.setMnemonic('s');
+		registrerSted = new JMenuItem("Registrer sted", LastIkon.last("nyttsted16.gif"));
+		registrerSted.setMnemonic(KeyEvent.VK_S);
 		registrerSted.addActionListener(mklytter);
 
-		registrerData = new JMenuItem("Registrer værdata");
-		registrerData.setMnemonic('v');
+		registrerData = new JMenuItem("Registrer værdata", LastIkon.last("nyttvar16.gif"));
+		registrerData.setMnemonic(KeyEvent.VK_V);
 		registrerData.addActionListener(mklytter);
 		
-		slettSted = new JMenuItem("Slett sted");
-		slettSted.setMnemonic('d');
+		slettSted = new JMenuItem("Slett sted", LastIkon.last("Delete16.gif"));
+		slettSted.setMnemonic(KeyEvent.VK_D);
 		slettSted.addActionListener(mklytter);
 		
-		finnDataSted = new JMenuItem("Værdata for sted");
-		finnDataSted.setMnemonic('s');
+		finnDataSted = new JMenuItem("Værdata for sted", LastIkon.last("steddata16.gif"));
+		finnDataSted.setMnemonic(KeyEvent.VK_S);
 		finnDataSted.addActionListener(mklytter);
 		
-		finnDataDato = new JMenuItem("Værdata for dato");
-		finnDataDato.setMnemonic('d');
+		finnDataDato = new JMenuItem("Værdata for dato", LastIkon.last("datodata16.gif"));
+		finnDataDato.setMnemonic(KeyEvent.VK_D);
 		finnDataDato.addActionListener(mklytter);
 		
-		statGjennomsnitt = new JMenuItem("Gjennomsnittsverdier");
-		statGjennomsnitt.setMnemonic('g');
+		statGjennomsnitt = new JMenuItem("Gjennomsnittsverdier", LastIkon.last("gjennomsnitt16.gif"));
+		statGjennomsnitt.setMnemonic(KeyEvent.VK_G);
 		statGjennomsnitt.addActionListener(mklytter);
 		
-		statEkstrem = new JMenuItem("Ekstremverdier");
-		statEkstrem.setMnemonic('e');
+		statEkstrem = new JMenuItem("Ekstremverdier", LastIkon.last("ekstrem16.gif"));
+		statEkstrem.setMnemonic(KeyEvent.VK_E);
 		statEkstrem.addActionListener(mklytter);
 		
-		statUtvikling = new JMenuItem("Utvikling over tid");
-		statUtvikling.setMnemonic('u');
+		statUtvikling = new JMenuItem("Utvikling over tid", LastIkon.last("utvikling16.gif"));
+		statUtvikling.setMnemonic(KeyEvent.VK_U);
 		statUtvikling.addActionListener(mklytter);
 		
-		hjelpHjelp = new JMenuItem("Hjelp til programmet");
-		hjelpHjelp.setMnemonic('h');
+		hjelpHjelp = new JMenuItem("Hjelp til programmet", LastIkon.last("Help16.gif"));
+		hjelpHjelp.setMnemonic(KeyEvent.VK_H);
 		hjelpHjelp.addActionListener(mklytter);
 		
-		hjelpOm = new JMenuItem("Om");
-		hjelpOm.setMnemonic('o');
+		hjelpOm = new JMenuItem("Om", LastIkon.last("About16.gif"));
+		hjelpOm.setMnemonic(KeyEvent.VK_O);
 		hjelpOm.addActionListener(mklytter);
 
 		filmeny.add(filStart);
@@ -170,14 +167,28 @@ public class Metrovindu extends JFrame
 		GridLayout knapperekke = new GridLayout(0,1);
 		knapperekke.setVgap(10);
 		sidemeny.setLayout(knapperekke);
-		regSted = new JButton("Registrer sted");
+		regSted = new JButton("Registrer sted", LastIkon.last("nyttsted24.gif"));
+		regSted.setHorizontalAlignment(SwingConstants.LEFT);
+		regSted.setMnemonic(KeyEvent.VK_S);
 		regSted.setPreferredSize(new Dimension(50, 50));
-		regData = new JButton("Registrer værdata");
-		finnSted = new JButton("Værdata for sted");
-		finnDato = new JButton("Værdata for dato");
-		gjennomsnittKnapp = new JButton("Gjennomsnittsverdier");
-		ekstremKnapp = new JButton("Ekstremverdier");
-		utviklingKnapp = new JButton("Utvikling over tid");
+		regData = new JButton("Registrer værdata", LastIkon.last("nyttvar24.gif"));
+		regData.setHorizontalAlignment(SwingConstants.LEFT);
+		regData.setMnemonic(KeyEvent.VK_V);
+		finnSted = new JButton("Værdata for sted", LastIkon.last("steddata24.gif"));
+		finnSted.setHorizontalAlignment(SwingConstants.LEFT);
+		finnSted.setMnemonic(KeyEvent.VK_T);
+		finnDato = new JButton("Værdata for dato", LastIkon.last("datodata24.gif"));
+		finnDato.setHorizontalAlignment(SwingConstants.LEFT);
+		finnDato.setMnemonic(KeyEvent.VK_D);
+		gjennomsnittKnapp = new JButton("Gjennomsnittsverdier", LastIkon.last("gjennomsnitt24.gif"));
+		gjennomsnittKnapp.setHorizontalAlignment(SwingConstants.LEFT);
+		gjennomsnittKnapp.setMnemonic(KeyEvent.VK_G);
+		ekstremKnapp = new JButton("Ekstremverdier", LastIkon.last("ekstrem24.gif"));
+		ekstremKnapp.setHorizontalAlignment(SwingConstants.LEFT);
+		ekstremKnapp.setMnemonic(KeyEvent.VK_E);
+		utviklingKnapp = new JButton("Utvikling over tid", LastIkon.last("utvikling24.gif"));
+		utviklingKnapp.setHorizontalAlignment(SwingConstants.LEFT);
+		utviklingKnapp.setMnemonic(KeyEvent.VK_U);
 		regSted.addActionListener(mklytter);
 		regData.addActionListener(mklytter);
 		finnSted.addActionListener(mklytter);
