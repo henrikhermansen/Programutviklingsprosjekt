@@ -445,7 +445,7 @@ public class FinnEkstremData
 	 */
 	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
-		Object[][] returarray = new Object[antVerdier][5];
+		Object[][] returarray = new Object[antVerdier][6];
 		int i=0;
 		Iterator<Sted> iterator=sl.iterator();
 		double avgNedbør, avgMinTemp, avgMaxTemp;
@@ -469,6 +469,7 @@ public class FinnEkstremData
 			returarray[i][2] = rNedbør.isSelected() ? avgNedbør : null;
 			returarray[i][3] = rMintemp.isSelected() ? avgMinTemp : null;
 			returarray[i][4] = rMaxtemp.isSelected() ? avgMaxTemp : null;
+			returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 			i++;
 		}
 		return returarray;

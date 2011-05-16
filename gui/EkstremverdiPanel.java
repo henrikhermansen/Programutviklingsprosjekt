@@ -140,7 +140,12 @@ public class EkstremverdiPanel extends MetroPanel
 			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
 		}
 		if(rAvgverdi.isSelected())
+		{
 			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+			tabell.moveColumn(2, 0);
+		}
+		else
+			tabell.moveColumn(3, 0);
 		panel.validate();
 		panel.repaint();
 	}
