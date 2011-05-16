@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class DataTabell extends AbstractTableModel
 {
-	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur"};
+	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur", "Fylke"};
 	private Object[][] celler;
 	
 	/**
@@ -49,6 +49,7 @@ public class DataTabell extends AbstractTableModel
 		{
 		case 0:	return String.class;
 		case 1: return Date.class;
+		case 5: return String.class;
 		}
 		return Double.class;
 	}

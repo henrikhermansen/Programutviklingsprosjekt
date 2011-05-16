@@ -43,7 +43,7 @@ public abstract class MetroPanel
 		for(int i = 0; i < årliste.length; i++)
 			årliste[i] = Integer.toString(detteår--);
 		
-		fylke = new JComboBox(Sted.fylkesliste);
+		fylke = new JComboBox(Sted.FYLKESLISTE);
 		sted = new JComboBox();
 		ldag = new JComboBox();
 		lmåned = new JComboBox(måneder);

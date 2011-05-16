@@ -347,7 +347,7 @@ public class FinnEkstremData
 	 */
 	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, Sted sted)
 	{
-		Object[][] returarray = new Object[datoliste.size()][5];
+		Object[][] returarray = new Object[datoliste.size()][6];
 		int i=0;
 		Iterator<Dato> iterator=datoliste.iterator();
 		while(iterator.hasNext())
@@ -358,6 +358,7 @@ public class FinnEkstremData
 			returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
 			returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
 			returarray[i][4] = rMaxtemp.isSelected() ? dato.getMaxTemp() : null;
+			returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 			i++;
 		}
 		
@@ -382,7 +383,7 @@ public class FinnEkstremData
 	 */
 	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
-		Object[][] returarray = new Object[antVerdier][5];
+		Object[][] returarray = new Object[antVerdier][6];
 		int i=0;
 		Iterator<Sted> iterator=sl.iterator();
 		Iterator<Dato> datoiterator;
@@ -396,6 +397,7 @@ public class FinnEkstremData
 				returarray[i][2] = rNedbør.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getNedbør() : null;
 				returarray[i][3] = rMintemp.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getMinTemp() : null;
 				returarray[i][4] = rMaxtemp.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getMaxTemp() : null;
+				returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 				i++;
 			}
 			else
@@ -420,6 +422,7 @@ public class FinnEkstremData
 					returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
 					returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
 					returarray[i][4] = rMaxtemp.isSelected() ? dato.getMaxTemp() : null;
+					returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 					i++;
 				}
 			}

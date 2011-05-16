@@ -37,7 +37,7 @@ public class Sted implements Serializable
 	/**
 	 * Fylkene i en String[]-konstant
 	 */
-	public static final String[] fylkesliste={"Akershus","Aust-agder","Buskerud","Finnmark","Hedmark","Hordaland","Møre og romsdal",
+	public static final String[] FYLKESLISTE={"Akershus","Aust-agder","Buskerud","Finnmark","Hedmark","Hordaland","Møre og romsdal",
 											"Nord-trøndelag","Nordland","Oppland","Oslo","Rogaland","Sogn og fjordane",
 											"Sør-trøndelag","Telemark","Troms","Vest-agder","Vestfold","Østfold"};
 	/**

@@ -219,7 +219,7 @@ public class Gjennomsnitt
 		double[][] dataarray = new double[13][3];
 		int[][] tellerarray = new int[13][3];
 		
-		for(int i = 0; i < Sted.fylkesliste.length; i++)
+		for(int i = 0; i < Sted.FYLKESLISTE.length; i++)
 		{
 			Stedliste fylkesl = sl.finnSted(i);
 			double[][] templiste = gjennomsnittFylke(fylkesl, panel, i, år);
