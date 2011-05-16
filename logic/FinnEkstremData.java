@@ -146,25 +146,44 @@ public class FinnEkstremData
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
-				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
-				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().første();
-				else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxNedbør().første();
-				if(tempDato!=null)
+				if(rEnkelverdi.isSelected())
 				{
-					verdi=tempDato.getNedbør();
+					if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
+					else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().første();
+					else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxNedbør().første();
+					if(tempDato!=null)
+					{
+						verdi=tempDato.getNedbør();
+						if(verdi==maxNedbør)
+						{
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+							aktuelleSteder.settInn(sted);
+						}
+						if(verdi>maxNedbør)
+						{
+							antVerdier=0;
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+							maxNedbør=verdi;
+							aktuelleSteder=new Stedliste();
+							aktuelleSteder.settInn(sted);
+						}
+					}
+				}
+				else
+				{
+					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør() : sted.getDatoliste().finnDatoer(år).getAvgNedbør();
 					if(verdi==maxNedbør)
 					{
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
 					}
 					if(verdi>maxNedbør)
 					{
-						antVerdier=0;
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+						antVerdier=1;
 						maxNedbør=verdi;
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
@@ -178,25 +197,44 @@ public class FinnEkstremData
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
-				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
-				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().første();
-				else							tempDato=sted.getDatoliste().finnDatoer(år).getMinTemp().første();
-				if(tempDato!=null)
+				if(rEnkelverdi.isSelected())
 				{
-					verdi=tempDato.getMinTemp();
+					if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
+					else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().første();
+					else							tempDato=sted.getDatoliste().finnDatoer(år).getMinTemp().første();
+					if(tempDato!=null)
+					{
+						verdi=tempDato.getMinTemp();
+						if(verdi==minTemp)
+						{
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+							aktuelleSteder.settInn(sted);
+						}
+						if(verdi<minTemp)
+						{
+							antVerdier=0;
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+							minTemp=verdi;
+							aktuelleSteder=new Stedliste();
+							aktuelleSteder.settInn(sted);
+						}
+					}
+				}
+				else
+				{
+					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMinTemp() : sted.getDatoliste().finnDatoer(år).getAvgMinTemp();
 					if(verdi==minTemp)
 					{
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
 					}
 					if(verdi<minTemp)
 					{
-						antVerdier=0;
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+						antVerdier=1;
 						minTemp=verdi;
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
@@ -210,25 +248,44 @@ public class FinnEkstremData
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
-				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
-				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().første();
-				else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxTemp().første();
-				if(tempDato!=null)
+				if(rEnkelverdi.isSelected())
 				{
-					verdi=tempDato.getMaxTemp();
+					if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
+					else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().første();
+					else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxTemp().første();
+					if(tempDato!=null)
+					{
+						verdi=tempDato.getMaxTemp();
+						if(verdi==maxTemp)
+						{
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+							aktuelleSteder.settInn(sted);
+						}
+						if(verdi>maxTemp)
+						{
+							antVerdier=0;
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+							maxTemp=verdi;
+							aktuelleSteder=new Stedliste();
+							aktuelleSteder.settInn(sted);
+						}
+					}
+				}
+				else
+				{
+					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMaxTemp() : sted.getDatoliste().finnDatoer(år).getAvgMaxTemp();
 					if(verdi==maxTemp)
 					{
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
 					}
 					if(verdi>maxTemp)
 					{
-						antVerdier=0;
-						if(rdag.isSelected())			antVerdier+=1;
-						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
-						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+						antVerdier=1;
 						maxTemp=verdi;
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
@@ -236,7 +293,7 @@ public class FinnEkstremData
 				}
 			}
 		}
-		if(verdi==-100)
+		if(verdi==-100 || (verdi==-1 && rNedbør.isSelected()) || verdi<Registrering.MAXMINTEMP || verdi>Registrering.MAXMAXTEMP)
 		{
 			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
 			return null;
@@ -244,7 +301,7 @@ public class FinnEkstremData
 		if(rEnkelverdi.isSelected())
 			return finnEnkelverdiForSteder(aktuelleSteder,panel,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
 		if(rAvgverdi.isSelected())
-			return finnAvgverdiForFylke(stedliste,panel,rmåned,rår,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
+			return finnAvgverdiForSteder(aktuelleSteder, panel, rmåned, rår, måned, år, rNedbør, rMintemp, rMaxtemp, antVerdier);
 		return null;
 	}
 	
@@ -284,12 +341,7 @@ public class FinnEkstremData
 		
 		return returarray;
 	}
-	private static Object[][] finnAvgverdiForFylke(Stedliste sl, JPanel panel, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
-	{
-		// TODO Auto-generated method stub
-		return null;
 
-	}
 	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][5];
@@ -336,14 +388,35 @@ public class FinnEkstremData
 		}
 		return returarray;
 	}
-	private static Object[][] finnAvgverdiForLandet(Stedliste sl, JPanel panel, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	
+	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JPanel panel, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	private static Object[][] finnEnkelverdiForLandet(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
-	{
-		// TODO Auto-generated method stub
-		return null;
+		Object[][] returarray = new Object[antVerdier][5];
+		int i=0;
+		Iterator<Sted> iterator=sl.iterator();
+		double avgNedbør, avgMinTemp, avgMaxTemp;
+		while(iterator.hasNext())
+		{
+			Sted sted=iterator.next();
+			if(rmåned.isSelected())
+			{
+				avgNedbør=sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør();
+				avgMinTemp=sted.getDatoliste().finnDatoer(år,måned).getAvgMinTemp();
+				avgMaxTemp=sted.getDatoliste().finnDatoer(år,måned).getAvgMaxTemp();
+			}
+			else
+			{
+				avgNedbør=sted.getDatoliste().finnDatoer(år).getAvgNedbør();
+				avgMinTemp=sted.getDatoliste().finnDatoer(år).getAvgMinTemp();
+				avgMaxTemp=sted.getDatoliste().finnDatoer(år).getAvgMaxTemp();
+			}
+			returarray[i][0] = sted.getNavn();
+			returarray[i][1] = null;
+			returarray[i][2] = rNedbør.isSelected() ? avgNedbør : null;
+			returarray[i][3] = rMintemp.isSelected() ? avgMinTemp : null;
+			returarray[i][4] = rMaxtemp.isSelected() ? avgMaxTemp : null;
+			i++;
+		}
+		return returarray;
 	}
 }

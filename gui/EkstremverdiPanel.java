@@ -113,8 +113,6 @@ public class EkstremverdiPanel extends MetroPanel
 		
 		fylke.setEnabled(false);
 		sted.setEnabled(false);
-		
-		rAvgverdi.setEnabled(false); // TODO fjerne
 	}
 	
 	/**
@@ -139,7 +137,8 @@ public class EkstremverdiPanel extends MetroPanel
 			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
 			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
 		}
-		//tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
+		if(rAvgverdi.isSelected())
+			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
 		panel.validate();
 		panel.repaint();
 	}
@@ -224,7 +223,6 @@ public class EkstremverdiPanel extends MetroPanel
 					stedFylke.setSelected(true);
 				stedSted.setEnabled(false);
 			}
-			rAvgverdi.setEnabled(false); // TODO fjerne
 		}
 	}
 }
