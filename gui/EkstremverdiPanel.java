@@ -22,8 +22,9 @@ public class EkstremverdiPanel extends MetroPanel
 	private JButton hentData;
 	
 	/**
+	 * Konstruktør som setter opp panelet for søking etter ekstremverdier
 	 * @author Henrik Hermansen
-	 * @param sl
+	 * @param sl hoved-stedlisten i programmet
 	 */
 	public EkstremverdiPanel(Stedliste sl) {
 		super(sl);
