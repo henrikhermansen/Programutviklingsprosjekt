@@ -210,7 +210,6 @@ public class Metrovindu extends JFrame
 		sidewrapper.setBackground(Color.LIGHT_GRAY);
 		
 		startpanel = new JPanel(new BorderLayout());
-		startpanel.add(new JLabel("Dynamisk side som endres etter hvilken knapp du trykker på.", JLabel.CENTER), BorderLayout.PAGE_START);
 		startpanel.add(new Bildepanel(), BorderLayout.CENTER);
 		
 		c.add(sidewrapper, BorderLayout.LINE_START);
