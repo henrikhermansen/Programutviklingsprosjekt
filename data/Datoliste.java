@@ -64,6 +64,20 @@ public class Datoliste implements Serializable
 	}
 	
 	/**
+	 * Returnerer første objekt i listen. Brukes dersom det er generert en datoliste med datoer med ekstremverdier, for å kunne hente ut verdien fra dato-objektet.
+	 * (Alle datoene i denne listen vil ha samme ekstrem-verdi, og det er derfor tilstrekkelig å hente ut kun en, f.eks. den første.)
+	 * @author Henrik Hermansen
+	 * @return det første Dato-objekt i datolisten
+	 */
+	public Dato første()
+	{
+		Iterator<Dato> iterator=liste.iterator();
+		if(iterator.hasNext())
+			return iterator.next();
+		return null;
+	}
+	
+	/**
 	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
 	 * @author Henrik Hermansen
 	 * @param år	året i datoen det skal søkes etter.
