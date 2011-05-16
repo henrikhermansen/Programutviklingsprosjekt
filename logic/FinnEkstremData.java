@@ -69,12 +69,10 @@ public class FinnEkstremData
 			SkrivMelding.skriv("Ukjent programfeil (H-FED002)/E", panel);
 			return null;
 		}
-		if(stedLandet.isSelected())
-			return finnDataForLandet(sl,panel,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp);
-		if(stedFylke.isSelected())
-			return finnDataForFylke(sl,panel,f,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp);
+		if(stedLandet.isSelected() || stedFylke.isSelected())
+			return finnDataForSteder(sl,panel,f,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp,stedLandet,stedFylke);
 		if(stedSted.isSelected())
-			return finnDataForSted(sl,panel,st,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp);
+			return finnDataForSted(panel,st,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp);
 		return null;
 	}
 
@@ -99,7 +97,7 @@ public class FinnEkstremData
 	 * @param rMaxtemp
 	 * @return
 	 */
-	private static Object[][] finnDataForSted(Stedliste sl, JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnDataForSted(JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
 		Datoliste datoliste=new Datoliste();
 		if(rmåned.isSelected())
@@ -124,16 +122,17 @@ public class FinnEkstremData
 		if(rMaxtemp.isSelected())
 			datoliste=datoliste.getMaxTemp();
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSted(datoliste,rNedbør,rMintemp,rMaxtemp);
+			return finnEnkelverdiForSted(datoliste,rNedbør,rMintemp,rMaxtemp,sted);
 		return null;
 	}
 
-	private static Object[][] finnDataForFylke(Stedliste sl, JPanel panel, int fylke, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnDataForSteder(Stedliste sl, JPanel panel, int fylke, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, JRadioButton stedLandet, JRadioButton stedFylke)
 	{
-		Stedliste stedliste=sl.finnSted(fylke);
+		Stedliste stedliste=stedLandet.isSelected() ? sl : sl.finnSted(fylke);
+		Stedliste aktuelleSteder=new Stedliste();
 		if(stedliste.size()==0)
 		{
-			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
 			return null;
 		}
 		Iterator<Sted> iterator=stedliste.iterator();
@@ -150,26 +149,26 @@ public class FinnEkstremData
 				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
 				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().første();
 				else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxNedbør().første();
-				if(tempDato==null)
+				if(tempDato!=null)
 				{
-					SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
-					return null;
-				}
-				else
 					verdi=tempDato.getNedbør();
-				if(verdi==maxNedbør)
-				{
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
-				}
-				if(verdi>maxNedbør)
-				{
-					antVerdier=0;
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
-					maxNedbør=verdi;
+					if(verdi==maxNedbør)
+					{
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+						aktuelleSteder.settInn(sted);
+					}
+					if(verdi>maxNedbør)
+					{
+						antVerdier=0;
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxNedbør().size();
+						maxNedbør=verdi;
+						aktuelleSteder=new Stedliste();
+						aktuelleSteder.settInn(sted);
+					}
 				}
 			}
 		}
@@ -182,26 +181,26 @@ public class FinnEkstremData
 				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
 				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().første();
 				else							tempDato=sted.getDatoliste().finnDatoer(år).getMinTemp().første();
-				if(tempDato==null)
+				if(tempDato!=null)
 				{
-					SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
-					return null;
-				}
-				else
 					verdi=tempDato.getMinTemp();
-				if(verdi==minTemp)
-				{
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
-				}
-				if(verdi<minTemp)
-				{
-					antVerdier=0;
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
-					minTemp=verdi;
+					if(verdi==minTemp)
+					{
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+						aktuelleSteder.settInn(sted);
+					}
+					if(verdi<minTemp)
+					{
+						antVerdier=0;
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
+						minTemp=verdi;
+						aktuelleSteder=new Stedliste();
+						aktuelleSteder.settInn(sted);
+					}
 				}
 			}
 		}
@@ -214,47 +213,38 @@ public class FinnEkstremData
 				if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
 				else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().første();
 				else							tempDato=sted.getDatoliste().finnDatoer(år).getMaxTemp().første();
-				if(tempDato==null)
+				if(tempDato!=null)
 				{
-					SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
-					return null;
-				}
-				else
 					verdi=tempDato.getMaxTemp();
-				if(verdi==maxTemp)
-				{
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
-				}
-				if(verdi>maxTemp)
-				{
-					antVerdier=0;
-					if(rdag.isSelected())			antVerdier+=1;
-					else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
-					else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
-					maxTemp=verdi;
+					if(verdi==maxTemp)
+					{
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+						aktuelleSteder.settInn(sted);
+					}
+					if(verdi>maxTemp)
+					{
+						antVerdier=0;
+						if(rdag.isSelected())			antVerdier+=1;
+						else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
+						else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
+						maxTemp=verdi;
+						aktuelleSteder=new Stedliste();
+						aktuelleSteder.settInn(sted);
+					}
 				}
 			}
 		}
 		if(verdi==-100)
 		{
-			SkrivMelding.skriv("Ukjent programfeil H-FED003./E", panel);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
 			return null;
 		}
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForFylke(stedliste,panel,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,verdi,antVerdier);
+			return finnEnkelverdiForSteder(aktuelleSteder,panel,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
 		if(rAvgverdi.isSelected())
-			return finnAvgverdiForFylke(stedliste,panel,fylke,rmåned,rår,måned,år,rNedbør,rMintemp,rMaxtemp);
-		return null;
-	}
-
-	private static Object[][] finnDataForLandet(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
-	{
-		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForLandet(sl,panel,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp);
-		if(rAvgverdi.isSelected())
-			return finnAvgverdiForLandet(sl,panel,rmåned,rår,måned,år,rNedbør,rMintemp,rMaxtemp);
+			return finnAvgverdiForFylke(stedliste,panel,rmåned,rår,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
 		return null;
 	}
 	
@@ -276,7 +266,7 @@ public class FinnEkstremData
 	 * @return
 	 */
 
-	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, Sted sted)
 	{
 		Object[][] returarray = new Object[datoliste.size()][5];
 		int i=0;
@@ -284,7 +274,7 @@ public class FinnEkstremData
 		while(iterator.hasNext())
 		{
 			Dato dato=iterator.next();
-			returarray[i][0] = null;
+			returarray[i][0] = sted.getNavn();
 			returarray[i][1] = dato.getDato().getTime();
 			returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
 			returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
@@ -294,13 +284,13 @@ public class FinnEkstremData
 		
 		return returarray;
 	}
-	private static Object[][] finnAvgverdiForFylke(Stedliste sl, JPanel panel, int fylke, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnAvgverdiForFylke(Stedliste sl, JPanel panel, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		// TODO Auto-generated method stub
 		return null;
 
 	}
-	private static Object[][] finnEnkelverdiForFylke(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, double verdi, int antVerdier)
+	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][5];
 		int i=0;

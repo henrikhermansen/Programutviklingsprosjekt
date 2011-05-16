@@ -113,6 +113,8 @@ public class EkstremverdiPanel extends MetroPanel
 		
 		fylke.setEnabled(false);
 		sted.setEnabled(false);
+		
+		rAvgverdi.setEnabled(false); // TODO fjerne
 	}
 	
 	/**
@@ -122,21 +124,20 @@ public class EkstremverdiPanel extends MetroPanel
 	public void genererTabell(Object[][] data,JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
 	{
 		super.genererTabell(data);
-		tabell.removeColumn(tabell.getColumnModel().getColumn(0));
 		if(rNedbør.isSelected())
 		{
-			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
-			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(3));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(3));
 		}
 		if(rMintemp.isSelected())
 		{
-			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
 			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(3));
 		}
 		if(rMaxtemp.isSelected())
 		{
-			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
-			tabell.removeColumn(tabell.getColumnModel().getColumn(1));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
+			tabell.removeColumn(tabell.getColumnModel().getColumn(2));
 		}
 		//tabell.getColumnModel().getColumn(0).setHeaderValue("Tidsperiode");
 		panel.validate();
@@ -223,6 +224,7 @@ public class EkstremverdiPanel extends MetroPanel
 					stedFylke.setSelected(true);
 				stedSted.setEnabled(false);
 			}
+			rAvgverdi.setEnabled(false); // TODO fjerne
 		}
 	}
 }
