@@ -3,7 +3,6 @@ package logic;
 import java.util.Iterator;
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -12,31 +11,37 @@ import data.Datoliste;
 import data.Sted;
 import data.Stedliste;
 
+/**
+ *	@author		Gruppe 3
+ *	@version	1
+ *	@since		1.6
+ */
 public class FinnEkstremData
 {
 	// =========================== NIVÅ 1 =========================== NIVÅ 1 =========================== NIVÅ 1 =========================== NIVÅ 1 ===========================
 	/**
-	 * Hovedmetode som sender parametere videre til korrekt undermetode
+	 * Hovedmetode som behandler data og sender parametere videre til korrekt undermetode.
+	 * Her blir dag, måned og år behandlet og gjort om til int, det blir opprettet Sted-objekt basert på sted-comboboxen og fylke blir lagret i int basert på fylke-comboboxen
 	 * @author Henrik Hermansen
-	 * @param sl
-	 * @param panel
-	 * @param stedLandet
-	 * @param stedFylke
-	 * @param stedSted
-	 * @param fylke
-	 * @param sted
-	 * @param rdag
-	 * @param rmåned
-	 * @param rår
-	 * @param ldag
-	 * @param lmåned
-	 * @param lår
-	 * @param rEnkelverdi
-	 * @param rAvgverdi
-	 * @param rNedbør
-	 * @param rMintemp
-	 * @param rMaxtemp
-	 * @return
+	 * @param sl			hoved-stedlisten i programmet
+	 * @param panel			panelet som kaller opp metoden
+	 * @param stedLandet	radioknappen som sier om det spørres etter data for hele landet
+	 * @param stedFylke		radioknappen som sier om det spørres etter data fra et bestemt fylke
+	 * @param stedSted		radioknappen som sier om det spørres etter data fra et bestemt sted
+	 * @param fylke			comboboxen med valgt fylke
+	 * @param sted			comboboxen med valgt sted
+	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
+	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
+	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
+	 * @param ldag			comboboxen med valgt dag
+	 * @param lmåned		comboboxen med valgt måned
+	 * @param lår			comboboxen med valgt år
+	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
+	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @return det som returneres av "undermetodene"
 	 */
 	public static Object[][] finnData(Stedliste sl, JPanel panel, JRadioButton stedLandet, JRadioButton stedFylke, JRadioButton stedSted, JComboBox fylke, JComboBox sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, JComboBox ldag, JComboBox lmåned, JComboBox lår, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
@@ -78,24 +83,24 @@ public class FinnEkstremData
 
 	// =========================== NIVÅ 2 =========================== NIVÅ 2 =========================== NIVÅ 2 =========================== NIVÅ 2 ===========================
 	/**
-	 * Undermetoder som sender parametere videre til korrekt undermetode
+	 * Undermetode som behandler data og sender parametere videre til korrekt undermetode.
+	 * I denne metoden blir det generert en datoliste med de datoene som passer til søket.
 	 * @author Henrik Hermansen
-	 * @param sl
-	 * @param panel
-	 * @param fylke
-	 * @param sted
-	 * @param rdag
-	 * @param rmåned
-	 * @param rår
-	 * @param ldag
-	 * @param lmåned
-	 * @param lår
-	 * @param rEnkelverdi
-	 * @param rAvgverdi
-	 * @param rNedbør
-	 * @param rMintemp
-	 * @param rMaxtemp
-	 * @return
+	 * @param panel			panelet som kaller opp metoden
+	 * @param fylke			int-representasjon av valgt fylke
+	 * @param sted			Sted-objekt av valgt sted
+	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
+	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
+	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
+	 * @param ldag			comboboxen med valgt dag
+	 * @param lmåned		comboboxen med valgt måned
+	 * @param lår			comboboxen med valgt år
+	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
+	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @return det som returneres av "undermetoden"
 	 */
 	private static Object[][] finnDataForSted(JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
@@ -126,6 +131,29 @@ public class FinnEkstremData
 		return null;
 	}
 
+	/**
+	 * Undermetode som behandler data og sender parametere videre til korrekt undermetode.
+	 * I denne metoden blir alle steder i søket og alle stedene sine datoer som inngår i søket gjennomgått for å finne ekstremverdien.
+	 * Deretter blir det generert en stedliste med steder som har en eller flere datoer som har samme verdi som ekstremverdien.
+	 * @author Henrik Hermansen
+	 * @param sl			hoved-stedlisten i programmet
+	 * @param panel			panelet som kaller opp metoden
+	 * @param fylke			int-representasjon av valgt fylke
+	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
+	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
+	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
+	 * @param dag			int-representasjon av valgt dag
+	 * @param måned			int-representasjon av valgt måned
+	 * @param år			int-representasjon av valgt år
+	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
+	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @param stedLandet	radioknappen som sier om det spørres etter data for hele landet
+	 * @param stedFylke		radioknappen som sier om det spørres etter data fra et bestemt fylke
+	 * @return det som returneres av "undermetoden"
+	 */
 	private static Object[][] finnDataForSteder(Stedliste sl, JPanel panel, int fylke, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, JRadioButton stedLandet, JRadioButton stedFylke)
 	{
 		Stedliste stedliste=stedLandet.isSelected() ? sl : sl.finnSted(fylke);
@@ -299,30 +327,24 @@ public class FinnEkstremData
 			return null;
 		}
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSteder(aktuelleSteder,panel,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
+			return finnEnkelverdiForSteder(aktuelleSteder,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
 		if(rAvgverdi.isSelected())
-			return finnAvgverdiForSteder(aktuelleSteder, panel, rmåned, rår, måned, år, rNedbør, rMintemp, rMaxtemp, antVerdier);
+			return finnAvgverdiForSteder(aktuelleSteder, rmåned, rår, måned, år, rNedbør, rMintemp, rMaxtemp, antVerdier);
 		return null;
 	}
 	
 	// =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 ===========================
-	/**
-	 * Undermetoder bla bla
-	 * @author Henrik Hermansen
-	 * @param sl
-	 * @param panel
-	 * @param rdag
-	 * @param rmåned
-	 * @param rår
-	 * @param ldag
-	 * @param lmåned
-	 * @param lår
-	 * @param rNedbør
-	 * @param rMintemp
-	 * @param rMaxtemp
-	 * @return
-	 */
 
+	/**
+	 * Metoden behandler dataene som kommer inn og setter dem inn i et to-dimensjonalt array som så returneres
+	 * @author Henrik Hermansen
+	 * @param datoliste	datoliste som inneholder de datoer som har den ekstremverdien det søkes etter
+	 * @param rNedbør	radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp	radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp	radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @param sted		Sted-objekt for det stedet det søkes etter
+	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
+	 */
 	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, Sted sted)
 	{
 		Object[][] returarray = new Object[datoliste.size()][5];
@@ -342,7 +364,23 @@ public class FinnEkstremData
 		return returarray;
 	}
 
-	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JPanel panel, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
+	/**
+	 * Metoden behandler dataene som kommer inn og setter dem i et to-dimensjonalt array som så returneres
+	 * @author Henrik Hermansen
+	 * @param sl			stedliste med de stedene som har en eller flere datoer med den ekstremverdien det søkes etter
+	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
+	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
+	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
+	 * @param dag			int-representasjon av valgt dag
+	 * @param måned			int-representasjon av valgt måned
+	 * @param år			int-representasjon av valgt år
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @param antVerdier	int-verdi med størrelsen på den første dimensjonen i retur-arrayet
+	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
+	 */
+	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][5];
 		int i=0;
@@ -389,7 +427,20 @@ public class FinnEkstremData
 		return returarray;
 	}
 	
-	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JPanel panel, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
+	/**
+	 * Metoden behandler dataene som kommer inn og setter dem i et to-dimensjonalt array som så returneres
+	 * @param sl			stedliste med de stedene som har en eller flere datoer med den ekstremverdien det søkes etter
+	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
+	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
+	 * @param måned			int-representasjon av valgt måned
+	 * @param år			int-representasjon av valgt år
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @param antVerdier	int-verdi med størrelsen på den første dimensjonen i retur-arrayet
+	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
+	 */
+	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][5];
 		int i=0;
