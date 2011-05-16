@@ -242,7 +242,7 @@ public class Datoliste implements Serializable
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
-			if(neste.getMaxTemp()>maxTemp)
+			if(neste.getMaxTemp()>maxTemp && neste.getMaxTemp()<=Registrering.MAXMAXTEMP)
 				maxTemp=neste.getMaxTemp();
 		}
 		Datoliste svar=new Datoliste();

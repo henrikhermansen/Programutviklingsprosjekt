@@ -168,9 +168,11 @@ public class FinnEkstremData
 		Dato tempDato=null;
 		int antVerdier=0;
 		verdi=-100;
+		maxNedbør=-1;
+		minTemp=Registrering.MAXMAXTEMP+1;
+		maxTemp=Registrering.MAXMINTEMP-1;
 		if(rNedbør.isSelected())
 		{
-			maxNedbør=-1;
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
@@ -182,7 +184,7 @@ public class FinnEkstremData
 					if(tempDato!=null)
 					{
 						verdi=tempDato.getNedbør();
-						if(verdi==maxNedbør)
+						if(verdi >= 0 && verdi==maxNedbør)
 						{
 							if(rdag.isSelected())			antVerdier+=1;
 							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().size();
@@ -204,7 +206,7 @@ public class FinnEkstremData
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør() : sted.getDatoliste().finnDatoer(år).getAvgNedbør();
-					if(verdi==maxNedbør)
+					if(verdi>=0 && verdi==maxNedbør)
 					{
 						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
@@ -221,7 +223,6 @@ public class FinnEkstremData
 		}
 		if(rMintemp.isSelected())
 		{
-			minTemp=Registrering.MAXMAXTEMP+1;
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
@@ -233,14 +234,14 @@ public class FinnEkstremData
 					if(tempDato!=null)
 					{
 						verdi=tempDato.getMinTemp();
-						if(verdi==minTemp)
+						if(verdi <= Registrering.MAXMAXTEMP && verdi==minTemp)
 						{
 							if(rdag.isSelected())			antVerdier+=1;
 							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().size();
 							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinTemp().size();
 							aktuelleSteder.settInn(sted);
 						}
-						if(verdi<minTemp)
+						if(verdi <= Registrering.MAXMAXTEMP && verdi<minTemp)
 						{
 							antVerdier=0;
 							if(rdag.isSelected())			antVerdier+=1;
@@ -255,12 +256,12 @@ public class FinnEkstremData
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMinTemp() : sted.getDatoliste().finnDatoer(år).getAvgMinTemp();
-					if(verdi==minTemp)
+					if(verdi <= Registrering.MAXMAXTEMP && verdi==minTemp)
 					{
 						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
 					}
-					if(verdi<minTemp)
+					if(verdi <= Registrering.MAXMAXTEMP && verdi<minTemp)
 					{
 						antVerdier=1;
 						minTemp=verdi;
@@ -272,7 +273,6 @@ public class FinnEkstremData
 		}
 		if(rMaxtemp.isSelected())
 		{
-			maxTemp=Registrering.MAXMINTEMP-1;
 			while(iterator.hasNext())
 			{
 				Sted sted=iterator.next();
@@ -284,14 +284,14 @@ public class FinnEkstremData
 					if(tempDato!=null)
 					{
 						verdi=tempDato.getMaxTemp();
-						if(verdi==maxTemp)
+						if(verdi <= Registrering.MAXMAXTEMP && verdi==maxTemp)
 						{
 							if(rdag.isSelected())			antVerdier+=1;
 							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().size();
 							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMaxTemp().size();
 							aktuelleSteder.settInn(sted);
 						}
-						if(verdi>maxTemp)
+						if(verdi <= Registrering.MAXMAXTEMP && verdi>maxTemp)
 						{
 							antVerdier=0;
 							if(rdag.isSelected())			antVerdier+=1;
@@ -306,12 +306,12 @@ public class FinnEkstremData
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMaxTemp() : sted.getDatoliste().finnDatoer(år).getAvgMaxTemp();
-					if(verdi==maxTemp)
+					if(verdi <= Registrering.MAXMAXTEMP && verdi==maxTemp)
 					{
 						antVerdier+=1;
 						aktuelleSteder.settInn(sted);
 					}
-					if(verdi>maxTemp)
+					if(verdi <= Registrering.MAXMAXTEMP && verdi>maxTemp)
 					{
 						antVerdier=1;
 						maxTemp=verdi;
@@ -321,9 +321,9 @@ public class FinnEkstremData
 				}
 			}
 		}
-		if((verdi==-1 && rNedbør.isSelected()) || verdi<Registrering.MAXMINTEMP || verdi>Registrering.MAXMAXTEMP)
+		if((rNedbør.isSelected() && maxNedbør == -1) || (rMintemp.isSelected() && minTemp>Registrering.MAXMAXTEMP) || (rMaxtemp.isSelected() && maxTemp<Registrering.MAXMINTEMP))
 		{
-			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden8/I", panel);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
 			return null;
 		}
 		if(rEnkelverdi.isSelected())
