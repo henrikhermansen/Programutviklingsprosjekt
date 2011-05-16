@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +37,7 @@ public class EkstremverdiPanel extends MetroPanel
 		lmåned.addActionListener(handlingslytter);
 		hentDager(0);
 		
-		stedtype = new JPanel(new GridLayout(0,3));
+		stedtype = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		stedtypegruppe = new ButtonGroup();
 		stedLandet = new JRadioButton("Hele landet", true);
 		stedFylke = new JRadioButton("Et fylke", false);
@@ -66,7 +67,7 @@ public class EkstremverdiPanel extends MetroPanel
 		datotype.add(rmåned);
 		datotype.add(rår);
 		
-		spesAvgEnkelt = new JPanel(new GridLayout(0,2));
+		spesAvgEnkelt = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		spesAvgEnkeltGruppe = new ButtonGroup();
 		rEnkelverdi = new JRadioButton("Enkeltverdi", true);
 		rAvgverdi = new JRadioButton("Gjennomsnitt", false);
@@ -77,11 +78,11 @@ public class EkstremverdiPanel extends MetroPanel
 		spesAvgEnkelt.add(rEnkelverdi);
 		spesAvgEnkelt.add(rAvgverdi);
 		
-		spesType = new JPanel(new GridLayout(0,3));
+		spesType = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		spesTypeGruppe = new ButtonGroup();
-		rNedbør = new JRadioButton("Nedbør", true);
-		rMintemp = new JRadioButton("Mintemp", false);
-		rMaxtemp = new JRadioButton("Maxtemp", false);
+		rNedbør = new JRadioButton("Total nedbør", true);
+		rMintemp = new JRadioButton("Kaldest", false);
+		rMaxtemp = new JRadioButton("Varmest", false);
 		rNedbør.addActionListener(handlingslytter);
 		rMintemp.addActionListener(handlingslytter);
 		rMaxtemp.addActionListener(handlingslytter);
