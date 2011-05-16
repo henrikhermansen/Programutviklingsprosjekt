@@ -21,7 +21,7 @@ public class Bildepanel extends JPanel
 	 */
 	public Bildepanel()
 	{
-		URL kilde = Bildepanel.class.getResource("/images/henrik.jpg");
+		URL kilde = Bildepanel.class.getResource("/images/startsidebilde.gif");
 		if(kilde != null)
 			ikon = new ImageIcon(kilde);
 		else

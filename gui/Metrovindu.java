@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
-
 import javax.swing.*;
 
 import logic.LastIkon;
@@ -170,7 +168,7 @@ public class Metrovindu extends JFrame
 		regSted = new JButton("Registrer sted", LastIkon.last("nyttsted24.gif"));
 		regSted.setHorizontalAlignment(SwingConstants.LEFT);
 		regSted.setMnemonic(KeyEvent.VK_S);
-		regSted.setPreferredSize(new Dimension(50, 50));
+		regSted.setPreferredSize(new Dimension(65, 65));
 		regData = new JButton("Registrer værdata", LastIkon.last("nyttvar24.gif"));
 		regData.setHorizontalAlignment(SwingConstants.LEFT);
 		regData.setMnemonic(KeyEvent.VK_V);

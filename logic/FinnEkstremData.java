@@ -3,7 +3,6 @@ package logic;
 import java.util.Iterator;
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -295,7 +294,7 @@ public class FinnEkstremData
 		}
 		if(verdi==-100 || (verdi==-1 && rNedbør.isSelected()) || verdi<Registrering.MAXMINTEMP || verdi>Registrering.MAXMAXTEMP)
 		{
-			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
+			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden8/I", panel);
 			return null;
 		}
 		if(rEnkelverdi.isSelected())
