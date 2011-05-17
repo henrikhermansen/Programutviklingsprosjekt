@@ -221,6 +221,7 @@ public class Metrovindu extends JFrame
 		
 		startpanel = new JPanel(new BorderLayout());
 		startpanel.add(new Bildepanel(), BorderLayout.CENTER);
+		startpanel.add(new Tekstanimasjon(), BorderLayout.PAGE_START);
 		
 		c.add(sidewrapper, BorderLayout.LINE_START);
 		c.add(startpanel, BorderLayout.CENTER);

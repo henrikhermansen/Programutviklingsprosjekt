@@ -39,7 +39,6 @@ public class Utviklingsgrafikk extends JPanel
 	/**
 	 * Tegner ut grafikken på panelet, kalles automatisk
 	 * @author Lars Smeby
-	 * @param g	JPanels Graphics
 	 */
 	public void paintComponent(Graphics g)
 	{
