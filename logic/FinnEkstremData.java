@@ -38,12 +38,13 @@ public class FinnEkstremData
 	 * @param lår			comboboxen med valgt år
 	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
 	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
-	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @return det som returneres av "undermetodene"
 	 */
-	public static Object[][] finnData(Stedliste sl, JPanel panel, JRadioButton stedLandet, JRadioButton stedFylke, JRadioButton stedSted, JComboBox fylke, JComboBox sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, JComboBox ldag, JComboBox lmåned, JComboBox lår, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	public static Object[][] finnData(Stedliste sl, JPanel panel, JRadioButton stedLandet, JRadioButton stedFylke, JRadioButton stedSted, JComboBox fylke, JComboBox sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, JComboBox ldag, JComboBox lmåned, JComboBox lår, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
 		int f = fylke.getSelectedIndex();
 		String s = (String)sted.getSelectedItem();
@@ -75,9 +76,9 @@ public class FinnEkstremData
 			return null;
 		}
 		if(stedLandet.isSelected() || stedFylke.isSelected())
-			return finnDataForSteder(sl,panel,f,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp,stedLandet,stedFylke);
+			return finnDataForSteder(sl,panel,f,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rMinNedbør,rNedbør,rMintemp,rMaxtemp,stedLandet,stedFylke);
 		if(stedSted.isSelected())
-			return finnDataForSted(panel,st,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rNedbør,rMintemp,rMaxtemp);
+			return finnDataForSted(panel,st,rdag,rmåned,rår,dag,måned,år,rEnkelverdi,rAvgverdi,rMinNedbør,rNedbør,rMintemp,rMaxtemp);
 		return null;
 	}
 
@@ -97,12 +98,13 @@ public class FinnEkstremData
 	 * @param lår			comboboxen med valgt år
 	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
 	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
-	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @return det som returneres av "undermetoden"
 	 */
-	private static Object[][] finnDataForSted(JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
+	private static Object[][] finnDataForSted(JPanel panel, Sted sted, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
 		Datoliste datoliste=new Datoliste();
 		if(rmåned.isSelected())
@@ -120,6 +122,8 @@ public class FinnEkstremData
 			SkrivMelding.skriv("Det eksisterer ikke data for dette stedet i denne tidsperioden/I", panel);
 			return null;
 		}
+		if(rMinNedbør.isSelected())
+			datoliste=datoliste.getMinNedbør();
 		if(rNedbør.isSelected())
 			datoliste=datoliste.getMaxNedbør();
 		if(rMintemp.isSelected())
@@ -127,7 +131,7 @@ public class FinnEkstremData
 		if(rMaxtemp.isSelected())
 			datoliste=datoliste.getMaxTemp();
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSted(datoliste,rNedbør,rMintemp,rMaxtemp,sted);
+			return finnEnkelverdiForSted(datoliste,rMinNedbør,rNedbør,rMintemp,rMaxtemp,sted);
 		return null;
 	}
 
@@ -147,14 +151,15 @@ public class FinnEkstremData
 	 * @param år			int-representasjon av valgt år
 	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
 	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
-	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @param stedLandet	radioknappen som sier om det spørres etter data for hele landet
 	 * @param stedFylke		radioknappen som sier om det spørres etter data fra et bestemt fylke
 	 * @return det som returneres av "undermetoden"
 	 */
-	private static Object[][] finnDataForSteder(Stedliste sl, JPanel panel, int fylke, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, JRadioButton stedLandet, JRadioButton stedFylke)
+	private static Object[][] finnDataForSteder(Stedliste sl, JPanel panel, int fylke, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rEnkelverdi, JRadioButton rAvgverdi, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, JRadioButton stedLandet, JRadioButton stedFylke)
 	{
 		Stedliste stedliste=stedLandet.isSelected() ? sl : sl.finnSted(fylke);
 		Stedliste aktuelleSteder=new Stedliste();
@@ -164,13 +169,64 @@ public class FinnEkstremData
 			return null;
 		}
 		Iterator<Sted> iterator=stedliste.iterator();
-		double verdi,maxNedbør,minTemp,maxTemp;
+		double verdi,minNedbør,maxNedbør,minTemp,maxTemp;
 		Dato tempDato=null;
 		int antVerdier=0;
 		verdi=-100;
+		minNedbør=Registrering.MAXNEDBØR+1;
 		maxNedbør=-1;
 		minTemp=Registrering.MAXMAXTEMP+1;
 		maxTemp=Registrering.MAXMINTEMP-1;
+		if(rMinNedbør.isSelected())
+		{
+			while(iterator.hasNext())
+			{
+				Sted sted=iterator.next();
+				if(rEnkelverdi.isSelected())
+				{
+					if(rdag.isSelected())			tempDato=sted.getDatoliste().finnDato(år,måned,dag);
+					else if(rmåned.isSelected())	tempDato=sted.getDatoliste().finnDatoer(år,måned).getMinNedbør().første();
+					else							tempDato=sted.getDatoliste().finnDatoer(år).getMinNedbør().første();
+					if(tempDato!=null)
+					{
+						verdi=tempDato.getNedbør();
+						if(verdi >= 0 && verdi==minNedbør && verdi<=Registrering.MAXNEDBØR)
+						{
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinNedbør().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinNedbør().size();
+							aktuelleSteder.settInn(sted);
+						}
+						if(verdi >= 0 && verdi<minNedbør && verdi<=Registrering.MAXNEDBØR)
+						{
+							antVerdier=0;
+							if(rdag.isSelected())			antVerdier+=1;
+							else if(rmåned.isSelected())	antVerdier+=sted.getDatoliste().finnDatoer(år,måned).getMinNedbør().size();
+							else							antVerdier+=sted.getDatoliste().finnDatoer(år).getMinNedbør().size();
+							minNedbør=verdi;
+							aktuelleSteder=new Stedliste();
+							aktuelleSteder.settInn(sted);
+						}
+					}
+				}
+				else
+				{
+					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør() : sted.getDatoliste().finnDatoer(år).getAvgNedbør();
+					if(verdi>=0 && verdi==minNedbør && verdi<=Registrering.MAXNEDBØR)
+					{
+						antVerdier+=1;
+						aktuelleSteder.settInn(sted);
+					}
+					if(verdi>=0 && verdi<minNedbør && verdi<=Registrering.MAXNEDBØR)
+					{
+						antVerdier=1;
+						minNedbør=verdi;
+						aktuelleSteder=new Stedliste();
+						aktuelleSteder.settInn(sted);
+					}
+				}
+			}
+		}
 		if(rNedbør.isSelected())
 		{
 			while(iterator.hasNext())
@@ -321,15 +377,15 @@ public class FinnEkstremData
 				}
 			}
 		}
-		if((rNedbør.isSelected() && maxNedbør == -1) || (rMintemp.isSelected() && minTemp>Registrering.MAXMAXTEMP) || (rMaxtemp.isSelected() && maxTemp<Registrering.MAXMINTEMP))
+		if((rMinNedbør.isSelected() && minNedbør > Registrering.MAXNEDBØR) || (rNedbør.isSelected() && maxNedbør == -1) || (rMintemp.isSelected() && minTemp>Registrering.MAXMAXTEMP) || (rMaxtemp.isSelected() && maxTemp<Registrering.MAXMINTEMP))
 		{
 			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
 			return null;
 		}
 		if(rEnkelverdi.isSelected())
-			return finnEnkelverdiForSteder(aktuelleSteder,rdag,rmåned,rår,dag,måned,år,rNedbør,rMintemp,rMaxtemp,antVerdier);
+			return finnEnkelverdiForSteder(aktuelleSteder,rdag,rmåned,rår,dag,måned,år,rMinNedbør,rNedbør,rMintemp,rMaxtemp,antVerdier);
 		if(rAvgverdi.isSelected())
-			return finnAvgverdiForSteder(aktuelleSteder, rmåned, rår, måned, år, rNedbør, rMintemp, rMaxtemp, antVerdier);
+			return finnAvgverdiForSteder(aktuelleSteder, rmåned, rår, måned, år, rMinNedbør, rNedbør, rMintemp, rMaxtemp, antVerdier);
 		return null;
 	}
 	
@@ -339,13 +395,14 @@ public class FinnEkstremData
 	 * Metoden behandler dataene som kommer inn og setter dem inn i et to-dimensjonalt array som så returneres
 	 * @author Henrik Hermansen
 	 * @param datoliste	datoliste som inneholder de datoer som har den ekstremverdien det søkes etter
-	 * @param rNedbør	radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp	radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp	radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @param sted		Sted-objekt for det stedet det søkes etter
 	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
 	 */
-	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, Sted sted)
+	private static Object[][] finnEnkelverdiForSted(Datoliste datoliste, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, Sted sted)
 	{
 		Object[][] returarray = new Object[datoliste.size()][6];
 		int i=0;
@@ -355,7 +412,7 @@ public class FinnEkstremData
 			Dato dato=iterator.next();
 			returarray[i][0] = sted.getNavn();
 			returarray[i][1] = dato.getDato().getTime();
-			returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
+			returarray[i][2] = (rNedbør.isSelected() || rMinNedbør.isSelected()) ? dato.getNedbør() : null;
 			returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
 			returarray[i][4] = rMaxtemp.isSelected() ? dato.getMaxTemp() : null;
 			returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
@@ -375,13 +432,14 @@ public class FinnEkstremData
 	 * @param dag			int-representasjon av valgt dag
 	 * @param måned			int-representasjon av valgt måned
 	 * @param år			int-representasjon av valgt år
-	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @param antVerdier	int-verdi med størrelsen på den første dimensjonen i retur-arrayet
 	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
 	 */
-	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
+	private static Object[][] finnEnkelverdiForSteder(Stedliste sl, JRadioButton rdag, JRadioButton rmåned, JRadioButton rår, int dag, int måned, int år, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][6];
 		int i=0;
@@ -394,7 +452,7 @@ public class FinnEkstremData
 			{
 				returarray[i][0] = sted.getNavn();
 				returarray[i][1] = sted.getDatoliste().finnDato(år,måned,dag).getDato().getTime();
-				returarray[i][2] = rNedbør.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getNedbør() : null;
+				returarray[i][2] = (rNedbør.isSelected() || rMinNedbør.isSelected()) ? sted.getDatoliste().finnDato(år,måned,dag).getNedbør() : null;
 				returarray[i][3] = rMintemp.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getMinTemp() : null;
 				returarray[i][4] = rMaxtemp.isSelected() ? sted.getDatoliste().finnDato(år,måned,dag).getMaxTemp() : null;
 				returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
@@ -404,13 +462,15 @@ public class FinnEkstremData
 			{
 				if(rmåned.isSelected())
 				{
-					if(rNedbør.isSelected())		datoiterator=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().iterator();
+					if(rMinNedbør.isSelected())		datoiterator=sted.getDatoliste().finnDatoer(år,måned).getMinNedbør().iterator();
+					else if(rNedbør.isSelected())	datoiterator=sted.getDatoliste().finnDatoer(år,måned).getMaxNedbør().iterator();
 					else if(rMintemp.isSelected())	datoiterator=sted.getDatoliste().finnDatoer(år,måned).getMinTemp().iterator();
 					else							datoiterator=sted.getDatoliste().finnDatoer(år,måned).getMaxTemp().iterator();
 				}
 				else
 				{
-					if(rNedbør.isSelected())		datoiterator=sted.getDatoliste().finnDatoer(år).getMaxNedbør().iterator();
+					if(rMinNedbør.isSelected())		datoiterator=sted.getDatoliste().finnDatoer(år).getMinNedbør().iterator();
+					else if(rNedbør.isSelected())	datoiterator=sted.getDatoliste().finnDatoer(år).getMaxNedbør().iterator();
 					else if(rMintemp.isSelected())	datoiterator=sted.getDatoliste().finnDatoer(år).getMinTemp().iterator();
 					else							datoiterator=sted.getDatoliste().finnDatoer(år).getMaxTemp().iterator();
 				}
@@ -419,7 +479,7 @@ public class FinnEkstremData
 					Dato dato=datoiterator.next();
 					returarray[i][0] = sted.getNavn();
 					returarray[i][1] = dato.getDato().getTime();
-					returarray[i][2] = rNedbør.isSelected() ? dato.getNedbør() : null;
+					returarray[i][2] = (rNedbør.isSelected() || rMinNedbør.isSelected()) ? dato.getNedbør() : null;
 					returarray[i][3] = rMintemp.isSelected() ? dato.getMinTemp() : null;
 					returarray[i][4] = rMaxtemp.isSelected() ? dato.getMaxTemp() : null;
 					returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
@@ -437,13 +497,14 @@ public class FinnEkstremData
 	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
 	 * @param måned			int-representasjon av valgt måned
 	 * @param år			int-representasjon av valgt år
-	 * @param rNedbør		radioknappen som sier om det spørres etter data om nedbør
+	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
+	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
 	 * @param rMintemp		radioknappen som sier om det spørres etter data om minimumstemperaturer
 	 * @param rMaxtemp		radioknappen som sier om det spørres etter data om maksimumstemperaturer
 	 * @param antVerdier	int-verdi med størrelsen på den første dimensjonen i retur-arrayet
 	 * @return et to-dimensjonalt array med de dataene det ble søkt etter
 	 */
-	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
+	private static Object[][] finnAvgverdiForSteder(Stedliste sl, JRadioButton rmåned, JRadioButton rår, int måned, int år, JRadioButton rMinNedbør, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp, int antVerdier)
 	{
 		Object[][] returarray = new Object[antVerdier][6];
 		int i=0;
@@ -466,7 +527,7 @@ public class FinnEkstremData
 			}
 			returarray[i][0] = sted.getNavn();
 			returarray[i][1] = null;
-			returarray[i][2] = rNedbør.isSelected() ? avgNedbør : null;
+			returarray[i][2] = (rNedbør.isSelected() || rMinNedbør.isSelected()) ? avgNedbør : null;
 			returarray[i][3] = rMintemp.isSelected() ? avgMinTemp : null;
 			returarray[i][4] = rMaxtemp.isSelected() ? avgMaxTemp : null;
 			returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];

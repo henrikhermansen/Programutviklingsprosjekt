@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 import logic.Registrering;
+import logic.SkrivMelding;
 
 /**
  *	@author		Gruppe 3
@@ -295,7 +296,7 @@ public class Datoliste implements Serializable
 		while(iterator.hasNext())
 		{
 			Dato neste = iterator.next();
-			if(neste.getNedbør()<minNedbør)
+			if(neste.getNedbør()<minNedbør && neste.getNedbør()>-1)
 				minNedbør=neste.getNedbør();
 		}
 		Datoliste svar=new Datoliste();

@@ -17,9 +17,9 @@ import data.Stedliste;
  */
 public class EkstremverdiPanel extends MetroPanel
 {
-	private JPanel stedtype, datotype, spesAvgEnkelt, spesType;
+	private JPanel stedtype, datotype, spesAvgEnkelt, spesType1, spesType2;
 	private ButtonGroup stedtypegruppe, datotypegruppe, spesAvgEnkeltGruppe, spesTypeGruppe;
-	protected JRadioButton stedLandet, stedFylke, stedSted, rdag, rmåned, rår, rEnkelverdi, rAvgverdi, rNedbør, rMintemp, rMaxtemp;
+	protected JRadioButton stedLandet, stedFylke, stedSted, rdag, rmåned, rår, rEnkelverdi, rAvgverdi, rMinNedbør, rNedbør, rMintemp, rMaxtemp;
 	private JButton hentData;
 	
 	/**
@@ -78,20 +78,25 @@ public class EkstremverdiPanel extends MetroPanel
 		spesAvgEnkelt.add(rEnkelverdi);
 		spesAvgEnkelt.add(rAvgverdi);
 		
-		spesType = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		spesType1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		spesType2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		spesTypeGruppe = new ButtonGroup();
-		rNedbør = new JRadioButton("Total nedbør", true);
+		rMinNedbør = new JRadioButton("Minst nedbør", true);
+		rNedbør = new JRadioButton("Mest nedbør", false);
 		rMintemp = new JRadioButton("Kaldest", false);
 		rMaxtemp = new JRadioButton("Varmest", false);
+		rMinNedbør.addActionListener(handlingslytter);
 		rNedbør.addActionListener(handlingslytter);
 		rMintemp.addActionListener(handlingslytter);
 		rMaxtemp.addActionListener(handlingslytter);
+		spesTypeGruppe.add(rMinNedbør);
 		spesTypeGruppe.add(rNedbør);
 		spesTypeGruppe.add(rMintemp);
 		spesTypeGruppe.add(rMaxtemp);
-		spesType.add(rNedbør);
-		spesType.add(rMintemp);
-		spesType.add(rMaxtemp);
+		spesType1.add(rMinNedbør);
+		spesType1.add(rNedbør);
+		spesType2.add(rMintemp);
+		spesType2.add(rMaxtemp);
 		
 		hentData = new JButton("Hent registrerte data");
 		hentData.addActionListener(handlingslytter);
@@ -108,8 +113,8 @@ public class EkstremverdiPanel extends MetroPanel
 		grid.add(dato);
 		grid.add(new JLabel("Spesifiser søket"));
 		grid.add(spesAvgEnkelt);
-		grid.add(new JLabel(""));
-		grid.add(spesType);
+		grid.add(spesType1);
+		grid.add(spesType2);
 		grid.add(new JLabel(""));
 		grid.add(hentData);
 		
@@ -118,13 +123,13 @@ public class EkstremverdiPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Lars Smeby
+	 * @author Henrik Hermansen
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
-	public void genererTabell(Object[][] data,JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
+	public void genererTabell(Object[][] data,JRadioButton rMinNedbør, JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
 	{
 		super.genererTabell(data);
-		if(rNedbør.isSelected())
+		if(rNedbør.isSelected() || rMinNedbør.isSelected())
 		{
 			tabell.removeColumn(tabell.getColumnModel().getColumn(3));
 			tabell.removeColumn(tabell.getColumnModel().getColumn(3));
@@ -146,6 +151,7 @@ public class EkstremverdiPanel extends MetroPanel
 		}
 		else
 			tabell.moveColumn(3, 0);
+		tabell.setAutoCreateRowSorter(true);
 		panel.validate();
 		panel.repaint();
 	}
@@ -160,9 +166,9 @@ public class EkstremverdiPanel extends MetroPanel
 		{
 			if(e.getSource() == hentData)
 			{
-				Object[][] data = FinnEkstremData.finnData(sl, panel, stedLandet, stedFylke, stedSted, fylke, sted, rdag, rmåned, rår, ldag, lmåned, lår, rEnkelverdi, rAvgverdi, rNedbør, rMintemp, rMaxtemp);
+				Object[][] data = FinnEkstremData.finnData(sl, panel, stedLandet, stedFylke, stedSted, fylke, sted, rdag, rmåned, rår, ldag, lmåned, lår, rEnkelverdi, rAvgverdi, rMinNedbør, rNedbør, rMintemp, rMaxtemp);
 				if(data != null)
-					genererTabell(data,rNedbør,rMintemp,rMaxtemp);
+					genererTabell(data,rMinNedbør,rNedbør,rMintemp,rMaxtemp);
 			}
 			if(e.getSource() == fylke)
 			{

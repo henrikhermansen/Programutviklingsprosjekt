@@ -26,7 +26,7 @@ public class Metrovindu extends JFrame
 	 * c		Container c er containeren som holder på vindusobjektet
 	 */
 	private Stedliste sl;
-	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel, ssPanel;
+	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel, ssPanel, rkPanel;
 	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp, rekordKnapp;
 	private JPanel startpanel;
 	private Container c;
@@ -54,6 +54,7 @@ public class Metrovindu extends JFrame
 		evPanel = new EkstremverdiPanel(this.sl);
 		utPanel = new UtviklingPanel(this.sl);
 		ssPanel = new StedSlettPanel(this.sl);
+		rkPanel = new RekordPanel(this.sl);
 		
 		try
 		{
@@ -316,11 +317,10 @@ public class Metrovindu extends JFrame
 			}
 			if(e.getSource() == rekordKnapp || e.getSource() == statRekord)
 			{
-				//TODO
-//				c.remove(1);
-//				c.add(###.getPanel(), BorderLayout.CENTER);
-//				c.validate();
-//				c.repaint();
+				c.remove(1);
+				c.add(rkPanel.getPanel(), BorderLayout.CENTER);
+				c.validate();
+				c.repaint();
 			}
 			if(e.getSource() == slettSted)
 			{
