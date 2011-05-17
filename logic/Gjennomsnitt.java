@@ -22,15 +22,14 @@ import data.Stedliste;
 public class Gjennomsnitt 
 {
 	/**
-	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
+	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør for et gitt sted et gitt år
 	 * @author Bård Skeie
-	 * @param år	aktuelt år
 	 * @param panel	panelet metoden kalles fra
-	 * @param f	fylkesnummer
+	 * @param år	aktuelt år
 	 * @param sted	sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(JPanel panel, int år, int f, Sted sted)
+	public static double[] gjennomsnitt(JPanel panel, int år, Sted sted)
 	{
 		Datoliste stedDatoer = sted.getDatoliste().finnDatoer(år);
 			
@@ -75,16 +74,15 @@ public class Gjennomsnitt
 	}
 	
 	/**
-	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
+	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør for et gitt sted en gitt måned
 	 * @author Bård Skeie
+	 * @param panel	referanse til panelet metoden kalles fra
 	 * @param år	aktuelt år
 	 * @param måned	aktuell måned
-	 * @param panel	referanse til panelet metoden kalles fra
-	 * @param f	aktuelt fylke
 	 * @param sted	aktuelt sted
 	 * @return	double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[] gjennomsnitt(JPanel panel, int år, int måned, int f, Sted sted)
+	public static double[] gjennomsnitt(JPanel panel, int år, int måned, Sted sted)
 	{
 		Datoliste stedDatoer = sted.getDatoliste().finnDatoer(år, måned);
 			
@@ -134,11 +132,10 @@ public class Gjennomsnitt
 	 * @author Bård Skeie
 	 * @param fylkesl Stedliste med alle stedene tilhørende fylket.
 	 * @param panel Referanse til panelet som metoden kalles fra.
-	 * @param f fylket gjennomsnittsdataen skal hentes fra.
 	 * @param år Året spørringen gjelder.
 	 * @return Todimensjonalt double-array med totalnedbør, gjennomsnittsnedbør og gjennomsnittstemperatur
 	 */
-	public static double[][] gjennomsnittFylke(Stedliste fylkesl, JPanel panel, int f, int år)
+	public static double[][] gjennomsnittFylke(Stedliste fylkesl, JPanel panel, int år)
 	{
 		Iterator<Sted> iterator = fylkesl.iterator();
 		double[][] dataarray = new double[13][3];
@@ -150,7 +147,7 @@ public class Gjennomsnitt
 			
 			for(int i = 0; i < dataarray.length - 1; i++)
 			{
-				double[] temp = gjennomsnitt(panel, år, i, f, tempsted);
+				double[] temp = gjennomsnitt(panel, år, i, tempsted);
 				if(temp[0] >= 0)
 				{
 					dataarray[i][0] += temp[0];
@@ -168,7 +165,7 @@ public class Gjennomsnitt
 				}				
 			}
 			
-			double[] temp = gjennomsnitt(panel, år, f, tempsted);
+			double[] temp = gjennomsnitt(panel, år, tempsted);
 			if(temp[0] >= 0)
 			{
 				dataarray[dataarray.length-1][0] += temp[0];
@@ -222,7 +219,7 @@ public class Gjennomsnitt
 		for(int i = 0; i < Sted.FYLKESLISTE.length; i++)
 		{
 			Stedliste fylkesl = sl.finnSted(i);
-			double[][] templiste = gjennomsnittFylke(fylkesl, panel, i, år);
+			double[][] templiste = gjennomsnittFylke(fylkesl, panel, år);
 			
 			for( int j = 0; j < templiste.length; j++)
 			{
@@ -338,7 +335,7 @@ public class Gjennomsnitt
 		
 		for(int i = 0; i < returarray.length - 1; i++)
 		{
-			double[] mndArray = gjennomsnitt(panel, år, i, fylke, sted);
+			double[] mndArray = gjennomsnitt(panel, år, i, sted);
 			returarray[i][0] = måneder[i];
 			returarray[i][1] = null;
 			returarray[i][2] = mndArray[0] >= 0 ? mndArray[0] : null;
@@ -346,7 +343,7 @@ public class Gjennomsnitt
 			returarray[i][4] = mndArray[2] <= Registrering.MAXMAXTEMP ? mndArray[2] : null;
 		}
 		
-		double[] årArray = gjennomsnitt(panel, år, fylke, sted);
+		double[] årArray = gjennomsnitt(panel, år, sted);
 		
 		returarray[returarray.length-1][0] = måneder[returarray.length-1];
 		returarray[returarray.length-1][1] = null;
@@ -375,7 +372,7 @@ public class Gjennomsnitt
 			return null;
 		}
 		
-		double[][] dataarray = gjennomsnittFylke(fylkesl, panel, f, år);
+		double[][] dataarray = gjennomsnittFylke(fylkesl, panel, år);
 		Object[][] returarray = new Object[13][5];
 		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
 		

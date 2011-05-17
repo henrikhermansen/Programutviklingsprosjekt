@@ -22,7 +22,7 @@ public abstract class MetroPanel
 	protected Stedliste sl;
 	protected JComboBox fylke, sted, ldag, lmåned, lår;
 	protected JTable tabell;
-	private final int førsteår = 1900;
+	public static final int FØRSTEÅR = 1900;
 	
 	/**
 	 * Konstruktør som tegner opp panelet
@@ -39,7 +39,7 @@ public abstract class MetroPanel
 		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 		
 		int detteår = new GregorianCalendar().get(GregorianCalendar.YEAR);
-		String[] årliste = new String[detteår-(førsteår-1)];
+		String[] årliste = new String[detteår-(FØRSTEÅR-1)];
 		for(int i = 0; i < årliste.length; i++)
 			årliste[i] = Integer.toString(detteår--);
 		

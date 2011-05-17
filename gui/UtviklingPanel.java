@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import logic.SkrivMelding;
 import logic.Utvikling;
 
 import data.Stedliste;
@@ -18,9 +19,9 @@ import data.Stedliste;
 public class UtviklingPanel extends MetroPanel
 {
 	private JButton hentData;
-	private JPanel fylkepanel, stedpanel, månedpanel, årpanel;
+	private JPanel fylkepanel, stedpanel, månedpanel, mangeårpanel, årpanel;
 	private ButtonGroup omfangsgruppe, datogruppe;
-	private JRadioButton rland, rfylke, rsted, rmåned, rår;
+	private JRadioButton rland, rfylke, rsted, rmåned, rmangeår, rår;
 
 	/**
 	 * Konstruktør, tegner ut panelet
@@ -34,6 +35,7 @@ public class UtviklingPanel extends MetroPanel
 		HandlingsLytter handlingslytter = new HandlingsLytter();
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
+		lår.addActionListener(handlingslytter);
 		
 		fylke.setEnabled(false);
 		sted.setEnabled(false);
@@ -50,13 +52,30 @@ public class UtviklingPanel extends MetroPanel
 		omfangsgruppe.add(rfylke);
 		omfangsgruppe.add(rsted);
 		
+		int fraår = 0;
+		try
+		{
+			fraår = Integer.parseInt((String)lår.getSelectedItem());
+		}
+		catch(NumberFormatException nfe)
+		{
+			SkrivMelding.skriv("Ukjent programfeil (L009)/E", panel);
+		}
+		if(fraår <= FØRSTEÅR+9)
+			fraår = FØRSTEÅR;
+		else
+			fraår -= 9;
+		
 		datogruppe = new ButtonGroup();
 		rmåned = new JRadioButton("", false);
-		rår = new JRadioButton("", true);
+		rmangeår = new JRadioButton("Fra "+fraår+" til", true);
+		rår = new JRadioButton("", false);
 		rmåned.addActionListener(handlingslytter);
 		rår.addActionListener(handlingslytter);
+		rmangeår.addActionListener(handlingslytter);
 		datogruppe.add(rmåned);
 		datogruppe.add(rår);
+		datogruppe.add(rmangeår);
 		
 		fylkepanel = new JPanel(new BorderLayout());
 		fylkepanel.add(rfylke, BorderLayout.LINE_START);
@@ -84,6 +103,8 @@ public class UtviklingPanel extends MetroPanel
 		grid.add(new JLabel(""));
 		grid.add(stedpanel);
 		grid.add(new JLabel("Velg tidsperiode"));
+		grid.add(rmangeår);
+		grid.add(new JLabel(""));
 		grid.add(årpanel);
 		grid.add(new JLabel(""));
 		grid.add(månedpanel);
@@ -117,6 +138,23 @@ public class UtviklingPanel extends MetroPanel
 			{
 				hentSteder(fylke.getSelectedIndex());
 			}
+			if(e.getSource() == lår)
+			{
+				int fraår = 0;
+				try
+				{
+					fraår = Integer.parseInt((String)lår.getSelectedItem());
+				}
+				catch(NumberFormatException nfe)
+				{
+					SkrivMelding.skriv("Ukjent programfeil (L010)/E", panel);
+				}
+				if(fraår <= FØRSTEÅR+9)
+					fraår = FØRSTEÅR;
+				else
+					fraår -= 9;
+				rmangeår.setText("Fra "+fraår+" til");
+			}
 			if(rland.isSelected())
 			{
 				fylke.setEnabled(false);
@@ -132,6 +170,10 @@ public class UtviklingPanel extends MetroPanel
 				fylke.setEnabled(true);
 				sted.setEnabled(true);
 			}
+			if(rmangeår.isSelected())
+			{
+				lmåned.setEnabled(false);
+			}
 			if(rår.isSelected())
 			{
 				lmåned.setEnabled(false);
@@ -142,7 +184,7 @@ public class UtviklingPanel extends MetroPanel
 			}
 			if(e.getSource() == hentData)
 			{
-				double[][] data = Utvikling.dataTilGrafikk(sl, panel, rland,rfylke,rsted,rår,rmåned,fylke,sted,lår,lmåned);
+				double[][] data = Utvikling.dataTilGrafikk(sl,panel,rland,rfylke,rsted,rår,rmåned,rmangeår,fylke,sted,lår,lmåned);
 				if(data != null)
 					genererGrafikk(data);
 			}

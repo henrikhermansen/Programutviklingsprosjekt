@@ -1,5 +1,7 @@
 package logic;
 
+import gui.MetroPanel;
+
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
@@ -32,7 +34,7 @@ public class Utvikling
 	 * @param lmåned	Månedslisten i panelet
 	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
 	 */
-	public static double[][] dataTilGrafikk(Stedliste sl, JPanel panel, JRadioButton rland,JRadioButton rfylke, JRadioButton rsted, JRadioButton rår, JRadioButton rmåned, JComboBox fylke, JComboBox sted, JComboBox lår, JComboBox lmåned)
+	public static double[][] dataTilGrafikk(Stedliste sl, JPanel panel, JRadioButton rland,JRadioButton rfylke, JRadioButton rsted, JRadioButton rår, JRadioButton rmåned, JRadioButton rmangeår, JComboBox fylke, JComboBox sted, JComboBox lår, JComboBox lmåned)
 	{
 		int år;		
 		try
@@ -47,6 +49,10 @@ public class Utvikling
 		
 		if(rland.isSelected())
 		{
+			if(rmangeår.isSelected())
+			{
+				return landDataMangeÅr(sl, panel, år);
+			}
 			if(rår.isSelected())
 			{
 				return landData(sl, panel, år);
@@ -62,6 +68,10 @@ public class Utvikling
 		
 		if(rfylke.isSelected())
 		{
+			if(rmangeår.isSelected())
+			{
+				return fylkeDataMangeÅr(sl, panel, f, år);
+			}
 			if(rår.isSelected())
 			{
 				return fylkeData(sl, panel, f, år);
@@ -88,17 +98,48 @@ public class Utvikling
 		
 		if(rsted.isSelected())
 		{
+			if(rmangeår.isSelected())
+			{
+				return stedDataMangeÅr(panel, st, år);
+			}
 			if(rår.isSelected())
 			{
-				return stedData(panel,f,st,år);
+				return stedData(panel,st,år);
 			}
 			if(rmåned.isSelected())
 			{
 				int måned = lmåned.getSelectedIndex();
-				return stedData(panel,f,st,år,måned);
+				return stedData(panel,st,år,måned);
 			}
 		}
-		return null; //Programmet kommer aldri hit, men kompilatoren krever det.
+		return null; //Programmet kommer aldri hit, men kompilatoren krever det siden koden ikke har noen else.
+	}
+	
+	/**
+	 * Henter gjennomsnittsdata for hele landet fra et gitt år og 10 år bakover, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet som metoden ble kalt fra
+	 * @param år	Året søket skal gjøres frem til, altså det siste av maks 10 år
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
+	public static double[][] landDataMangeÅr(Stedliste sl, JPanel panel, int år)
+	{
+		int antallÅr;
+		if(år <= MetroPanel.FØRSTEÅR+9)
+			antallÅr = år-MetroPanel.FØRSTEÅR+1;
+		else
+			antallÅr = 10;
+		double[][] returarray = new double[2][antallÅr];
+		
+		for(int i = 0; i < antallÅr; i++)
+		{
+			double[][] temparray = Gjennomsnitt.gjennomsnittLand(sl, panel, år-antallÅr+1+i);
+			returarray[0][i] = temparray[12][0];
+			returarray[1][i] = temparray[12][2];
+		}
+		
+		return returarray;
 	}
 	
 	/**
@@ -116,7 +157,7 @@ public class Utvikling
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
-			returarray[0][i] = temparray[i][1];
+			returarray[0][i] = temparray[i][0];
 			returarray[1][i] = temparray[i][2];
 		}
 		
@@ -134,6 +175,41 @@ public class Utvikling
 	public static double[][] landData(Stedliste sl, int år, int måned)
 	{
 		return månedsdata(sl, år, måned);
+	}
+	
+	/**
+	 * Henter gjennomsnittsdata for et fylke fra et gitt år og 10 år tilbake i tid, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param sl	Stedlisten med alle lagrede data
+	 * @param panel	Panelet metoden kalles fra
+	 * @param fylke	Det aktuelle fylket
+	 * @param år	Året søket skal gjøres frem til, altså det siste av maks 10 år
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
+	public static double[][] fylkeDataMangeÅr(Stedliste sl, JPanel panel, int fylke, int år)
+	{
+		Stedliste fylkesl = sl.finnSted(fylke);
+		if(fylkesl == null)
+		{
+			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
+			return null;
+		}
+		
+		int antallÅr;
+		if(år <= MetroPanel.FØRSTEÅR+9)
+			antallÅr = år-MetroPanel.FØRSTEÅR+1;
+		else
+			antallÅr = 10;
+		double[][] returarray = new double[2][antallÅr];
+		
+		for(int i = 0; i < antallÅr; i++)
+		{
+			double[][] temparray = Gjennomsnitt.gjennomsnittFylke(fylkesl, panel, år-antallÅr+1+i);
+			returarray[0][i] = temparray[12][0];
+			returarray[1][i] = temparray[12][2];
+		}
+		
+		return returarray;
 	}
 	
 	/**
@@ -155,11 +231,11 @@ public class Utvikling
 		}
 		
 		double[][] returarray = new double[2][12];
-		double[][] temparray = Gjennomsnitt.gjennomsnittFylke(fylkesl, panel, fylke, år);
+		double[][] temparray = Gjennomsnitt.gjennomsnittFylke(fylkesl, panel, år);
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
-			returarray[0][i] = temparray[i][1];
+			returarray[0][i] = temparray[i][0];
 			returarray[1][i] = temparray[i][2];
 		}
 		
@@ -189,6 +265,33 @@ public class Utvikling
 	}
 	
 	/**
+	 * Henter gjennomsnittsdata for et sted et gitt år og 10 år bakover i tid, og returnerer data til grafikk
+	 * @author Lars Smeby
+	 * @param panel	Panelet metoden kalles fra
+	 * @param sted	Stedet det skal søkes på
+	 * @param år	Året søket skal gjøres frem til, altså det siste av maks 10 år
+	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
+	 */
+	public static double[][] stedDataMangeÅr(JPanel panel, Sted sted, int år)
+	{
+		int antallÅr;
+		if(år <= MetroPanel.FØRSTEÅR+9)
+			antallÅr = år-MetroPanel.FØRSTEÅR+1;
+		else
+			antallÅr = 10;
+		double[][] returarray = new double[2][antallÅr];
+		
+		for(int i = 0; i < antallÅr; i++)
+		{
+			double[] temparray = Gjennomsnitt.gjennomsnitt(panel, år-antallÅr+1+i, sted);
+			returarray[0][i] = temparray[0];
+			returarray[1][i] = temparray[2];
+		}
+		
+		return returarray;
+	}
+	
+	/**
 	 * Henter gjennomsnittsdata for et sted et gitt år, en verdi for hver måned, og returnerer data til grafikk
 	 * @author Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
@@ -197,14 +300,14 @@ public class Utvikling
 	 * @param år	Året det skal søkes på
 	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
 	 */
-	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år)
+	public static double[][] stedData(JPanel panel, Sted sted, int år)
 	{
 		double[][] returarray = new double[2][12];
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
-			double[] temp = Gjennomsnitt.gjennomsnitt(panel, år, i, fylke, sted);
-			returarray[0][i] = temp[1];
+			double[] temp = Gjennomsnitt.gjennomsnitt(panel, år, i, sted);
+			returarray[0][i] = temp[0];
 			returarray[1][i] = temp[2];
 		}
 		
@@ -221,7 +324,7 @@ public class Utvikling
 	 * @param måned	Måneden det skal søkes på
 	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
 	 */
-	public static double[][] stedData(JPanel panel, int fylke, Sted sted, int år, int måned)
+	public static double[][] stedData(JPanel panel, Sted sted, int år, int måned)
 	{
 		GregorianCalendar kal = new GregorianCalendar(år, måned, 1);
 		int antallDager = kal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
@@ -289,9 +392,7 @@ public class Utvikling
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
-			if(tellerarray[0][i] > 0)
-				returarray[0][i] = returarray[0][i]/tellerarray[0][i];
-			else
+			if(!(tellerarray[0][i] > 0))
 				returarray[0][i] = -1;
 			
 			if(tellerarray[1][i] <= Registrering.MAXMAXTEMP)
