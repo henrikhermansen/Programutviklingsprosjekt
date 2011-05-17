@@ -27,10 +27,10 @@ public class Metrovindu extends JFrame
 	 */
 	private Stedliste sl;
 	private MetroPanel srPanel, vrPanel, sdPanel, ddPanel, gsPanel, evPanel, utPanel, ssPanel;
-	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp;
+	private JButton regSted, regData, finnSted, finnDato, gjennomsnittKnapp, ekstremKnapp, utviklingKnapp, rekordKnapp;
 	private JPanel startpanel;
 	private Container c;
-	private JMenuItem filStart, filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, statGjennomsnitt, statEkstrem, statUtvikling, hjelpHjelp, hjelpOm;
+	private JMenuItem filStart, filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, statGjennomsnitt, statEkstrem, statUtvikling, statRekord, hjelpHjelp, hjelpOm;
 	
 	/**
 	 * Konstruktør, hovedvinduet blir opprettet.
@@ -127,6 +127,10 @@ public class Metrovindu extends JFrame
 		statUtvikling.setMnemonic(KeyEvent.VK_U);
 		statUtvikling.addActionListener(mklytter);
 		
+		statRekord = new JMenuItem("Månedlige rekorder", LastIkon.last("rekorder16.gif"));
+		statRekord.setMnemonic(KeyEvent.VK_R);
+		statRekord.addActionListener(mklytter);
+		
 		hjelpHjelp = new JMenuItem("Hjelp til programmet", LastIkon.last("Help16.gif"));
 		hjelpHjelp.setMnemonic(KeyEvent.VK_H);
 		hjelpHjelp.addActionListener(mklytter);
@@ -149,6 +153,7 @@ public class Metrovindu extends JFrame
 		statistikkmeny.add(statGjennomsnitt);
 		statistikkmeny.add(statEkstrem);
 		statistikkmeny.add(statUtvikling);
+		statistikkmeny.add(statRekord);
 		
 		hjelpmeny.add(hjelpHjelp);
 		hjelpmeny.add(hjelpOm);
@@ -168,7 +173,7 @@ public class Metrovindu extends JFrame
 		regSted = new JButton("Registrer sted", LastIkon.last("nyttsted24.gif"));
 		regSted.setHorizontalAlignment(SwingConstants.LEFT);
 		regSted.setMnemonic(KeyEvent.VK_S);
-		regSted.setPreferredSize(new Dimension(65, 65));
+		regSted.setPreferredSize(new Dimension(55, 55));
 		regData = new JButton("Registrer værdata", LastIkon.last("nyttvar24.gif"));
 		regData.setHorizontalAlignment(SwingConstants.LEFT);
 		regData.setMnemonic(KeyEvent.VK_V);
@@ -187,6 +192,9 @@ public class Metrovindu extends JFrame
 		utviklingKnapp = new JButton("Utvikling over tid", LastIkon.last("utvikling24.gif"));
 		utviklingKnapp.setHorizontalAlignment(SwingConstants.LEFT);
 		utviklingKnapp.setMnemonic(KeyEvent.VK_U);
+		rekordKnapp = new JButton("Månedlige rekorder", LastIkon.last("rekorder24.gif"));
+		rekordKnapp.setHorizontalAlignment(SwingConstants.LEFT);
+		rekordKnapp.setMnemonic(KeyEvent.VK_R);
 		regSted.addActionListener(mklytter);
 		regData.addActionListener(mklytter);
 		finnSted.addActionListener(mklytter);
@@ -194,6 +202,7 @@ public class Metrovindu extends JFrame
 		gjennomsnittKnapp.addActionListener(mklytter);
 		ekstremKnapp.addActionListener(mklytter);
 		utviklingKnapp.addActionListener(mklytter);
+		rekordKnapp.addActionListener(mklytter);
 		sidemeny.add(regSted);
 		sidemeny.add(regData);
 		sidemeny.add(finnSted);
@@ -201,6 +210,7 @@ public class Metrovindu extends JFrame
 		sidemeny.add(gjennomsnittKnapp);
 		sidemeny.add(ekstremKnapp);
 		sidemeny.add(utviklingKnapp);
+		sidemeny.add(rekordKnapp);
 		sidemeny.setBackground(Color.LIGHT_GRAY);
 		sidepanel.add(sidemeny,BorderLayout.PAGE_START);
 		sidepanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -302,6 +312,14 @@ public class Metrovindu extends JFrame
 				c.add(utPanel.getPanel(), BorderLayout.CENTER);
 				c.validate();
 				c.repaint();
+			}
+			if(e.getSource() == rekordKnapp || e.getSource() == statRekord)
+			{
+				//TODO
+//				c.remove(1);
+//				c.add(###.getPanel(), BorderLayout.CENTER);
+//				c.validate();
+//				c.repaint();
 			}
 			if(e.getSource() == slettSted)
 			{
