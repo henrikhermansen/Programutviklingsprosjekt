@@ -67,7 +67,7 @@ public class Registrering
 		{
 			Sted slettSted = sl.finnSted(stedString, fylke.getSelectedIndex());
 			if(slettSted == null)
-				return "Ukjent programfeil! (B008)/E";
+				return "Ukjent programfeil! (B009)/E";
 			sl.slettSted(slettSted);
 			return stedString + " og alle tilhørende data ble slettet fra registeret./I";
 		}
@@ -106,7 +106,7 @@ public class Registrering
 		}
 		catch(NumberFormatException nfe)
 		{
-			return "Ukjent programfeil (B002)/E";
+			return "Ukjent programfeil (B010)/E";
 		}
 		
 		GregorianCalendar dato = new GregorianCalendar(år, måned, dag);
@@ -154,7 +154,7 @@ public class Registrering
 			return "Ingen steder valgt/W";
 		Sted sted = stedliste.finnSted(n, fylke.getSelectedIndex());
 		if(sted == null)
-			return "Ukjent programfeil! (B001)/E";
+			return "Ukjent programfeil! (B011)/E";
 		
 		Datoliste dl = sted.getDatoliste();
 		Dato d = dl.finnDato(år, måned, dag);

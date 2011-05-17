@@ -59,7 +59,7 @@ public class UtviklingPanel extends MetroPanel
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L009)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L004)/E", panel);
 		}
 		if(fraår <= FØRSTEÅR+9)
 			fraår = FØRSTEÅR;
@@ -147,7 +147,7 @@ public class UtviklingPanel extends MetroPanel
 				}
 				catch(NumberFormatException nfe)
 				{
-					SkrivMelding.skriv("Ukjent programfeil (L010)/E", panel);
+					SkrivMelding.skriv("Ukjent programfeil (L005)/E", panel);
 				}
 				if(fraår <= FØRSTEÅR+9)
 					fraår = FØRSTEÅR;

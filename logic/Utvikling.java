@@ -43,7 +43,7 @@ public class Utvikling
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L007)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L012)/E", panel);
 			return null;
 		}
 		
@@ -92,7 +92,7 @@ public class Utvikling
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L008)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L013)/E", panel);
 			return null;
 		}
 		

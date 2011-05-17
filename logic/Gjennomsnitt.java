@@ -283,7 +283,7 @@ public class Gjennomsnitt
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (B006)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (B007)/E", panel);
 			return null;
 		}
 		if(rland.isSelected())
@@ -307,7 +307,7 @@ public class Gjennomsnitt
 		Sted sted = stedliste.finnSted(s, f);
 		if(sted == null)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (B007)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (B008)/E", panel);
 			return null;
 		}
 		if(rsted.isSelected())

@@ -45,14 +45,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L001)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L006)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L002)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L007)/E", panel);
 			return null;
 		}
 		
@@ -103,14 +103,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L003)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L008)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L004)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L009)/E", panel);
 			return null;
 		}
 		
@@ -166,14 +166,14 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L005)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L010)/E", panel);
 			return null;
 		}
 		
 		Sted st = sl.finnSted(s, f);
 		if(st == null)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L006)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L011)/E", panel);
 			return null;
 		}
 		
@@ -233,7 +233,7 @@ public class FinnData
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (B004)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (B006)/E", panel);
 			return null;
 		}
 		

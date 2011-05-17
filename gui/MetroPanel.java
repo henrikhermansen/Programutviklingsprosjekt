@@ -95,7 +95,7 @@ public abstract class MetroPanel
 		}
 		catch(NumberFormatException nfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil (L009)/E", panel);
+			SkrivMelding.skriv("Ukjent programfeil (L003)/E", panel);
 			return;
 		}
 		int måned = lmåned.getSelectedIndex();
