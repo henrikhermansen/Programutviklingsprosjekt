@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import data.Dato;
-import data.Datoliste;
 import data.Sted;
 import data.Stedliste;
 
@@ -23,7 +22,6 @@ public class FinnRekordData
 		GregorianCalendar kalender=new GregorianCalendar();
 		int i≈r=kalender.get(GregorianCalendar.YEAR);
 		double[][] maxNedb¯r=new double[i≈r+1][12];
-		//SkrivMelding.skriv(kalender.get(GregorianCalendar.MONTH)+"/I", panel);
 		double[][] minTemp=new double[i≈r+1][12];
 		double[][] maxTemp=new double[i≈r+1][12];
 		for(int i=1900;i<=i≈r;i++)

@@ -8,7 +8,6 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 import logic.Registrering;
-import logic.SkrivMelding;
 
 /**
  *	@author		Gruppe 3
