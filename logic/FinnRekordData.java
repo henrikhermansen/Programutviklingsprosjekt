@@ -17,6 +17,17 @@ import data.Stedliste;
  */
 public class FinnRekordData
 {
+	/**
+	 * Metode som finner rekordverdier for alle måneder i alle år der det finnes data.
+	 * Deretter returneres at to-dimensjonalt Object-array med det/de stedet/stedene som har rekordverdien det spørres etter, for hver måned hvert år.
+	 * @author Henrik Hermansen
+	 * @param sl		hoved-stedlisten i programmet
+	 * @param panel		panelet som kaller opp metoden
+	 * @param rNedbør	radioknappen som sier om det spørres etter data om maksimumsnedbør
+	 * @param rMintemp	radioknappen som sier om det spørres etter data om minimumstemperaturer
+	 * @param rMaxtemp	radioknappen som sier om det spørres etter data om maksimumstemperaturer
+	 * @return et to-dimensjonalt Object-array med det/de stedet/stedene som har den rekordverdien det spørres etter, for hver måned hvert år.
+	 */
 	public static Object[][] finnData(Stedliste sl, JPanel panel, JRadioButton rNedbør, JRadioButton rMintemp, JRadioButton rMaxtemp)
 	{
 		GregorianCalendar kalender=new GregorianCalendar();
@@ -107,8 +118,16 @@ public class FinnRekordData
 		return returarray;
 	}
 	
+	/**
+	 * Metoden utvider størrelsen på den første dimensjonen av det to-dimensjonalet Object-arrayet array med 1
+	 * @author Henrik Hermansen
+	 * @param array et to-dimensjonalt Object-array som skal utvides
+	 * @return et to-dimensjonalt Object-array der den første dimensjonens størrelse er utvidet med 1 i forhold til parameteret array
+	 */
 	private static Object[][] utvidArray(Object[][] array)
 	{
+		if(array.length==0)
+			return null;
 		Object[][] returarray=new Object[array.length+1][array[0].length];
 		for(int i=0;i<array.length;i++)
 			returarray[i]=array[i];
