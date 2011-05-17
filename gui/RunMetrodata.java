@@ -18,7 +18,7 @@ public class RunMetrodata {
 	 */
 	public static void main(String[] args)
 	{
-		final Stedliste sl = Filhåndterer.lastInnFil();
+		final Stedliste sl = Filhåndterer.lastInnFil(null);
 		
 		EventQueue.invokeLater(new Runnable() {
 												@Override

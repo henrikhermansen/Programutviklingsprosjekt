@@ -337,12 +337,12 @@ public class Metrovindu extends JFrame
 			}
 			if(e.getSource() == filAvslutt)
 			{
-				Filhåndterer.lagreFil(sl);
+				Filhåndterer.lagreFil(sl, null);
 				System.exit(0);
 			}
 			if(e.getSource() == filLagre)
 			{
-				Filhåndterer.lagreFil(sl);
+				Filhåndterer.lagreFil(sl, null);
 				JOptionPane.showMessageDialog(getMetrovindu(), "Data er lagret til fil", "Lagret", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if(e.getSource() == hjelpHjelp)
@@ -376,7 +376,7 @@ public class Metrovindu extends JFrame
 	{
 		public void windowClosing(WindowEvent e)
 		{
-			Filhåndterer.lagreFil(sl);
+			Filhåndterer.lagreFil(sl, null);
 			System.exit(0);
 		}
 	}

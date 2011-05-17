@@ -3,6 +3,8 @@ package data;
 import java.io.Serializable;
 import java.util.*;
 
+import logic.SkrivMelding;
+
 /**
  * @author	Gruppe 3
  * @version	1
@@ -72,7 +74,7 @@ public class Stedliste implements Serializable
 		}
 		catch(NullPointerException npe)
 		{
-			System.out.println("Kan ikke søke etter et sted der navn er null.");
+			SkrivMelding.skriv("Ukjent programfeil (L001)/E", null);
 			return null;
 		}
 		if(index<0)

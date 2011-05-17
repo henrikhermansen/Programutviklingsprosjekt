@@ -3,6 +3,8 @@ package data;
 import java.text.*;
 import java.util.Comparator;
 
+import logic.SkrivMelding;
+
 /**
  * @author	Gruppe 3
  * @version	1
@@ -42,7 +44,7 @@ public class Stedsammenligner implements Comparator<Sted>
 		}
 		catch (ParseException pe)
 		{
-			System.out.println("Feil i rekkefølgestreng for kollator");
+			SkrivMelding.skriv("Ukjent programfeil (L002)/E", null);
 			System.exit(1);
 		}
 	}

@@ -2,6 +2,10 @@ package data;
 
 import java.io.*;
 
+import javax.swing.JPanel;
+
+import logic.SkrivMelding;
+
 /**
  *	@author		Gruppe 3
  *	@version	1
@@ -17,7 +21,7 @@ public class Filhåndterer
 	 * Metode som laster inn fil ved oppstart av programmet.
 	 * @author Bård Skeie
 	 */
-	public static Stedliste lastInnFil()
+	public static Stedliste lastInnFil(JPanel panel)
 	{
 		Stedliste sl;
 		ObjectInputStream inn;
@@ -30,17 +34,17 @@ public class Filhåndterer
 		}
 		catch(ClassNotFoundException cnfe)
 		{
-			System.out.println("ClassNotFoundException, oppretter ny fil");
+			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B001)/E", panel);
 			sl = new Stedliste();
 		}
 		catch(FileNotFoundException fnfe)
 		{
-			System.out.println("FileNotFoundException, oppretter ny fil");
+			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B002)/E", panel);
 			sl = new Stedliste();
 		}
 		catch(IOException ioe)
 		{
-			System.out.println("IOException, oppretter ny fil");
+			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B003)/E", panel);
 			sl = new Stedliste();
 		}
 		
@@ -52,7 +56,7 @@ public class Filhåndterer
 	 * og "vinduslukke-knappen".
 	 * @author Bård Skeie
 	 */
-	public static void lagreFil(Stedliste sl)
+	public static void lagreFil(Stedliste sl, JPanel panel)
 	{
 		ObjectOutputStream ut;
 		
@@ -65,12 +69,12 @@ public class Filhåndterer
 		}
 		catch(NotSerializableException nse)
 		{
-			System.out.println("NotSerializableException, fikk ikke lagret");
+			SkrivMelding.skriv("Ukjent programfeil, fikk ikke lagret (B004)/E", panel);
 			System.exit(1);
 		}
 		catch(IOException ioe)
 		{
-			System.out.println("IOException, fikk ikke lagret");
+			SkrivMelding.skriv("Ukjent programfeil, fikk ikke lagret (B005)/E", panel);
 			System.exit(1);
 		}
 	}
