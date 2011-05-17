@@ -19,7 +19,7 @@ import data.Stedliste;
 public class UtviklingPanel extends MetroPanel
 {
 	private JButton hentData;
-	private JPanel fylkepanel, stedpanel, månedpanel, mangeårpanel, årpanel;
+	private JPanel fylkepanel, stedpanel, månedpanel, årpanel;
 	private ButtonGroup omfangsgruppe, datogruppe;
 	private JRadioButton rland, rfylke, rsted, rmåned, rmangeår, rår;
 
