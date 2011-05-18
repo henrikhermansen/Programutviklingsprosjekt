@@ -10,6 +10,7 @@ package gui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import logic.FinnRekordData;
@@ -81,6 +82,7 @@ public class RekordPanel extends MetroPanel
 			tabell.getColumnModel().getColumn(2).setHeaderValue("Varmerekorder");
 		}
 		tabell.moveColumn(3, 0);
+		tabell.moveColumn(4, 0);
 		tabell.setAutoCreateRowSorter(true);
 		panel.validate();
 		panel.repaint();

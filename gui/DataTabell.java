@@ -18,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class DataTabell extends AbstractTableModel
 {
-	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur", "Fylke"};
+	private String[] kolonnenavn = {"Sted", "Dato", "Nedbør", "Minimumstemperatur", "Maksimumstemperatur", "Fylke", "Måned"};
 	private Object[][] celler;
 	
 	/**
@@ -53,9 +53,10 @@ public class DataTabell extends AbstractTableModel
 		// Grunnet muligheten for blanke celler settes klassetypene fast
 		switch(kolonne)
 		{
-		case 0:	return String.class;
-		case 1: return Date.class;
-		case 5: return String.class;
+			case 0:	return String.class;
+			case 1: return Date.class;
+			case 5: return String.class;
+			case 6: return String.class;
 		}
 		return Double.class;
 	}

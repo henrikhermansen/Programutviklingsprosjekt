@@ -27,6 +27,7 @@ public abstract class MetroPanel
 	protected JComboBox fylke, sted, ldag, lmåned, lår;
 	protected JTable tabell;
 	public static final int FØRSTEÅR = 1900;
+	public static final String[] MÅNEDER = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 	
 	/**
 	 * Konstruktør som tegner opp panelet
@@ -40,7 +41,7 @@ public abstract class MetroPanel
 		panel = new JPanel(new BorderLayout());
 		grid = new JPanel(new GridLayout(0,2,3,3));
 		
-		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
+		//String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 		
 		int detteår = new GregorianCalendar().get(GregorianCalendar.YEAR);
 		String[] årliste = new String[detteår-(FØRSTEÅR-1)];
@@ -50,7 +51,7 @@ public abstract class MetroPanel
 		fylke = new JComboBox(Sted.FYLKESLISTE);
 		sted = new JComboBox();
 		ldag = new JComboBox();
-		lmåned = new JComboBox(måneder);
+		lmåned = new JComboBox(MÅNEDER);
 		lår = new JComboBox(årliste);
 		
 		dato = new JPanel(new GridLayout(0,3));

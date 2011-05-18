@@ -7,7 +7,7 @@
  */
 package gui;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,7 @@ import data.Stedliste;
  */
 public class EkstremverdiPanel extends MetroPanel
 {
-	private JPanel stedtype, datotype, spesAvgEnkelt, spesType1, spesType2;
+	private JPanel fylkepanel, stedpanel, datotype, spesAvgEnkelt, spesType1, spesType2;
 	private ButtonGroup stedtypegruppe, datotypegruppe, spesAvgEnkeltGruppe, spesTypeGruppe;
 	protected JRadioButton stedLandet, stedFylke, stedSted, rdag, rmåned, rår, rEnkelverdi, rAvgverdi, rMinNedbør, rNedbør, rMintemp, rMaxtemp;
 	private JButton hentData;
@@ -44,20 +44,23 @@ public class EkstremverdiPanel extends MetroPanel
 		lmåned.addActionListener(handlingslytter);
 		hentDager(0);
 		
-		stedtype = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		fylkepanel = new JPanel(new BorderLayout());
 		stedtypegruppe = new ButtonGroup();
 		stedLandet = new JRadioButton("Hele landet", true);
-		stedFylke = new JRadioButton("Et fylke", false);
-		stedSted = new JRadioButton("Et sted", false);
+		stedFylke = new JRadioButton("", false);
+		stedSted = new JRadioButton("", false);
 		stedLandet.addActionListener(handlingslytter);
 		stedFylke.addActionListener(handlingslytter);
 		stedSted.addActionListener(handlingslytter);
 		stedtypegruppe.add(stedLandet);
 		stedtypegruppe.add(stedFylke);
 		stedtypegruppe.add(stedSted);
-		stedtype.add(stedLandet);
-		stedtype.add(stedFylke);
-		stedtype.add(stedSted);
+		fylkepanel = new JPanel(new BorderLayout());
+		fylkepanel.add(stedFylke,BorderLayout.LINE_START);
+		fylkepanel.add(fylke,BorderLayout.CENTER);
+		stedpanel = new JPanel(new BorderLayout());
+		stedpanel.add(stedSted,BorderLayout.LINE_START);
+		stedpanel.add(sted,BorderLayout.CENTER);
 		
 		datotype = new JPanel(new GridLayout(0,3));
 		datotypegruppe = new ButtonGroup();
@@ -74,7 +77,7 @@ public class EkstremverdiPanel extends MetroPanel
 		datotype.add(rmåned);
 		datotype.add(rår);
 		
-		spesAvgEnkelt = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		spesAvgEnkelt = new JPanel(new GridLayout(1, 2));
 		spesAvgEnkeltGruppe = new ButtonGroup();
 		rEnkelverdi = new JRadioButton("Enkeltverdi", true);
 		rAvgverdi = new JRadioButton("Gjennomsnitt", false);
@@ -85,8 +88,8 @@ public class EkstremverdiPanel extends MetroPanel
 		spesAvgEnkelt.add(rEnkelverdi);
 		spesAvgEnkelt.add(rAvgverdi);
 		
-		spesType1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		spesType2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		spesType1 = new JPanel(new GridLayout(1, 2));
+		spesType2 = new JPanel(new GridLayout(1, 2));
 		spesTypeGruppe = new ButtonGroup();
 		rMinNedbør = new JRadioButton("Minst nedbør", true);
 		rNedbør = new JRadioButton("Mest nedbør", false);
@@ -108,13 +111,13 @@ public class EkstremverdiPanel extends MetroPanel
 		hentData = new JButton("Hent registrerte data");
 		hentData.addActionListener(handlingslytter);
 		
-		grid.add(new JLabel("Velg søkeområde"));
-		grid.add(stedtype);
-		grid.add(new JLabel("Velg fylke"));
-		grid.add(fylke);
-		grid.add(new JLabel("Velg sted"));
-		grid.add(sted);
-		grid.add(new JLabel("Velg type søk"));
+		grid.add(new JLabel("Hent ekstremdata fra"));
+		grid.add(stedLandet);
+		grid.add(new JLabel(""));
+		grid.add(fylkepanel);
+		grid.add(new JLabel(""));
+		grid.add(stedpanel);
+		grid.add(new JLabel("Velg tidsperiode"));
 		grid.add(datotype);
 		grid.add(new JLabel("Velg dato"));
 		grid.add(dato);
