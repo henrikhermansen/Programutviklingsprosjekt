@@ -60,7 +60,7 @@ public class GjennomsnittsPanel extends MetroPanel
 		hentData = new JButton("Hent gjennomsnittsverdier");
 		hentData.addActionListener(handlingslytter);
 		
-		grid.add(new JLabel("Hent statistikk fra"));
+		grid.add(new JLabel("Hent gjennomsnittsdata fra"));
 		grid.add(rland);
 		grid.add(new JLabel(""));
 		grid.add(fylkepanel);

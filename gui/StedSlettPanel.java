@@ -44,7 +44,7 @@ public class StedSlettPanel extends MetroPanel
 		/**
 		 * Oppretter knappen for å utføre en registrering av værdata.
 		 */
-		sletteSted=new JButton("Slett Sted");
+		sletteSted=new JButton("Slett sted");
 		sletteSted.addActionListener(handlingslytter);
 		
 		/**
