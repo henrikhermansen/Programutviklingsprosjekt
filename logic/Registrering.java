@@ -28,7 +28,7 @@ public class Registrering
 	public static String registrerSted(JTextField navn, JComboBox fylke, Stedliste stedliste)
 	{
 		String n = navn.getText();
-		String pattern = "[a-zA-ZæÆøØåÅ-]*";
+		String pattern = "[a-zA-ZæÆøØåÅ(-.)\\s]*";
 		
 		if (n == null || n.length() < 2)
 			return "Skriv inn et stedsnavn/W";
