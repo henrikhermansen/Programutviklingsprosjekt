@@ -186,7 +186,7 @@ public class Gjennomsnitt
 		for(int i = 0; i < dataarray.length; i++)
 		{
 			if(tellerarray[i][0] != 0)
-				dataarray[i][0] = dataarray[i][0]/tellerarray[i][0];
+				dataarray[i][0] = dataarray[i][0];
 			else
 				dataarray[i][0] = -1;
 			if(tellerarray[i][1] != 0)
@@ -244,7 +244,7 @@ public class Gjennomsnitt
 		for(int i = 0; i < dataarray.length; i++)
 		{
 			if(tellerarray[i][0] != 0)
-				dataarray[i][0] = dataarray[i][0]/tellerarray[i][0];
+				dataarray[i][0] = dataarray[i][0];
 			else
 				dataarray[i][0] = -1;
 			if(tellerarray[i][1] != 0)
@@ -366,7 +366,7 @@ public class Gjennomsnitt
 	public static Object[][] finnGjennomsnittFylke(Stedliste sl, JPanel panel, int f, int år)
 	{
 		Stedliste fylkesl = sl.finnSted(f);
-		if(fylkesl == null)
+		if(fylkesl.size() == 0)
 		{
 			SkrivMelding.skriv("Fylket har ingen registrerte steder/I", panel);
 			return null;
