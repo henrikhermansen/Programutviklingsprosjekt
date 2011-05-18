@@ -19,6 +19,11 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 {
 	private Timer klokke;
 	private int x, y, stopX;
+	public static final int X = 600;
+	public static final int Y = 40;
+	public static final int STOPX = 25;
+	public static final int X2 = 600;
+	public static final int Y2 = 45;
 	
 	/**
 	 * Konstruktør, setter posisjonsvariabler og starter klokken
@@ -26,9 +31,9 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	 */
 	public Tekstanimasjon()
 	{
-		x = 600;
-		y = 40;
-		stopX = 25;
+		x = X;
+		y = Y;
+		stopX = STOPX;
 		klokke = new Timer(8, this);
 		klokke.setInitialDelay(0);
 		klokke.setCoalesce(true);
@@ -53,7 +58,7 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	 */
 	public Dimension getPreferredSize()
 	{
-		return new Dimension(600, 45);
+		return new Dimension(X2, Y2);
 	}
 	
 	/**

@@ -31,6 +31,8 @@ public class Metrovindu extends JFrame
 	private JPanel startpanel;
 	private Container c;
 	private JMenuItem filStart, filAvslutt, filLagre, registrerSted, slettSted, registrerData, finnDataSted, finnDataDato, statGjennomsnitt, statEkstrem, statUtvikling, statRekord, hjelpHjelp, hjelpOm;
+	public static final int BREDDE = 800;
+	public static final int HØYDE = 600;
 	
 	/**
 	 * Konstruktør, hovedvinduet blir opprettet.
@@ -232,15 +234,15 @@ public class Metrovindu extends JFrame
 		
 		int bredde = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int høyde = Toolkit.getDefaultToolkit().getScreenSize().height;
-		if(bredde < 800 || høyde < 600)
+		if(bredde < BREDDE || høyde < HØYDE)
 		{
 			setSize((int)(bredde*0.9),(int)(høyde*0.9));
 			setLocation(0, 0);
 		}
 		else
 		{
-			setSize(800,600);
-			setLocation((bredde-800)/2, (høyde-600)/2);
+			setSize(BREDDE,HØYDE);
+			setLocation((bredde-BREDDE)/2, (høyde-HØYDE)/2);
 		}
 	}
 	
