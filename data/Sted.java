@@ -1,13 +1,19 @@
+/**
+ * Inneholder klassen Sted.
+ * @author Lars Smeby
+ * @since 28.04.2011
+ * @updated 16.05.2011
+ * @version	1
+ */
 package data;
 
 import java.io.Serializable;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen representerer et sted, og inneholder navn, fylke og en Datoliste for stedet.
+ *	Klassen inneholder også statiske int- og String-variabler til fylkene, som brukes
+ *	i resten av programmet.
  */
-
 public class Sted implements Serializable
 {
 	private static final long serialVersionUID = 5741295195692438029L;
@@ -115,4 +121,4 @@ public class Sted implements Serializable
 	{
 		fylke = f;
 	}
-}
+} // end of class Sted

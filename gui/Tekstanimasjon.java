@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Tekstanimasjon.
+ * @author Lars Smeby
+ * @since 17.05.2011
+ * @updated 17.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.Dimension;
@@ -10,9 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen extender JPanel, og representerer et panel med animert tekst.
  */
 @SuppressWarnings("serial")
 public class Tekstanimasjon extends JPanel implements ActionListener
@@ -68,6 +73,6 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 		{
 			x--;
 			repaint();
-		}
-	}
-}
+		} // end of else
+	} // end of actionPerformed(...)
+} // end of class Tekstanimasjon

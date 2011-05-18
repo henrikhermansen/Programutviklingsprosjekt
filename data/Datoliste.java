@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Datoliste.
+ * @author Henrik Hermansen, Lars Smeby
+ * @since 28.04.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package data;
 
 import java.io.Serializable;
@@ -10,9 +17,7 @@ import java.util.Iterator;
 import logic.Registrering;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen representerer en liste av Dato-objekter, og metoder som kan brukes på disse.
  */
 public class Datoliste implements Serializable
 {
@@ -334,4 +339,4 @@ public class Datoliste implements Serializable
 		}
 		return svar;
 	}
-}
+} // end og class Datoliste

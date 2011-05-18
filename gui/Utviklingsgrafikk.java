@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Utviklingsgrafikk.
+ * @author Lars Smeby
+ * @since 12.05.2011
+ * @updated 17.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.BasicStroke;
@@ -10,9 +17,8 @@ import javax.swing.JPanel;
 import logic.Registrering;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen extender JPanel, og representerer et panel hvor utvikling av
+ *	data over tid tegnes ut.
  */
 @SuppressWarnings("serial")
 public class Utviklingsgrafikk extends JPanel
@@ -116,9 +122,7 @@ public class Utviklingsgrafikk extends JPanel
 			else
 				bredde += mellomrom;
 		}
-		
-		
-	}
+	} // end of tegnNedbørsData(...)
 	
 	/**
 	 * Tegner en graf samt tallverdier for temperaturdata
@@ -187,7 +191,7 @@ public class Utviklingsgrafikk extends JPanel
 			else
 				bredde += mellomrom;
 		}
-	}
+	} // end of tegnTemperaturData(...)
 	
 	/**
 	 * Tegner labeler (tall) nederst på panelet basert på antall dataverdier mottatt
@@ -234,4 +238,4 @@ public class Utviklingsgrafikk extends JPanel
 		
 		g2d.setStroke(new BasicStroke(2.0F));
 	}
-}
+} // end of class Utviklingsgrafikk

@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Metrovindu.
+ * @author Lars Smeby, Bård Skeie, Henrik Hermansen
+ * @since 28.04.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.*;
@@ -10,9 +17,8 @@ import data.Stedliste;
 import data.Filhåndterer;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen extender JFrame, og representerer hovedvinduet i programmet.
+ *	All gui utenom dialogbokser er paneler som tegnes i denne klassens layout.
  */
 @SuppressWarnings("serial")
 public class Metrovindu extends JFrame
@@ -81,7 +87,7 @@ public class Metrovindu extends JFrame
 		filmeny.setMnemonic(KeyEvent.VK_F);
 		registrermeny.setMnemonic(KeyEvent.VK_R);
 		finnmeny.setMnemonic(KeyEvent.VK_I);
-		statistikkmeny.setMnemonic(KeyEvent.VK_S);
+		statistikkmeny.setMnemonic(KeyEvent.VK_K);
 		hjelpmeny.setMnemonic(KeyEvent.VK_H);
 		
 		filStart = new JMenuItem("Velkomstskjerm", LastIkon.last("Home16.gif"));
@@ -105,11 +111,11 @@ public class Metrovindu extends JFrame
 		registrerData.addActionListener(mklytter);
 		
 		slettSted = new JMenuItem("Slett sted", LastIkon.last("Delete16.gif"));
-		slettSted.setMnemonic(KeyEvent.VK_D);
+		slettSted.setMnemonic(KeyEvent.VK_L);
 		slettSted.addActionListener(mklytter);
 		
 		finnDataSted = new JMenuItem("Værdata for sted", LastIkon.last("steddata16.gif"));
-		finnDataSted.setMnemonic(KeyEvent.VK_S);
+		finnDataSted.setMnemonic(KeyEvent.VK_T);
 		finnDataSted.addActionListener(mklytter);
 		
 		finnDataDato = new JMenuItem("Værdata for dato", LastIkon.last("datodata16.gif"));
@@ -129,11 +135,11 @@ public class Metrovindu extends JFrame
 		statUtvikling.addActionListener(mklytter);
 		
 		statRekord = new JMenuItem("Månedlige rekorder", LastIkon.last("rekorder16.gif"));
-		statRekord.setMnemonic(KeyEvent.VK_R);
+		statRekord.setMnemonic(KeyEvent.VK_M);
 		statRekord.addActionListener(mklytter);
 		
 		hjelpHjelp = new JMenuItem("Hjelp til programmet", LastIkon.last("Help16.gif"));
-		hjelpHjelp.setMnemonic(KeyEvent.VK_H);
+		hjelpHjelp.setMnemonic(KeyEvent.VK_P);
 		hjelpHjelp.addActionListener(mklytter);
 		
 		hjelpOm = new JMenuItem("Om", LastIkon.last("About16.gif"));
@@ -195,7 +201,7 @@ public class Metrovindu extends JFrame
 		utviklingKnapp.setMnemonic(KeyEvent.VK_U);
 		rekordKnapp = new JButton("Månedlige rekorder", LastIkon.last("rekorder24.gif"));
 		rekordKnapp.setHorizontalAlignment(SwingConstants.LEFT);
-		rekordKnapp.setMnemonic(KeyEvent.VK_R);
+		rekordKnapp.setMnemonic(KeyEvent.VK_M);
 		regSted.addActionListener(mklytter);
 		regData.addActionListener(mklytter);
 		finnSted.addActionListener(mklytter);
@@ -363,15 +369,14 @@ public class Metrovindu extends JFrame
 							"Sist oppdatdert: 15.05.2011\n" +
 							"Høyskolen i Oslo";
 				JOptionPane.showMessageDialog(getMetrovindu(), om, "Om", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-	}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class MenyKnappelytter
 	
 	/**
 	 * Lytteklasse for vinduet. Sørger for at programmet lagrer og avslutter 
 	 * riktig ved bruk av avslutt-knappen oppe til høyre i vinduet.
 	 * @author Bård Skeie
-	 *
 	 */
 	private class Vinduslytter extends WindowAdapter
 	{
@@ -379,6 +384,6 @@ public class Metrovindu extends JFrame
 		{
 			Filhåndterer.lagreFil(sl, null);
 			System.exit(0);
-		}
-	}
-}
+		} // end of windowClosing(...)
+	} // end of class Vinduslytter
+} // end of class Metrovindu

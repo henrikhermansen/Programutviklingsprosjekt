@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen StedRegPanel.
+ * @author Lars Smeby
+ * @since 28.04.2011
+ * @updated 15.05.2011
+ * @version	1
+ */
 package gui;
 
 import data.*;
@@ -8,9 +15,8 @@ import logic.Registrering;
 import logic.SkrivMelding;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet for registrering av steder.
  */
 public class StedRegPanel extends MetroPanel
 {
@@ -53,6 +59,6 @@ public class StedRegPanel extends MetroPanel
 			SkrivMelding.skriv(melding, panel);
 			navn.setText("");
 			fylke.setSelectedIndex(0);
-		}
-	}
-}
+		} // end of actionPerformed(...)
+	} // end of class RegStedLytter
+} // end of class StedRegPanel

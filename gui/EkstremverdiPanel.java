@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen EkstremverdiPanel.
+ * @author Henrik Hermansen
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.FlowLayout;
@@ -11,9 +18,8 @@ import logic.FinnEkstremData;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	til panelet for henting av ekstremdata.
  */
 public class EkstremverdiPanel extends MetroPanel
 {
@@ -27,7 +33,8 @@ public class EkstremverdiPanel extends MetroPanel
 	 * @author Henrik Hermansen
 	 * @param sl hoved-stedlisten i programmet
 	 */
-	public EkstremverdiPanel(Stedliste sl) {
+	public EkstremverdiPanel(Stedliste sl)
+	{
 		super(sl);
 
 		HandlingsLytter handlingslytter = new HandlingsLytter();
@@ -235,7 +242,7 @@ public class EkstremverdiPanel extends MetroPanel
 				if(stedSted.isSelected())
 					stedFylke.setSelected(true);
 				stedSted.setEnabled(false);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class EkstremverdiPanel

@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Bildepanel.
+ * @author Lars Smeby
+ * @since 15.05.2011
+ * @updated 16.05.2011
+ * @version	1
+ */
 package gui;
 
 import javax.swing.ImageIcon;
@@ -7,9 +14,7 @@ import java.awt.Graphics;
 import java.net.URL;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen representerer et panel med et bilde på.
  */
 @SuppressWarnings("serial")
 public class Bildepanel extends JPanel
@@ -17,7 +22,8 @@ public class Bildepanel extends JPanel
 	private ImageIcon ikon;
 
 	/**
-	 * 
+	 * Konstruktør. Laster inn bilde og oppretter det.
+	 * @author Lars Smeby
 	 */
 	public Bildepanel()
 	{
@@ -28,6 +34,10 @@ public class Bildepanel extends JPanel
 			ikon = null;
 	}
 	
+	/**
+	 * Overridet fra JPanel. Tegner bildet midt på panelet.
+	 * @author Lars Smeby
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -37,6 +47,10 @@ public class Bildepanel extends JPanel
 			g.drawString("Finner ikke bildet", 100, 100);
 	}
 	
+	/**
+	 * Overridet fra JPanel. Returnerer ønsket dimensjon.
+	 * @author Lars Smeby
+	 */
 	public Dimension getPreferredSize()
 	{
 		if(ikon != null)
@@ -44,4 +58,4 @@ public class Bildepanel extends JPanel
 		else
 			return new Dimension(200, 200);
 	}
-}
+} // end of class Bildepanel

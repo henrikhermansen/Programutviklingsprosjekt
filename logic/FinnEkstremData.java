@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen FinnEkstremData.
+ * @author Henrik Hermansen
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package logic;
 
 import java.util.Iterator;
@@ -12,9 +19,8 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for å hente ut ekstremdata basert på mottatte parametere.
+ *	Metoden finnData(...) kalles opp, som igjen kaller opp korrekt undermetode.
  */
 public class FinnEkstremData
 {
@@ -207,8 +213,8 @@ public class FinnEkstremData
 							aktuelleSteder=new Stedliste();
 							aktuelleSteder.settInn(sted);
 						}
-					}
-				}
+					} // end of if(tempDato!=null)
+				} // end of if(rEnkelverdi.isSelected())
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør() : sted.getDatoliste().finnDatoer(år).getAvgNedbør();
@@ -224,9 +230,9 @@ public class FinnEkstremData
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
 					}
-				}
-			}
-		}
+				} // end of else
+			} // end of while(...)
+		} // end of if(rMinNedbør.isSelected())
 		if(rNedbør.isSelected())
 		{
 			while(iterator.hasNext())
@@ -257,8 +263,8 @@ public class FinnEkstremData
 							aktuelleSteder=new Stedliste();
 							aktuelleSteder.settInn(sted);
 						}
-					}
-				}
+					} // end of if(tempDato!=null)
+				} // end of if(rEnkelverdi.isSelected())
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgNedbør() : sted.getDatoliste().finnDatoer(år).getAvgNedbør();
@@ -274,9 +280,9 @@ public class FinnEkstremData
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
 					}
-				}
-			}
-		}
+				} // end of else
+			} // end of while(...)
+		} // end of if(rNedbør.isSelected())
 		if(rMintemp.isSelected())
 		{
 			while(iterator.hasNext())
@@ -307,8 +313,8 @@ public class FinnEkstremData
 							aktuelleSteder=new Stedliste();
 							aktuelleSteder.settInn(sted);
 						}
-					}
-				}
+					} // end of if(tempDato!=null)
+				} // end of if(rEnkelverdi.isSelected())
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMinTemp() : sted.getDatoliste().finnDatoer(år).getAvgMinTemp();
@@ -324,9 +330,9 @@ public class FinnEkstremData
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
 					}
-				}
-			}
-		}
+				} // end of else
+			} // end of while(...)
+		} // end of if(rMintemp.isSelected())
 		if(rMaxtemp.isSelected())
 		{
 			while(iterator.hasNext())
@@ -357,8 +363,8 @@ public class FinnEkstremData
 							aktuelleSteder=new Stedliste();
 							aktuelleSteder.settInn(sted);
 						}
-					}
-				}
+					} // end of if(tempDato!=null)
+				} // end of if(rEnkelverdi.isSelected())
 				else
 				{
 					verdi=rmåned.isSelected() ? sted.getDatoliste().finnDatoer(år,måned).getAvgMaxTemp() : sted.getDatoliste().finnDatoer(år).getAvgMaxTemp();
@@ -374,9 +380,9 @@ public class FinnEkstremData
 						aktuelleSteder=new Stedliste();
 						aktuelleSteder.settInn(sted);
 					}
-				}
-			}
-		}
+				} // end of else
+			} // end of while(...)
+		} // end of if(rMaxtemp.isSelected())
 		if((rMinNedbør.isSelected() && minNedbør > Registrering.MAXNEDBØR) || (rNedbør.isSelected() && maxNedbør == -1) || (rMintemp.isSelected() && minTemp>Registrering.MAXMAXTEMP) || (rMaxtemp.isSelected() && maxTemp<Registrering.MAXMINTEMP))
 		{
 			SkrivMelding.skriv("Det eksisterer ikke data for dette området i denne tidsperioden/I", panel);
@@ -387,7 +393,7 @@ public class FinnEkstremData
 		if(rAvgverdi.isSelected())
 			return finnAvgverdiForSteder(aktuelleSteder, rmåned, rår, måned, år, rMinNedbør, rNedbør, rMintemp, rMaxtemp, antVerdier);
 		return null;
-	}
+	} // end of finnDataForSteder(...)
 	
 	// =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 =========================== NIVÅ 3 ===========================
 
@@ -485,13 +491,14 @@ public class FinnEkstremData
 					returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 					i++;
 				}
-			}
-		}
+			} // end of else
+		} // end of while(iterator.hasNext())
 		return returarray;
-	}
+	} // end of finnEnkelverdiForSteder(...)
 	
 	/**
 	 * Metoden behandler dataene som kommer inn og setter dem i et to-dimensjonalt array som så returneres
+	 * @author Henrik Hermansen
 	 * @param sl			stedliste med de stedene som har en eller flere datoer med den ekstremverdien det søkes etter
 	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
 	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
@@ -534,5 +541,5 @@ public class FinnEkstremData
 			i++;
 		}
 		return returarray;
-	}
-}
+	} // end of finnAvgverdiForSteder(...)
+} // end of class FinnEkstremData

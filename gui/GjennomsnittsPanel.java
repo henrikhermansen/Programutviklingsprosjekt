@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen GjennomsnittsPanel.
+ * @author Lars Smeby
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -11,9 +18,8 @@ import logic.Gjennomsnitt;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet hvor man henter ut gjennomsnittsverdier.
  */
 public class GjennomsnittsPanel extends MetroPanel 
 {
@@ -25,6 +31,7 @@ public class GjennomsnittsPanel extends MetroPanel
 
 	/**
 	 * Konstruktør som setter layoutet på panelet
+	 * @author Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 */
 	public GjennomsnittsPanel(Stedliste sl) 
@@ -91,7 +98,7 @@ public class GjennomsnittsPanel extends MetroPanel
 	
 	/**
 	 * Lytter på knapper og felt
-	 * @author Lars
+	 * @author Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener
 	{
@@ -121,7 +128,7 @@ public class GjennomsnittsPanel extends MetroPanel
 				Object[][] data = Gjennomsnitt.finnGjennomsnitt(sl, lår, panel, fylke, sted, rland, rfylke, rsted);
 				if(data != null)
 					genererTabell(data);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class GjennomsnittsPanel

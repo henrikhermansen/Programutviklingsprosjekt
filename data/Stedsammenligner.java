@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Stedsammenligner.
+ * @author Lars Smeby
+ * @since 28.04.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package data;
 
 import java.text.*;
@@ -6,9 +13,7 @@ import java.util.Comparator;
 import logic.SkrivMelding;
 
 /**
- * @author	Gruppe 3
- * @version	1
- * @since	1.6
+ * Klassen implementerer en Comparator, og brukes til å sortere steder etter navn.
  */
 public class Stedsammenligner implements Comparator<Sted>
 {
@@ -63,4 +68,4 @@ public class Stedsammenligner implements Comparator<Sted>
 			return verdi;
 		return kollator.compare(Integer.toString(a.getFylke()), Integer.toString(b.getFylke()));
 	}
-}
+} // end of class Stedsammenligner

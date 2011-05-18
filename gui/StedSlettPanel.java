@@ -1,5 +1,9 @@
 /**
- * 
+ * Inneholder klassen StedSlettPanel.
+ * @author Bård Skeie
+ * @since 15.05.2011
+ * @updated 18.05.2011
+ * @version	1
  */
 package gui;
 
@@ -13,9 +17,8 @@ import logic.SkrivMelding;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet der man sletter steder.
  */
 public class StedSlettPanel extends MetroPanel 
 {
@@ -76,9 +79,7 @@ public class StedSlettPanel extends MetroPanel
 					return;
 				SkrivMelding.skriv(resultat, panel);
 				hentSteder(fylke.getSelectedIndex());
-			}
-		}
-	}
-}
-
-
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class StedSlettPanel

@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen StedDataPanel.
+ * @author Lars Smeby
+ * @since 04.05.2011
+ * @updated 13.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -10,9 +17,8 @@ import logic.FinnData;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet der data for sted blir hentet ut.
  */
 public class StedDataPanel extends MetroPanel
 {
@@ -131,7 +137,7 @@ public class StedDataPanel extends MetroPanel
 			{
 				ldag.setEnabled(false);
 				lmåned.setEnabled(false);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class StedDataPanel

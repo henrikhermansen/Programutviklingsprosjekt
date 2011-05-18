@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen FinnData.
+ * @author Lars Smeby, Bård Skeie
+ * @since 10.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package logic;
 
 import java.util.Iterator;
@@ -7,9 +14,7 @@ import javax.swing.*;
 import data.*;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for å hente ut værdata for et sted, en dato eller begge deler.
  */
 public class FinnData
 {
@@ -270,6 +275,5 @@ public class FinnData
 		}
 
 		return returarray;
-	}
-}
-
+	} // end of FinnDatoVaer(...)
+} // end of class FinnData

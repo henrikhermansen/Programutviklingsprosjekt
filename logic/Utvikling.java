@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Utvikling.
+ * @author Lars Smeby
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package logic;
 
 import gui.MetroPanel;
@@ -12,9 +19,9 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for å regne ut data som brukes til å tegne
+ *	utviklings-grafikk.
+ *	Metoden dataTilGrafikk(...) kalles opp, som igjen kaller opp korrekt undermetode.
  */
 public class Utvikling
 {
@@ -62,7 +69,7 @@ public class Utvikling
 				int måned = lmåned.getSelectedIndex();
 				return landData(sl, år, måned);
 			}
-		}
+		} // end of if(rland.isSelected())
 		
 		int f = fylke.getSelectedIndex();
 		
@@ -81,7 +88,7 @@ public class Utvikling
 				int måned = lmåned.getSelectedIndex();
 				return fylkeData(sl, panel, f, år, måned);
 			}
-		}
+		} // end of if(rfylke.isSelected())
 		
 		String s = (String) sted.getSelectedItem();
 		if(s == null)
@@ -111,9 +118,9 @@ public class Utvikling
 				int måned = lmåned.getSelectedIndex();
 				return stedData(panel,st,år,måned);
 			}
-		}
+		} // end of if(rsted.isSelected())
 		return null; //Programmet kommer aldri hit, men kompilatoren krever det siden koden ikke har noen else.
-	}
+	} // end of dataTilGrafikk(...)
 	
 	/**
 	 * Henter gjennomsnittsdata for hele landet fra et gitt år og 10 år bakover, og returnerer data til grafikk
@@ -344,7 +351,7 @@ public class Utvikling
 				returarray[0][i] = -1;
 				returarray[1][i] = Registrering.MAXMAXTEMP + 1;
 			}
-		}
+		} // end of for(...)
 		
 		return returarray;
 	}
@@ -386,9 +393,9 @@ public class Utvikling
 						returarray[1][i] += dato.getAvgTemp();
 						tellerarray[1][i]++;
 					}
-				}
-			}
-		}
+				} // end of if(dato != null)
+			} // end og for(...)
+		} // end of while(...)
 		
 		for(int i = 0; i < returarray[0].length; i++)
 		{
@@ -402,5 +409,5 @@ public class Utvikling
 		}
 		
 		return returarray;
-	}
-}
+	} // end of månedsdata(...)
+} // end of class Utvikling

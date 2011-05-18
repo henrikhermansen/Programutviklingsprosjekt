@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen UtviklingPanel.
+ * @author Lars Smeby
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -12,9 +19,8 @@ import logic.Utvikling;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse til MetroPanel, og representerer gui og lyttere
+ *	til panelet der der grafikk over utvikling tegnes ut.
  */
 public class UtviklingPanel extends MetroPanel
 {
@@ -187,7 +193,7 @@ public class UtviklingPanel extends MetroPanel
 				double[][] data = Utvikling.dataTilGrafikk(sl,panel,rland,rfylke,rsted,rår,rmåned,rmangeår,fylke,sted,lår,lmåned);
 				if(data != null)
 					genererGrafikk(data);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class UtviklingPanel

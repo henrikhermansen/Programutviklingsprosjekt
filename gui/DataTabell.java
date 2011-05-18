@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen DataTabell.
+ * @author Lars Smeby
+ * @since 10.05.2011
+ * @updated 16.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.sql.Date;
@@ -5,9 +12,8 @@ import java.sql.Date;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen extender AbstractTableModel, og er en tabellmodell som brukes i
+ *	alle tabellene i programmet.
  */
 @SuppressWarnings("serial")
 public class DataTabell extends AbstractTableModel
@@ -85,4 +91,4 @@ public class DataTabell extends AbstractTableModel
 	{
 		return celler[rad][kolonne];
 	}
-}
+} // end of class DataTabell

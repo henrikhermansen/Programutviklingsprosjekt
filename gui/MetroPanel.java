@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen MetroPanel.
+ * @author Lars Smeby
+ * @since 04.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.*;
@@ -12,9 +19,6 @@ import data.Stedliste;
 /**
  * Klasse som fungerer som superklasse til alle andre paneler.
  * Knapper, lister, felt og metoder som går mye igjen ligger her.
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
  */
 public abstract class MetroPanel
 {
@@ -148,5 +152,5 @@ public abstract class MetroPanel
 		tabellPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
 		panel.remove(1);
 		panel.add(tabellPanel, BorderLayout.CENTER);
-	}
-}
+	} // end of genererTabell(...)
+} // end of class MetroPanel

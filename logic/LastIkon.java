@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen LastIkon.
+ * @author Lars Smeby
+ * @since 16.05.2011
+ * @updated 16.05.2011
+ * @version	1
+ */
 package logic;
 
 import java.net.URL;
@@ -6,12 +13,11 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder en statisk hjelpemetode for å laste inn ikoner.
  */
 public class LastIkon
 {
+	private static final String IKONSTI = "/images/icons/";
 	/**
 	 * Hjelpemetode for å laste inn ikoner til knappene
 	 * @author Lars Smeby
@@ -20,9 +26,9 @@ public class LastIkon
 	 */
 	public static Icon last(String filnavn)
 	{
-		URL ikonURL = LastIkon.class.getResource("/images/icons/" + filnavn);
+		URL ikonURL = LastIkon.class.getResource(IKONSTI + filnavn);
 		if(ikonURL != null)
 			return new ImageIcon(ikonURL);
 		return null;
 	}
-}
+} // end of class LastIkon

@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen DatoDataPanel.
+ * @author Lars Smeby, Bård Skeie
+ * @since 04.05.2011
+ * @updated 13.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.event.*;
@@ -8,9 +15,8 @@ import logic.FinnData;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse til MetroPanel, og representerer gui og lyttere
+ *	til panelet for henting av data for en bestemt dato.
  */
 public class DatoDataPanel extends MetroPanel
 {
@@ -71,6 +77,6 @@ public class DatoDataPanel extends MetroPanel
 			}
 			if(e.getSource() == lår || e.getSource() == lmåned)
 				hentDager(ldag.getSelectedIndex());
-		}
-	}
-}
+		} // end of actionPerformed(...)
+	} // end of class Handlingslytter
+} // end of class DatoDataPanel

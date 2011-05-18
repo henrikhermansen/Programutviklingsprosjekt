@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Filhåndterer.
+ * @author Bård Skeie
+ * @since 04.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package data;
 
 import java.io.*;
@@ -7,21 +14,17 @@ import javax.swing.JPanel;
 import logic.SkrivMelding;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ * Klassen inneholder static-metoder for å skrive og lese data fra/til fil
  */
 public class Filhåndterer
 {
-	//Denne klassen laster og lagrer data fra/til fil. Static-metoder.
-	
 	final static String FILNAVN = "Metrodata.dta";
 	
 	/**
 	 * Metode som laster inn fil ved oppstart av programmet.
 	 * @author Bård Skeie
 	 */
-	public static Stedliste lastInnFil(JPanel panel)
+	public static Stedliste lastInnFil()
 	{
 		Stedliste sl;
 		ObjectInputStream inn;
@@ -34,17 +37,17 @@ public class Filhåndterer
 		}
 		catch(ClassNotFoundException cnfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B001)/E", panel);
+			System.out.println("Ukjent programfeil, oppretter ny fil (B001)");
 			sl = new Stedliste();
 		}
 		catch(FileNotFoundException fnfe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B002)/E", panel);
+			System.out.println("Fant ikke fil, oppretter ny (B002)");
 			sl = new Stedliste();
 		}
 		catch(IOException ioe)
 		{
-			SkrivMelding.skriv("Ukjent programfeil, oppretter ny fil (B003)/E", panel);
+			System.out.println("Ukjent programfeil, oppretter ny fil (B003)");
 			sl = new Stedliste();
 		}
 		
@@ -78,5 +81,4 @@ public class Filhåndterer
 			System.exit(1);
 		}
 	}
-	
-}
+} // end of class Filhåndterer

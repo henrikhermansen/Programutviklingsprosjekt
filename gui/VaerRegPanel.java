@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen VaerRegPanel.
+ * @author Henrik Hermansen, Bård Skeie
+ * @since 28.04.2011
+ * @updated 15.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.event.*;
@@ -8,9 +15,8 @@ import logic.SkrivMelding;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet hvor man registrerer værdata.
  */
 public class VaerRegPanel extends MetroPanel
 {
@@ -106,7 +112,7 @@ public class VaerRegPanel extends MetroPanel
 					lår.setSelectedIndex(0);
 				}
 				SkrivMelding.skriv(resultat, panel);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HandlingsLytter
+} // end of class VaerRegPanel

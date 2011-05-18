@@ -1,12 +1,17 @@
+/**
+ * Inneholder klassen SkrivMelding.
+ * @author Lars Smeby
+ * @since 15.05.2011
+ * @updated 15.05.2011
+ * @version	1
+ */
 package logic;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder en statisk hjelpemetode for utskrift av dialogbokser til brukeren.
  */
 public class SkrivMelding
 {
@@ -41,4 +46,4 @@ public class SkrivMelding
 		
 		JOptionPane.showMessageDialog(panel, utskrift, overskrift, type);
 	}
-}
+} // end of class SkrivMelding

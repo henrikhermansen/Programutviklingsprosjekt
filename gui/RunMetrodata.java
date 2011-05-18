@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen RunMetrodata.
+ * @author Lars Smeby
+ * @since 28.04.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import data.*;
@@ -5,9 +12,8 @@ import data.*;
 import java.awt.EventQueue;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder programmets main-metode og laster inn data
+ *	fra fil før det oppretter hovedvinduet.
  */
 public class RunMetrodata {
 
@@ -18,7 +24,7 @@ public class RunMetrodata {
 	 */
 	public static void main(String[] args)
 	{
-		final Stedliste sl = Filhåndterer.lastInnFil(null);
+		final Stedliste sl = Filhåndterer.lastInnFil();
 		
 		EventQueue.invokeLater(new Runnable() {
 												@Override
@@ -27,5 +33,5 @@ public class RunMetrodata {
 													new Metrovindu(sl);
 												}
 											});
-	}
-}
+	} // end of main(...)
+} // end of class RunMetrodata

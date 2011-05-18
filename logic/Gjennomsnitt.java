@@ -1,5 +1,9 @@
 /**
- * 
+ * Inneholder klassen Gjennomsnitt.
+ * @author Bård Skeie
+ * @since 12.05.2011
+ * @updated 18.05.2011
+ * @version	1
  */
 package logic;
 
@@ -15,11 +19,10 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for å hente ut gjennomsnittsdata.
+ *	Metoden finnGjennomsnitt(...) kalles opp, og gjør deretter kall på korrekt undermetode.
  */
-public class Gjennomsnitt 
+public class Gjennomsnitt
 {
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør for et gitt sted et gitt år
@@ -53,7 +56,7 @@ public class Gjennomsnitt
 				totalNedbør += neste.getNedbør();
 				nedbørTeller++;
 			}
-		}
+		} // end of while(...)
 		
 		//Oppretter og setter inn i retur-arrayet.
 		double[] returarray = new double[3];
@@ -106,7 +109,7 @@ public class Gjennomsnitt
 				totalNedbør += neste.getNedbør();
 				nedbørTeller++;
 			}
-		}
+		} // end of while(...)
 		
 		//Oppretter og setter inn i retur-arrayet.
 		double[] returarray = new double[3];
@@ -163,7 +166,7 @@ public class Gjennomsnitt
 					dataarray[i][2] += temp[2];
 					tellerarray[i][2]++;
 				}				
-			}
+			} // end of for(...)
 			
 			double[] temp = gjennomsnitt(panel, år, tempsted);
 			if(temp[0] >= 0)
@@ -181,7 +184,7 @@ public class Gjennomsnitt
 				dataarray[dataarray.length-1][2] += temp[2];
 				tellerarray[dataarray.length-1][2]++;
 			}
-		}
+		} // end of while(...)
 		
 		for(int i = 0; i < dataarray.length; i++)
 		{
@@ -238,8 +241,8 @@ public class Gjennomsnitt
 					dataarray[j][2] += templiste[j][2];
 					tellerarray[j][2]++;
 				}
-			}
-		}
+			} // end of for(...)
+		} // end of for(...)
 		
 		for(int i = 0; i < dataarray.length; i++)
 		{
@@ -413,4 +416,4 @@ public class Gjennomsnitt
 		
 		return returarray;
 	}
-}
+} // end of class Gjennomsnitt

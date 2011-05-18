@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Registrering.
+ * @author Lars Smeby, Bård Skeie
+ * @since 10.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package logic;
 
 import java.util.GregorianCalendar;
@@ -7,9 +14,7 @@ import javax.swing.*;
 import data.*;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for registrering av sted og værdata, samt for sletting.
  */
 public class Registrering
 {
@@ -75,7 +80,7 @@ public class Registrering
 			sl.slettSted(slettSted);
 			return stedString + " og alle tilhørende data ble slettet fra registeret./I";
 		}
-	}
+	} // end of slettSted(...)
 	
 	/**
 	 * Metode som registrerer værdata for et sted.
@@ -195,8 +200,8 @@ public class Registrering
 			if(minT)
 			{
 				d.setMinTemp(minTemp);
-			}
-		}
+			} // end of if(minT)
+		} // end of if(minT)
 		
 		if(maxT)
 		{
@@ -216,8 +221,8 @@ public class Registrering
 			if(maxT)
 			{
 				d.setMaxTemp(maxTemp);
-			}
-		}
+			} // end of if(maxT)
+		} // end of if(maxT)
 		
 		if(nedB)
 		{
@@ -235,8 +240,8 @@ public class Registrering
 			if(nedB)
 			{
 				d.setNedbør(nedbør);
-			}
-		}
+			} // end of if(nedB)
+		} // end of if(nedB)
 		
 		if(!nedB && !minT && !maxT)
 			return "Ingen data registrert/I";
@@ -267,5 +272,5 @@ public class Registrering
 		}
 		
 		return "Data ble satt inn i tabellen/I";
-	}
-}
+	} // end of registrerData(...)
+} // end of class Registrering

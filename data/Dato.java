@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Dato.
+ * @author Henrik Hermansen
+ * @since 28.04.2011
+ * @updated 13.05.2011
+ * @version	1
+ */
 package data;
 
 import java.io.Serializable;
@@ -7,9 +14,7 @@ import java.util.GregorianCalendar;
 import logic.Registrering;
 
 /**
- * @author	Gruppe 3
- * @version	1
- * @since	1.6
+ * Klassen representerer en dato, og inneholder værdata for denne.
  */
 public class Dato implements Serializable
 {
@@ -162,4 +167,4 @@ public class Dato implements Serializable
 				"Maksimumstemperatur: "+getMaxTemp()+"\n"+
 				"Nedbør: "+getNedbør();
 	}
-}
+} // end of class Dato

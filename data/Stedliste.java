@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen Sted.
+ * @author Lars Smeby, Henrik Hermansen
+ * @since 28.04.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package data;
 
 import java.io.Serializable;
@@ -6,9 +13,7 @@ import java.util.*;
 import logic.SkrivMelding;
 
 /**
- * @author	Gruppe 3
- * @version	1
- * @since	1.6
+ * Klassen representerer en liste av Sted-objekter, og metoder som kan brukes på disse
  */
 public class Stedliste implements Serializable
 {
@@ -130,4 +135,4 @@ public class Stedliste implements Serializable
 		liste.remove(s);
 		sorter();
 	}
-}
+} // end of class Stedliste

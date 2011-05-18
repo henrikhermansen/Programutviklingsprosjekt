@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen RekordPanel.
+ * @author Henrik Hermansen
+ * @since 18.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package gui;
 
 import java.awt.GridLayout;
@@ -10,9 +17,8 @@ import logic.FinnRekordData;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen er en subklasse av MetroPanel, og representerer gui og lyttere
+ *	for panelet hvor utskrift av rekorder foregår.
  */
 public class RekordPanel extends MetroPanel
 {
@@ -93,7 +99,7 @@ public class RekordPanel extends MetroPanel
 				Object[][] data = FinnRekordData.finnData(sl, panel, rNedbør, rMintemp, rMaxtemp);
 				if(data != null)
 					genererTabell(data,rNedbør,rMintemp,rMaxtemp);
-			}
-		}
-	}
-}
+			} // end of if(...)
+		} // end of actionPerformed(...)
+	} // end of class HanslingsLytter
+} // end of class RekordPanel

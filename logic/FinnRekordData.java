@@ -1,3 +1,10 @@
+/**
+ * Inneholder klassen FinnRekordData.
+ * @author Henrik Hermansen
+ * @since 18.05.2011
+ * @updated 18.05.2011
+ * @version	1
+ */
 package logic;
 
 import java.util.GregorianCalendar;
@@ -11,9 +18,7 @@ import data.Sted;
 import data.Stedliste;
 
 /**
- *	@author		Gruppe 3
- *	@version	1
- *	@since		1.6
+ *	Klassen inneholder statiske metoder for å hente ut rekorddata for hver måned.
  */
 public class FinnRekordData
 {
@@ -61,8 +66,8 @@ public class FinnRekordData
 					minTemp[år][måned]=dato.getMinTemp();
 				if(rMaxtemp.isSelected() && dato.getMaxTemp()>maxTemp[år][måned] && dato.getMaxTemp()>=Registrering.MAXMINTEMP && dato.getMaxTemp()<=Registrering.MAXMAXTEMP)
 					maxTemp[år][måned]=dato.getMaxTemp();
-			}
-		}
+			} // end of while(datoiterator.hasNext())
+		} // end of while(iterator.hasNext())
 		Object[][] returarray=new Object[0][6];
 		int i=0;
 		iterator=sl.iterator();
@@ -108,15 +113,15 @@ public class FinnRekordData
 					returarray[i][5] = Sted.FYLKESLISTE[sted.getFylke()];
 					i++;
 				}
-			}
-		}
+			} // end of while(datoiterator.hasNext())
+		} // end of while(iterator.hasNext())
 		if(returarray.length==0)
 		{
 			SkrivMelding.skriv("Fant ingen data for dette søket./W", panel);
 			return null;
 		}
 		return returarray;
-	}
+	} // end of finnData(...)
 	
 	/**
 	 * Metoden utvider størrelsen på den første dimensjonen av det to-dimensjonalet Object-arrayet array med 1
@@ -133,4 +138,4 @@ public class FinnRekordData
 			returarray[i]=array[i];
 		return returarray;
 	}
-}
+} // end of class FinnRekordData
