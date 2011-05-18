@@ -148,6 +148,10 @@ public class Registrering
 			return "Maksimumstemperatur kan ikke være større enn minimumstemperatur/W";
 		if(minT && maxT && ((maxTemp < MAXMINTEMP || maxTemp > MAXMAXTEMP) || (minTemp < MAXMINTEMP || minTemp > MAXMAXTEMP)))
 			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + "./W";
+		if(minT && (minTemp < MAXMINTEMP || minTemp > MAXMAXTEMP))
+			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + "./W";
+		if(maxT && (maxTemp < MAXMINTEMP || maxTemp > MAXMAXTEMP))
+			return "Temperaturer må være mellom " + MAXMINTEMP + " og " + MAXMAXTEMP + "./W";
 		
 		String n = (String) navn.getSelectedItem();
 		if(n == null)
