@@ -33,7 +33,8 @@ public class RekordPanel extends MetroPanel
 	 * @author Henrik Hermansen
 	 * @param sl hoved-stedlisten i programmet
 	 */
-	public RekordPanel(Stedliste sl) {
+	public RekordPanel(Stedliste sl)
+	{
 		super(sl);
 
 		HandlingsLytter handlingslytter = new HandlingsLytter();
