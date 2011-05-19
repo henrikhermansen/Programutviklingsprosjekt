@@ -1,6 +1,7 @@
 /**
  * Inneholder klassen DatoDataPanel.
- * @author Lars Smeby, Bård Skeie
+ * @author Lars Smeby
+ * @author Bård Skeie
  * @since 04.05.2011
  * @updated 13.05.2011
  * @version	1

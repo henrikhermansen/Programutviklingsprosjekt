@@ -1,6 +1,7 @@
 /**
  * Inneholder klassen FinnData.
- * @author Lars Smeby, Bård Skeie
+ * @author Lars Smeby
+ * @author Bård Skeie
  * @since 10.05.2011
  * @updated 18.05.2011
  * @version	1

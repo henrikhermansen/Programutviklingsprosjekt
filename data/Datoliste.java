@@ -1,6 +1,7 @@
 /**
  * Inneholder klassen Datoliste.
- * @author Henrik Hermansen, Lars Smeby
+ * @author Henrik Hermansen
+ * @author Lars Smeby
  * @since 28.04.2011
  * @updated 18.05.2011
  * @version	1

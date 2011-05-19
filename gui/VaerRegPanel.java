@@ -1,6 +1,7 @@
 /**
  * Inneholder klassen VaerRegPanel.
- * @author Henrik Hermansen, Bård Skeie
+ * @author Henrik Hermansen
+ * @author Bård Skeie
  * @since 28.04.2011
  * @updated 15.05.2011
  * @version	1
@@ -32,35 +33,21 @@ public class VaerRegPanel extends MetroPanel
 	{
 		super(sl);
 		
-		/**
-		 * handlingslytter	En ActionListener for JComboBox'ene og JButton.
-		 */
 		HandlingsLytter handlingslytter=new HandlingsLytter();
 		
-		/**
-		 * En JComboBox med liste over alle fylkene. handlingslytter legges på som ActionListener.
-		 */
 		fylke.addActionListener(handlingslytter);
 		hentSteder(fylke.getSelectedIndex());
 		lår.addActionListener(handlingslytter);
 		lmåned.addActionListener(handlingslytter);
 		hentDager(0);
-		/**
-		 * Oppretter tekstfelt for værdataene.
-		 */
+		
 		minTemp=new JTextField(10);
 		maxTemp=new JTextField(10);
 		nedbør=new JTextField(10);
 		
-		/**
-		 * Oppretter knappen for å utføre en registrering av værdata.
-		 */
 		registrer=new JButton("Registrer værdata");
 		registrer.addActionListener(handlingslytter);
 		
-		/**
-		 * Legger inn alt av innhold i panelet.
-		 */
 		grid.add(new JLabel("Velg fylke"));
 		grid.add(fylke);
 		grid.add(new JLabel("Velg sted"));
@@ -79,7 +66,8 @@ public class VaerRegPanel extends MetroPanel
 	
 	/**
 	 * Privat lytterklasse av typen ActionListener.
-	 * @author Henrik Hermansen, Bård Skeie
+	 * @author Henrik Hermansen
+	 * @author Bård Skeie
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

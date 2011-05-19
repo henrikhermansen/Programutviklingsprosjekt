@@ -1,6 +1,7 @@
 /**
  * Inneholder klassen Sted.
- * @author Lars Smeby, Henrik Hermansen
+ * @author Lars Smeby
+ * @author Henrik Hermansen
  * @since 28.04.2011
  * @updated 18.05.2011
  * @version	1

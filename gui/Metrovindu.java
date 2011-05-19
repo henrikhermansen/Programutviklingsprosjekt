@@ -1,6 +1,8 @@
 /**
  * Inneholder klassen Metrovindu.
- * @author Lars Smeby, Bård Skeie, Henrik Hermansen
+ * @author Lars Smeby
+ * @author Bård Skeie
+ * @author Henrik Hermansen
  * @since 28.04.2011
  * @updated 18.05.2011
  * @version	1
@@ -48,7 +50,8 @@ public class Metrovindu extends JFrame
 	 * og "hjelp".
 	 * Menyen på venstre side i hovedvinduet blir opprettet samt plassen til panelvinduet 
 	 * på venstre siden.
-	 * @author Lars Smeby, Henrik Hermansen
+	 * @author Lars Smeby
+	 * @author Henrik Hermansen
 	 */
 	public Metrovindu(Stedliste sl)
 	{
@@ -267,7 +270,8 @@ public class Metrovindu extends JFrame
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
 	 * til venstre i hovedvinduet og til knappene til i menyen.
 	 * Tar seg av skifting av de forskjellige panelene.
-	 * @author Lars Smeby, Bård Skeie
+	 * @author Lars Smeby
+	 * @author Bård Skeie
 	 */
 	private class MenyKnappelytter implements ActionListener
 	{
