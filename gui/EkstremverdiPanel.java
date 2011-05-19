@@ -2,8 +2,7 @@
  * Inneholder klassen EkstremverdiPanel.
  * @author Henrik Hermansen
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -30,7 +29,7 @@ public class EkstremverdiPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør som setter opp panelet for søking etter ekstremverdier
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl hoved-stedlisten i programmet
 	 */
 	public EkstremverdiPanel(Stedliste sl)
@@ -133,7 +132,9 @@ public class EkstremverdiPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Henrik Hermansen
+	 * Metoden kaller opp MetroPanel sin genererTabell()-metoden for å sette dataene inn i tabellen.
+	 * Metoden tilpasse også tabellen til de dataene som skal presenteres.
+	 * Skrevet av: Henrik Hermansen
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
 	public void genererTabell(Object[][] data,JRadioButton rMinNedbør, JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
@@ -168,7 +169,7 @@ public class EkstremverdiPanel extends MetroPanel
 	
 	/**
 	 * Privat lytterklasse for elementene i panelet.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

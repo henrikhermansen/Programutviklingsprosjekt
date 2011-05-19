@@ -2,8 +2,7 @@
  * Inneholder klassen Filhåndterer.
  * @author Bård Skeie
  * @since 04.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package data;
 
@@ -22,7 +21,7 @@ public class Filhåndterer
 	
 	/**
 	 * Metode som laster inn fil ved oppstart av programmet.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 */
 	public static Stedliste lastInnFil()
 	{
@@ -57,7 +56,7 @@ public class Filhåndterer
 	/**
 	 * Metode som lagrer fil. Metoden kobles til "avslutt-knappen", "lagre-knappen" 
 	 * og "vinduslukke-knappen".
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 */
 	public static void lagreFil(Stedliste sl, JPanel panel)
 	{

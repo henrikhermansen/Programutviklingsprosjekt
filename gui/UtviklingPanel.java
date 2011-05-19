@@ -2,8 +2,7 @@
  * Inneholder klassen UtviklingPanel.
  * @author Lars Smeby
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -31,7 +30,7 @@ public class UtviklingPanel extends MetroPanel
 
 	/**
 	 * Konstruktør, tegner ut panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Referanse til Stedlisten med all lagret data
 	 */
 	public UtviklingPanel(Stedliste sl)
@@ -120,7 +119,7 @@ public class UtviklingPanel extends MetroPanel
 	
 	/**
 	 * Oppretter et grafikkpanel og sender med data, og tegner det ut i panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param data	Dataen som skal tegnes ut som grafikk
 	 */
 	public void genererGrafikk(double[][] data)
@@ -134,7 +133,7 @@ public class UtviklingPanel extends MetroPanel
 	
 	/**
 	 * Lytter på knapper og felt
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

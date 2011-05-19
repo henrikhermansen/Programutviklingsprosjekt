@@ -2,8 +2,7 @@
  * Inneholder klassen Utvikling.
  * @author Lars Smeby
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -27,7 +26,7 @@ public class Utvikling
 {
 	/**
 	 * Tar imot alle input-objektene i panelet den kalles fra og konverterer dem, før så og sende de korrekte verdiene videre. Returnerer data til grafikk.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metoden kalles fra
 	 * @param rland	Radioknapp "Hele landet"
@@ -124,7 +123,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for hele landet fra et gitt år og 10 år bakover, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet som metoden ble kalt fra
 	 * @param år	Året søket skal gjøres frem til, altså det siste av maks 10 år
@@ -151,7 +150,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for hele landet et gitt år, en verdi for hver måned, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metoden ble kalt fra
 	 * @param år	Året søket skal gjøres på
@@ -173,7 +172,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for hele landet en gitt måned, en verdi for hver dag, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param år	Året det skal søkes på
 	 * @param måned	Måneden det skal søkes på
@@ -186,7 +185,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for et fylke fra et gitt år og 10 år tilbake i tid, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metoden kalles fra
 	 * @param fylke	Det aktuelle fylket
@@ -221,7 +220,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for et fylke et gitt år, en verdi for hver måned, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metoden kalles fra
 	 * @param fylke	Fylket det skal søkes på
@@ -251,7 +250,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for et fylke en gitt måned, en verdi for hver dag, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metoden kalles fra
 	 * @param fylke	Fylket det skal søkes på
@@ -273,7 +272,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for et sted et gitt år og 10 år bakover i tid, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
 	 * @param sted	Stedet det skal søkes på
 	 * @param år	Året søket skal gjøres frem til, altså det siste av maks 10 år
@@ -300,7 +299,7 @@ public class Utvikling
 	
 	/**
 	 * Henter gjennomsnittsdata for et sted et gitt år, en verdi for hver måned, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
 	 * @param fylke	Fylket det skal søkes på
 	 * @param sted	Stedet det skal søkes på
@@ -323,7 +322,7 @@ public class Utvikling
 	
 	/**
 	 * Henter data for et sted en gitt måned, en verdi for hver dag, og returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
 	 * @param fylke	Fylket det skal søkes på
 	 * @param sted	Stedet det skal søkes på
@@ -358,7 +357,7 @@ public class Utvikling
 	
 	/**
 	 * Hjelpemetode for søk på gjennomsnitt for en måned, for enten alle steder eller steder i et gitt fylke. Returnerer data til grafikk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param stedliste	En vilkårlig stedliste som skal brukes i beregningen
 	 * @param år	Året det skal søkes på
 	 * @param måned	Måneden det skal søkes på

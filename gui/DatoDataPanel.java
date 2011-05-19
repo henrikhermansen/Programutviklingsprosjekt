@@ -3,8 +3,7 @@
  * @author Lars Smeby
  * @author Bård Skeie
  * @since 04.05.2011
- * @updated 13.05.2011
- * @version	1
+ * @version	1 13.05.2011
  */
 package gui;
 
@@ -25,7 +24,7 @@ public class DatoDataPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør som setter opp layoutet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Mottar stedlisten til hovedvinduet
 	 */
 	public DatoDataPanel(Stedliste sl)
@@ -51,7 +50,7 @@ public class DatoDataPanel extends MetroPanel
 	
 	/**
 	 * Genererer en tabell og tegner den ut på panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
 	public void genererTabell(Object[][] data)
@@ -64,7 +63,7 @@ public class DatoDataPanel extends MetroPanel
 	
 	/**
 	 * Handlingslytter til værdata for dato.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

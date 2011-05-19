@@ -2,8 +2,7 @@
  * Inneholder klassen Sted.
  * @author Lars Smeby
  * @since 28.04.2011
- * @updated 16.05.2011
- * @version	1
+ * @version	1 16.05.2011
  */
 package data;
 
@@ -61,7 +60,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Konstruktør
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param n	Navn på sted
 	 * @param f	Fylkesnummer på fylket som stedet ligger i
 	 */
@@ -74,7 +73,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Returnerer stedsnavnet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	stedsnavn
 	 */
 	public String getNavn()
@@ -84,7 +83,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Returnerer fylkesnummeret
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	fylkesnummer
 	 */
 	public int getFylke()
@@ -94,7 +93,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Returnerer datoliste-objektet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	datoliste
 	 */
 	public Datoliste getDatoliste()
@@ -104,7 +103,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Endrer navnet på stedet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param n	Navn
 	 */
 	public void setNavn(String n)
@@ -114,7 +113,7 @@ public class Sted implements Serializable
 	
 	/**
 	 * Endrer fylkesnummeret
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param f	fylkesnummer
 	 */
 	public void setFylke(int f)

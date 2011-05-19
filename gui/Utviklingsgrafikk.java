@@ -2,8 +2,7 @@
  * Inneholder klassen Utviklingsgrafikk.
  * @author Lars Smeby
  * @since 12.05.2011
- * @updated 17.05.2011
- * @version	1
+ * @version	1 17.05.2011
  */
 package gui;
 
@@ -29,7 +28,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Konstruktør, tar imot data til uttegning og setter parametere
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param dataarray	Data som skal tegnes ut. På formatet double[2][x]
 	 * der 2 er nedbørsdata og temperaturdata, og x er dataverdier.
 	 */
@@ -44,7 +43,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Tegner ut grafikken på panelet, kalles automatisk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public void paintComponent(Graphics g)
 	{
@@ -61,7 +60,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Tegner en graf samt tallverdier for nedbørsdata
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param g2d	Grafikktegneren fra paintComponent
 	 */
 	private void tegnNedbørsData(Graphics2D g2d)
@@ -126,7 +125,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Tegner en graf samt tallverdier for temperaturdata
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param g2d	Grafikktegneren fra paintComponent
 	 */
 	private void tegnTemperaturData(Graphics2D g2d)
@@ -195,7 +194,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Tegner labeler (tall) nederst på panelet basert på antall dataverdier mottatt
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param g2d	Grafikktegneren fra paintComponent
 	 */
 	private void tegnLabeler(Graphics2D g2d)
@@ -216,7 +215,7 @@ public class Utviklingsgrafikk extends JPanel
 	
 	/**
 	 * Tegner forklaringer på strekfarger øverst i panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param g2d	Grafikktegneren fra paintComponent
 	 */
 	private void tegnLegend(Graphics2D g2d)

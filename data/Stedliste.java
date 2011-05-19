@@ -3,8 +3,7 @@
  * @author Lars Smeby
  * @author Henrik Hermansen
  * @since 28.04.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package data;
 
@@ -26,7 +25,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Setter inn et sted-objekt bakerst i listen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param s	Sted-objekt
 	 */
 	public void settInn(Sted s)
@@ -37,7 +36,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Sorterer listen etter stedsnavn
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public void sorter()
 	{
@@ -46,7 +45,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Returnerer antall elementer i listen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	int antall elementer
 	 */
 	public int size()
@@ -56,7 +55,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Returnerer iteratoren til listen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Iterator<Sted> til listen
 	 */
 	public Iterator<Sted> iterator()
@@ -66,7 +65,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Finner et sted-objekt hvis det finnes i listen, bruker binærsøk
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param navn	Navn på sted
 	 * @param fylke	Fylket stedet ligger i (SSBs fylkesnummer)
 	 * @return	Et sted-objekt hvis det finnes, ellers null
@@ -90,7 +89,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Returnerer en Stedliste med stedene i et gitt fylke
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param fylke	int fylkesnummeret
 	 * @return	Stedliste med Stedobjektene i et gitt fylke
 	 */
@@ -109,7 +108,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Metode for å få tak i en array med alle stedene i et gitt fylke
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param fylke	Fylkesnummer
 	 * @return	String-array av alle stedsnavnene i et gitt fylke
 	 */
@@ -128,7 +127,7 @@ public class Stedliste implements Serializable
 	
 	/**
 	 * Sletter et sted og alle dets data fra listen (Alle værdata går også tapt)
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param s	Sted-objekt
 	 */
 	public void slettSted(Sted s)

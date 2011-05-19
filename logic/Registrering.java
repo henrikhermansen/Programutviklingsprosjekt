@@ -3,8 +3,7 @@
  * @author Lars Smeby
  * @author Bård Skeie
  * @since 10.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -25,7 +24,7 @@ public class Registrering
 	public static final double MAXMINTEMP = -60, MAXMAXTEMP =  40, MAXNEDBØR = 300;
 	/**
 	 * Metode for å registrere sted
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param navn JTextField med navn på sted
 	 * @param fylke JComboBox med fylke
 	 * @param stedliste Stedlisten med alle data
@@ -51,7 +50,7 @@ public class Registrering
 	
 	/**
 	 * Metode for å slette steder. Data tilknyttet stedet blir også slettet.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param fylke Fylket som stedet hører til.
 	 * @param sted Stedsnavn på stedet som skal slettes.
 	 * @param sl Referanse til stedslisten.
@@ -85,7 +84,7 @@ public class Registrering
 	
 	/**
 	 * Metode som registrerer værdata for et sted.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @return String med tilbakemelding på resultat.
 	 */
 	public static String registrerData(JTextField min, JTextField max, JTextField ned, Stedliste stedliste, JComboBox navn, JComboBox fylke, JComboBox lår, JComboBox lmåned, JComboBox ldag, JPanel panel )

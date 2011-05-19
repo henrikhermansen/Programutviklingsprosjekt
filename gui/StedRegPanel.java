@@ -2,8 +2,7 @@
  * Inneholder klassen StedRegPanel.
  * @author Lars Smeby
  * @since 28.04.2011
- * @updated 15.05.2011
- * @version	1
+ * @version	1 15.05.2011
  */
 package gui;
 
@@ -25,7 +24,7 @@ public class StedRegPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør. Oppretter felt og knapper.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Referanse til stedlisten
 	 */
 	public StedRegPanel(Stedliste sl)
@@ -49,7 +48,7 @@ public class StedRegPanel extends MetroPanel
 	
 	/**
 	 * Indre klasse som lytter på knappen og tekstfelt.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	private class RegStedLytter implements ActionListener
 	{

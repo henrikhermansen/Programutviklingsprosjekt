@@ -2,8 +2,7 @@
  * Inneholder klassen Bildepanel.
  * @author Lars Smeby
  * @since 15.05.2011
- * @updated 16.05.2011
- * @version	1
+ * @version	1 16.05.2011
  */
 package gui;
 
@@ -23,7 +22,7 @@ public class Bildepanel extends JPanel
 
 	/**
 	 * Konstruktør. Laster inn bilde og oppretter det.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public Bildepanel()
 	{
@@ -36,7 +35,7 @@ public class Bildepanel extends JPanel
 	
 	/**
 	 * Overridet fra JPanel. Tegner bildet midt på panelet.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public void paintComponent(Graphics g)
 	{
@@ -49,7 +48,7 @@ public class Bildepanel extends JPanel
 	
 	/**
 	 * Overridet fra JPanel. Returnerer ønsket dimensjon.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public Dimension getPreferredSize()
 	{

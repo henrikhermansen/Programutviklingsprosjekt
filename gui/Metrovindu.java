@@ -4,8 +4,7 @@
  * @author Bård Skeie
  * @author Henrik Hermansen
  * @since 28.04.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -50,8 +49,7 @@ public class Metrovindu extends JFrame
 	 * og "hjelp".
 	 * Menyen på venstre side i hovedvinduet blir opprettet samt plassen til panelvinduet 
 	 * på venstre siden.
-	 * @author Lars Smeby
-	 * @author Henrik Hermansen
+	 * Skrevet av: Lars Smeby, Henrik Hermansen
 	 */
 	public Metrovindu(Stedliste sl)
 	{
@@ -258,7 +256,7 @@ public class Metrovindu extends JFrame
 	
 	/**
 	 * Returnerer en referanse til dette vinduet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Referanse til dette vinduet
 	 */
 	public Metrovindu getMetrovindu()
@@ -270,8 +268,7 @@ public class Metrovindu extends JFrame
 	 * Privat lytteklasse av typen ActionListener for menyknappene 
 	 * til venstre i hovedvinduet og til knappene til i menyen.
 	 * Tar seg av skifting av de forskjellige panelene.
-	 * @author Lars Smeby
-	 * @author Bård Skeie
+	 * Skrevet av: Lars Smeby, Bård Skeie
 	 */
 	private class MenyKnappelytter implements ActionListener
 	{
@@ -373,7 +370,7 @@ public class Metrovindu extends JFrame
 	/**
 	 * Lytteklasse for vinduet. Sørger for at programmet lagrer og avslutter 
 	 * riktig ved bruk av avslutt-knappen oppe til høyre i vinduet.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 */
 	private class Vinduslytter extends WindowAdapter
 	{

@@ -2,8 +2,7 @@
  * Inneholder klassen StedSlettPanel.
  * @author Bård Skeie
  * @since 15.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -26,7 +25,7 @@ public class StedSlettPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør. Oppretter felt og knapp.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param sl Referanse til stedliste
 	 */
 	public StedSlettPanel(Stedliste sl)
@@ -63,7 +62,7 @@ public class StedSlettPanel extends MetroPanel
 	
 	/**
 	 * Privat lytterklasse av typen ActionListener.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

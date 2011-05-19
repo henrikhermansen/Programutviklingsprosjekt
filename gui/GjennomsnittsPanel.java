@@ -2,8 +2,7 @@
  * Inneholder klassen GjennomsnittsPanel.
  * @author Lars Smeby
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -31,7 +30,7 @@ public class GjennomsnittsPanel extends MetroPanel
 
 	/**
 	 * Konstruktør som setter layoutet på panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 */
 	public GjennomsnittsPanel(Stedliste sl) 
@@ -81,7 +80,7 @@ public class GjennomsnittsPanel extends MetroPanel
 	
 	/**
 	 * Genererer en tabell og tegner den ut på panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param data	Dataen som tabellen skal inneholde
 	 */
 	public void genererTabell(Object[][] data)
@@ -98,7 +97,7 @@ public class GjennomsnittsPanel extends MetroPanel
 	
 	/**
 	 * Lytter på knapper og felt
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

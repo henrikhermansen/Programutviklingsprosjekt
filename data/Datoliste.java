@@ -3,8 +3,7 @@
  * @author Henrik Hermansen
  * @author Lars Smeby
  * @since 28.04.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package data;
 
@@ -31,7 +30,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Setter Dato-objektet inn i listen liste.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param dato	et ferdig objekt av klassen Dato.
 	 */
 	public void settInn(Dato dato)
@@ -42,7 +41,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Sorterer Dato-objektene i listen liste i kronologisk rekkefølge.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 */
 	public void sorter()
 	{
@@ -51,7 +50,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Returnerer antall elementer i listen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	int antall elementer
 	 */
 	public int size()
@@ -61,7 +60,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Returnerer iteratoren til listen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Iterator<Sted> til listen
 	 */
 	public Iterator<Dato> iterator()
@@ -72,7 +71,7 @@ public class Datoliste implements Serializable
 	/**
 	 * Returnerer første objekt i listen. Brukes dersom det er generert en datoliste med datoer med ekstremverdier, for å kunne hente ut verdien fra dato-objektet.
 	 * (Alle datoene i denne listen vil ha samme ekstrem-verdi, og det er derfor tilstrekkelig å hente ut kun en, f.eks. den første.)
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return det første Dato-objekt i datolisten
 	 */
 	public Dato første()
@@ -85,7 +84,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner og returnerer et Dato-objekt basert på angitt år, måned og dag.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param år	året i datoen det skal søkes etter.
 	 * @param måned	måneden i datoen det skal søkes etter.
 	 * @param dag	dagen i datoen det skal søkes etter.
@@ -99,7 +98,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner og returnerer et Dato-objekt ved å sammenligne med et allerede opprettet Dato-objekt.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param gc	et GregorianCalendar-objekt.
 	 * @return		et Dato-objekt basert på søkekriteriet.
 	 */
@@ -114,7 +113,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner og returnerer et Datoliste-objekt som inneholder registrerte datoer i det året det søkes etter.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param år	det årstallet man vil hente datoer ut fra.
 	 * @return		et Datoliste-objekt.
 	 */
@@ -133,7 +132,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner og returnerer et Datoliste-objekt som inneholder registrete datoer i den måneden og det året det søkes etter.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param år	det årstallet man vil hente datoer ut fra.
 	 * @param måned	den måneden man vil hente datoer ut fra.
 	 * @return		et Datoliste-objekt.
@@ -153,7 +152,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Kaller videre på calcAvgTemp med passende parameter
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en double-verdi fra calcAvgTemp
 	 */
 	public double getAvgTemp()
@@ -162,7 +161,7 @@ public class Datoliste implements Serializable
 	}
 	/**
 	 * Kaller videre på calcAvgTemp med passende parameter
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en double-verdi fra calcAvgTemp
 	 */
 	public double getAvgMaxTemp()
@@ -171,7 +170,7 @@ public class Datoliste implements Serializable
 	}
 	/**
 	 * Kaller videre på calcAvgTemp med passende parameter
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en double-verdi fra calcAvgTemp
 	 */
 	public double getAvgMinTemp()
@@ -180,7 +179,7 @@ public class Datoliste implements Serializable
 	}
 	/**
 	 * Returnerer gjennomsnittet av gjennomsnitts-, minimums- eller maksimumstemperaturene for datoene i datolisten
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en double-verdi med gjennomsnittet av temperaturer
 	 */
 	private double calcAvgTemp(String type)
@@ -212,7 +211,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner de dato-objektene i datolisten som har den laveste minimumstemperaturen
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en datoliste med de datoene med laveste mintemp
 	 */
 	public Datoliste getMinTemp()
@@ -238,7 +237,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner de dato-objektene i datolisten som har den høyeste maksimumstemperaturen
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en datliste med de datoene med høyeste maxtemp
 	 */
 	public Datoliste getMaxTemp()
@@ -264,7 +263,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Returnerer gjennomsnittet av nedbør for datoene i datolisten
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en double-verdi med gjennomsnittet av nedbør
 	 */
 	public double getAvgNedbør()
@@ -291,7 +290,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner de dato-objektene i datolisten som har den laveste nedbørsmengden
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en datoliste med datoene med laveste nedbørsmengde
 	 */
 	public Datoliste getMinNedbør()
@@ -317,7 +316,7 @@ public class Datoliste implements Serializable
 	
 	/**
 	 * Finner de dato-objektene i datolisten som har den høyeste maksimumstemperaturen
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @return en datoliste med datoene med høyeste nedbørsmengde
 	 */
 	public Datoliste getMaxNedbør()

@@ -2,8 +2,7 @@
  * Inneholder klassen Gjennomsnitt.
  * @author Bård Skeie
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -28,7 +27,7 @@ public class Gjennomsnitt
 {
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør for et gitt sted et gitt år
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param panel	panelet metoden kalles fra
 	 * @param år	aktuelt år
 	 * @param sted	sted
@@ -80,7 +79,7 @@ public class Gjennomsnitt
 	
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør for et gitt sted en gitt måned
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param panel	referanse til panelet metoden kalles fra
 	 * @param år	aktuelt år
 	 * @param måned	aktuell måned
@@ -132,9 +131,8 @@ public class Gjennomsnitt
 	}
 	
 	/**
-	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør.
-	 * pr fylke.
-	 * @author Bård Skeie
+	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør pr fylke.
+	 * Skrevet av: Bård Skeie
 	 * @param fylkesl Stedliste med alle stedene tilhørende fylket.
 	 * @param panel Referanse til panelet som metoden kalles fra.
 	 * @param år Året spørringen gjelder.
@@ -210,7 +208,7 @@ public class Gjennomsnitt
 	/**
 	 * Metode som regner ut gjennomsnittstemperatur, gjennomsnittsnedbør og total-nedbør
 	 * for hele landet.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param sl Stedsliste med alle registrerte steder.
 	 * @param panel Panelet som metoden kalles fra.
 	 * @param år Året søket gjelder for.
@@ -268,7 +266,7 @@ public class Gjennomsnitt
 	/**
 	 * Metode som sjekker hva gjennomsnittsspørringen gjelder og gjør kall
 	 * på aktuell metode og sender med relevante parametere.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param stedliste Stedliste med alle registrerte fylker.
 	 * @param lår Året søket gjelder for
 	 * @param panel Panelet metoden kalles fra.
@@ -325,7 +323,7 @@ public class Gjennomsnitt
 	
 	/**
 	 * Metode som returnerer et flerdimensjonalt Object-array til bruk i tabell
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param stedliste	Stedliste med alle data
 	 * @param lår	årvelger
 	 * @param panel	aktuelt panel
@@ -361,7 +359,7 @@ public class Gjennomsnitt
 	
 	/**
 	 * Metode som lager og returnerer et 2-dim. Object-array med data som viser aktuelt gjennomsnitt.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param sl Stedliste med alle data.
 	 * @param panel Aktuelt panel.
 	 * @param f Fylkesvelger.
@@ -395,7 +393,7 @@ public class Gjennomsnitt
 	
 	/**
 	 * Metode som lager og returnerer et 2-dim. Object-array med data som viser aktuelt gjennomsnitt.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param sl Stedliste med alle data.
 	 * @param panel Aktuelt panel.
 	 * @param år Årvelger.

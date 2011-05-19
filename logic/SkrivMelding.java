@@ -2,8 +2,7 @@
  * Inneholder klassen SkrivMelding.
  * @author Lars Smeby
  * @since 15.05.2011
- * @updated 19.05.2011
- * @version	1
+ * @version	1 19.05.2011
  */
 package logic;
 
@@ -19,7 +18,7 @@ public class SkrivMelding
 	/**
 	 * Metode som tar imot en spesialkonstruert String og skriver ut en melding.
 	 * Meldingen må være på formatet "Meldingstekst/X der X må være I, W, E eller et valgfritt tegn.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param melding	Meldingsteksten med avsluttende kodebokstav
 	 * @param panel	Panelet metoden kalles fra
 	 */
@@ -50,7 +49,7 @@ public class SkrivMelding
 	
 	/**
 	 * Hjelpemetode for å skrive ut "Hjelp"-dialogboksen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param vindu	Vinduet metoden kalles fra
 	 */
 	public static void hjelp(JFrame vindu)
@@ -80,7 +79,7 @@ public class SkrivMelding
 	
 	/**
 	 * Hjelpemetode for å skrive ut "Om"-dialogboksen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param vindu	Vinduet metoden kalles fra
 	 */
 	public static void om(JFrame vindu)

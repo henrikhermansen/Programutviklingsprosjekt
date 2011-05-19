@@ -2,8 +2,7 @@
  * Inneholder klassen MetroPanel.
  * @author Lars Smeby
  * @since 04.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -31,7 +30,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Konstruktør som tegner opp panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten til hovedvinduet
 	 */
 	public MetroPanel(Stedliste sl)
@@ -40,8 +39,6 @@ public abstract class MetroPanel
 		
 		panel = new JPanel(new BorderLayout());
 		grid = new JPanel(new GridLayout(0,2,3,3));
-		
-		//String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 		
 		int detteår = new GregorianCalendar().get(GregorianCalendar.YEAR);
 		String[] årliste = new String[detteår-(FØRSTEÅR-1)];
@@ -66,7 +63,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Returnerer det panelet som skal brukes i hovedvinduet.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return et objekt av typen JPanel.
 	 */
 	public JPanel getPanel()
@@ -76,7 +73,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Oppdaterer stedlisten i gui etter hvilket fylke som er valgt
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param fylke	Fylkesnummeret det skal vises steder for
 	 */
 	protected void hentSteder(int fylke)
@@ -88,7 +85,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Oppdaterer daglisten i gui slik at det vises korrekte datoer i hver måned i året, også ved skuddår.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param valgtDag	Den dagen som allerede er valgt, så den beholdes som aktiv selv om listen oppdateres
 	 */
 	protected void hentDager(int valgtDag)
@@ -127,7 +124,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Brukes til å kunne aksessere fylkeslisten utenfor denne klassen og dens subklasser
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Indexen til det fylke som er valgt i fylkeslisten
 	 */
 	public int getFylke()
@@ -137,7 +134,7 @@ public abstract class MetroPanel
 	
 	/**
 	 * Genererer en tabell og tegner den ut på panelet. Denne må overrides og validate()/repaint() i subklassene
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives ut i tabellen
 	 */
 	public void genererTabell(Object[][] data)

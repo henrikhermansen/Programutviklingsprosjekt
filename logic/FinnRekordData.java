@@ -2,8 +2,7 @@
  * Inneholder klassen FinnRekordData.
  * @author Henrik Hermansen
  * @since 18.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -27,7 +26,7 @@ public class FinnRekordData
 	/**
 	 * Metode som finner rekordverdier for hver måneder i alle år der det finnes data.
 	 * Deretter returneres at to-dimensjonalt Object-array med det/de stedet/stedene som har rekordverdien det spørres etter, for hver måned.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl		hoved-stedlisten i programmet
 	 * @param panel		panelet som kaller opp metoden
 	 * @param rNedbør	radioknappen som sier om det spørres etter data om maksimumsnedbør
@@ -130,7 +129,7 @@ public class FinnRekordData
 	
 	/**
 	 * Metoden utvider størrelsen på den første dimensjonen av det to-dimensjonalet Object-arrayet array med 1
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param array et to-dimensjonalt Object-array som skal utvides
 	 * @return et to-dimensjonalt Object-array der den første dimensjonens størrelse er utvidet med 1 i forhold til parameteret array
 	 */
@@ -146,7 +145,7 @@ public class FinnRekordData
 	
 	/**
 	 * Metoden utvider størrelsen på arrayet array med 1
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param array et int-array som skal utvides
 	 * @return et int-array der størrelsen er utvidet med 1 i forhold til parameteret array
 	 */

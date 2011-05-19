@@ -2,8 +2,7 @@
  * Inneholder klassen DataTabell.
  * @author Lars Smeby
  * @since 10.05.2011
- * @updated 16.05.2011
- * @version	1
+ * @version	1 16.05.2011
  */
 package gui;
 
@@ -23,7 +22,7 @@ public class DataTabell extends AbstractTableModel
 	
 	/**
 	 * Oppretter tabell ved å motta verdier til cellene
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param celler	2-dim Object-array
 	 */
 	public DataTabell(Object[][] celler)
@@ -33,7 +32,7 @@ public class DataTabell extends AbstractTableModel
 	
 	/**
 	 * Returnerer kolonnenavnet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param kolonne	Kolonnenummeret det skal hentes navn for
 	 * @return	Kolonnenavn
 	 */
@@ -44,7 +43,7 @@ public class DataTabell extends AbstractTableModel
 	
 	/**
 	 * Returnerer klassen kolonnen skal formatteres etter
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param kolonne	Kolonnenummeret det gjelder
 	 * @return	Klassetypen til kolonnen
 	 */
@@ -63,7 +62,7 @@ public class DataTabell extends AbstractTableModel
 	
 	/**
 	 * Returnerer antall kolonner i tabellen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Antall kolonner i tabellen
 	 */
 	public int getColumnCount()
@@ -73,7 +72,7 @@ public class DataTabell extends AbstractTableModel
 
 	/**
 	 * Returnerer antall rader i tabellen
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Antall rader i tabellen
 	 */
 	public int getRowCount()
@@ -83,7 +82,7 @@ public class DataTabell extends AbstractTableModel
 
 	/**
 	 * Returnerer innholdet i en celle
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param rad	Radnummer
 	 * @param kolonne	Kolonnenummer
 	 * @return	Celleinnholdet som et objekt

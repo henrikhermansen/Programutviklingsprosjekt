@@ -2,8 +2,7 @@
  * Inneholder klassen FinnEkstremData.
  * @author Henrik Hermansen
  * @since 12.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -28,7 +27,7 @@ public class FinnEkstremData
 	/**
 	 * Hovedmetode som behandler data og sender parametere videre til korrekt undermetode.
 	 * Her blir dag, måned og år behandlet og gjort om til int, det blir opprettet Sted-objekt basert på sted-comboboxen og fylke blir lagret i int basert på fylke-comboboxen
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl			hoved-stedlisten i programmet
 	 * @param panel			panelet som kaller opp metoden
 	 * @param stedLandet	radioknappen som sier om det spørres etter data for hele landet
@@ -92,7 +91,7 @@ public class FinnEkstremData
 	/**
 	 * Undermetode som behandler data og sender parametere videre til korrekt undermetode.
 	 * I denne metoden blir det generert en datoliste med de datoene som passer til søket.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param panel			panelet som kaller opp metoden
 	 * @param fylke			int-representasjon av valgt fylke
 	 * @param sted			Sted-objekt av valgt sted
@@ -145,7 +144,7 @@ public class FinnEkstremData
 	 * Undermetode som behandler data og sender parametere videre til korrekt undermetode.
 	 * I denne metoden blir alle steder i søket og alle stedene sine datoer som inngår i søket gjennomgått for å finne ekstremverdien.
 	 * Deretter blir det generert en stedliste med steder som har en eller flere datoer som har samme verdi som ekstremverdien.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl			hoved-stedlisten i programmet
 	 * @param panel			panelet som kaller opp metoden
 	 * @param fylke			int-representasjon av valgt fylke
@@ -399,7 +398,7 @@ public class FinnEkstremData
 
 	/**
 	 * Metoden behandler dataene som kommer inn og setter dem inn i et to-dimensjonalt array som så returneres
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param datoliste	datoliste som inneholder de datoer som har den ekstremverdien det søkes etter
 	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør
 	 * @param rNedbør		radioknappen som sier om det spørres etter data om maksimumsnedbør
@@ -430,7 +429,7 @@ public class FinnEkstremData
 
 	/**
 	 * Metoden behandler dataene som kommer inn og setter dem i et to-dimensjonalt array som så returneres
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl			stedliste med de stedene som har en eller flere datoer med den ekstremverdien det søkes etter
 	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
 	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
@@ -498,7 +497,7 @@ public class FinnEkstremData
 	
 	/**
 	 * Metoden behandler dataene som kommer inn og setter dem i et to-dimensjonalt array som så returneres
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl			stedliste med de stedene som har en eller flere datoer med den ekstremverdien det søkes etter
 	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
 	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år

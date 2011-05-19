@@ -2,8 +2,7 @@
  * Inneholder klassen RunMetrodata.
  * @author Lars Smeby
  * @since 28.04.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -19,7 +18,7 @@ public class RunMetrodata {
 
 	/**
 	 * Starter hovedtråd og oppretter hovedvinduet.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param args
 	 */
 	public static void main(String[] args)

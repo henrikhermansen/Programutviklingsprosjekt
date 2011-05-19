@@ -2,8 +2,7 @@
  * Inneholder klassen StedDataPanel.
  * @author Lars Smeby
  * @since 04.05.2011
- * @updated 13.05.2011
- * @version	1
+ * @version	1 13.05.2011
  */
 package gui;
 
@@ -29,7 +28,7 @@ public class StedDataPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør, oppretter og tegner panelet.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten til hovedvinduet
 	 */
 	public StedDataPanel(Stedliste sl)
@@ -75,7 +74,7 @@ public class StedDataPanel extends MetroPanel
 	
 	/**
 	 * Genererer en tabell og tegner den ut på panelet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
 	public void genererTabell(Object[][] data)
@@ -88,7 +87,7 @@ public class StedDataPanel extends MetroPanel
 	
 	/**
 	 * Lytteklasse som lytter på knapper og felt
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

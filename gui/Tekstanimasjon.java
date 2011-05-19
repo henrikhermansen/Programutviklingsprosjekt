@@ -2,8 +2,7 @@
  * Inneholder klassen Tekstanimasjon.
  * @author Lars Smeby
  * @since 17.05.2011
- * @updated 17.05.2011
- * @version	1
+ * @version	1 17.05.2011
  */
 package gui;
 
@@ -32,7 +31,7 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	
 	/**
 	 * Konstruktør, setter posisjonsvariabler og starter klokken
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public Tekstanimasjon()
 	{
@@ -47,7 +46,7 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	
 	/**
 	 * Overridet paintComponent-metode. Tegner teksten.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public void paintComponent(Graphics g)
 	{
@@ -58,7 +57,7 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	
 	/**
 	 * Overridet getPreferredSize-metode
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @return	Ønsket dimensjon på panelet
 	 */
 	public Dimension getPreferredSize()
@@ -68,7 +67,7 @@ public class Tekstanimasjon extends JPanel implements ActionListener
 	
 	/**
 	 * Lytter for klokken. Tegner panelet på nytt til stopX er nådd.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

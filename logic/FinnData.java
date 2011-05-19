@@ -3,8 +3,7 @@
  * @author Lars Smeby
  * @author Bård Skeie
  * @since 10.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package logic;
 
@@ -22,7 +21,7 @@ public class FinnData
 	
 	/**
 	 * Metode for å få tak i all data for et gitt sted en gitt dag.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metodekallet gjøres fra
 	 * @param fylke	JComboBox fylkesliste
@@ -83,7 +82,7 @@ public class FinnData
 	
 	/**
 	 * Metode for å få tak i all data for et gitt sted en gitt måned.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metodekallet gjøres fra
 	 * @param fylke	JComboBox fylkesliste
@@ -148,7 +147,7 @@ public class FinnData
 	
 	/**
 	 * Metode for å få tak i all data for et gitt sted et gitt år.
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param sl	Stedlisten med alle lagrede data
 	 * @param panel	Panelet metodekallet gjøres fra
 	 * @param fylke	JComboBox fylkesliste
@@ -211,7 +210,7 @@ public class FinnData
 	
 	/**
 	 * Metode for å finne værdata for et gitt sted på en gitt dato.
-	 * @author Bård Skeie
+	 * Skrevet av: Bård Skeie
 	 * @param navn
 	 * @param fylke
 	 * @param JComboBox

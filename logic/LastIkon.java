@@ -2,8 +2,7 @@
  * Inneholder klassen LastIkon.
  * @author Lars Smeby
  * @since 16.05.2011
- * @updated 16.05.2011
- * @version	1
+ * @version	1 16.05.2011
  */
 package logic;
 
@@ -20,7 +19,7 @@ public class LastIkon
 	private static final String IKONSTI = "/images/icons/";
 	/**
 	 * Hjelpemetode for å laste inn ikoner til knappene
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param filnavn	Navnet på ikon-filen. Må ligge i images/icons.
 	 * @return	ImageIcon-objekt med ikonet, ellers null
 	 */

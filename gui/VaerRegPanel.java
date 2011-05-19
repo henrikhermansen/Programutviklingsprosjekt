@@ -3,8 +3,7 @@
  * @author Henrik Hermansen
  * @author Bård Skeie
  * @since 28.04.2011
- * @updated 15.05.2011
- * @version	1
+ * @version	1 15.05.2011
  */
 package gui;
 
@@ -26,7 +25,7 @@ public class VaerRegPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør, oppretter og tegner panelet
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl	Referanse til stedlisten
 	 */
 	public VaerRegPanel(Stedliste sl)
@@ -66,8 +65,7 @@ public class VaerRegPanel extends MetroPanel
 	
 	/**
 	 * Privat lytterklasse av typen ActionListener.
-	 * @author Henrik Hermansen
-	 * @author Bård Skeie
+	 * Skrevet av: Henrik Hermansen, Bård Skeie
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

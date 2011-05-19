@@ -2,8 +2,7 @@
  * Inneholder klassen RekordPanel.
  * @author Henrik Hermansen
  * @since 18.05.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package gui;
 
@@ -30,7 +29,7 @@ public class RekordPanel extends MetroPanel
 	
 	/**
 	 * Konstruktør som setter opp panelet for søking etter rekordverdier
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param sl hoved-stedlisten i programmet
 	 */
 	public RekordPanel(Stedliste sl)
@@ -61,7 +60,7 @@ public class RekordPanel extends MetroPanel
 	}
 	
 	/**
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param data	Arrayen som inneholder dataene som skal skrives til tabellen
 	 */
 	public void genererTabell(Object[][] data,JRadioButton rNedbør,JRadioButton rMintemp,JRadioButton rMaxtemp)
@@ -94,7 +93,7 @@ public class RekordPanel extends MetroPanel
 	
 	/**
 	 * Privat lytterklasse for elementene i panelet.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 */
 	private class HandlingsLytter implements ActionListener
 	{

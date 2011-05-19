@@ -2,8 +2,7 @@
  * Inneholder klassen Stedsammenligner.
  * @author Lars Smeby
  * @since 28.04.2011
- * @updated 18.05.2011
- * @version	1
+ * @version	1 18.05.2011
  */
 package data;
 
@@ -36,7 +35,7 @@ public class Stedsammenligner implements Comparator<Sted>
 	
 	/**
 	 * Konstruktør
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 * @param fs	Avgjør om fylket stedet ligger i skal være med i betraktningen
 	 */
 	public Stedsammenligner(boolean fs)
@@ -56,7 +55,7 @@ public class Stedsammenligner implements Comparator<Sted>
 	
 	/**
 	 * Sammenlikningsmetoden implementert fra Comparator-interfacet
-	 * @author Lars Smeby
+	 * Skrevet av: Lars Smeby
 	 */
 	@Override
 	public int compare(Sted a, Sted b)
