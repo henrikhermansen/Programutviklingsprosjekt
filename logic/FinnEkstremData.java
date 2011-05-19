@@ -93,14 +93,13 @@ public class FinnEkstremData
 	 * I denne metoden blir det generert en datoliste med de datoene som passer til søket.
 	 * Skrevet av: Henrik Hermansen
 	 * @param panel			panelet som kaller opp metoden
-	 * @param fylke			int-representasjon av valgt fylke
 	 * @param sted			Sted-objekt av valgt sted
 	 * @param rdag			radioknappen om sier om det spørres etter data fra en bestemt dag
 	 * @param rmåned		radioknappen om sier om det spørres etter data fra en bestemt måned
 	 * @param rår			radioknappen om sier om det spørres etter data fra et bestemt år
-	 * @param ldag			comboboxen med valgt dag
-	 * @param lmåned		comboboxen med valgt måned
-	 * @param lår			comboboxen med valgt år
+	 * @param dag			int-representasjon av valgt dag
+	 * @param måned			int-representasjon av valgt måned
+	 * @param år			int-representasjon av valgt år
 	 * @param rEnkelverdi	radioknappen som sier om det spørres etter en enkeltverdi
 	 * @param rAvgverdi		radioknappen som sier om det spørres etter en gjennomsnittsverdi
 	 * @param rMinNedbør	radioknappen som sier om det spørres etter data om minimumsnedbør

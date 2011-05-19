@@ -324,11 +324,10 @@ public class Gjennomsnitt
 	/**
 	 * Metode som returnerer et flerdimensjonalt Object-array til bruk i tabell
 	 * Skrevet av: Bård Skeie
-	 * @param stedliste	Stedliste med alle data
-	 * @param lår	årvelger
+	 * @param år	int-verdi av året
 	 * @param panel	aktuelt panel
 	 * @param fylke	fylkesvelger
-	 * @param jsted	stedvelger
+	 * @param sted	Sted-objektet
 	 * @return	2-dim. Object-array med gjennomsnittsdata, en linje per måned samt en for år
 	 */
 	public static Object[][] finnGjennomsnittSted(int år, JPanel panel, int fylke, Sted sted)
@@ -419,7 +418,7 @@ public class Gjennomsnitt
 	
 	/**
 	 * Metode som utvider størrelsen på String-arrayet array med 1 og setter inn String-verdien tilleggsveri på den nye plassen bakerst i array.
-	 * @author Henrik Hermansen
+	 * Skrevet av: Henrik Hermansen
 	 * @param array Et String-array som skal utvides med 1
 	 * @param tilleggsverdi En String-verdi som skal settes inn på den nye plassen i String-arrayet array
 	 * @return Et String-array

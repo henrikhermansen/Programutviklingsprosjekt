@@ -301,7 +301,6 @@ public class Utvikling
 	 * Henter gjennomsnittsdata for et sted et gitt år, en verdi for hver måned, og returnerer data til grafikk
 	 * Skrevet av: Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
-	 * @param fylke	Fylket det skal søkes på
 	 * @param sted	Stedet det skal søkes på
 	 * @param år	Året det skal søkes på
 	 * @return	En 2-dim. double-array klar til å genereres grafikk fra
@@ -324,7 +323,6 @@ public class Utvikling
 	 * Henter data for et sted en gitt måned, en verdi for hver dag, og returnerer data til grafikk
 	 * Skrevet av: Lars Smeby
 	 * @param panel	Panelet metoden kalles fra
-	 * @param fylke	Fylket det skal søkes på
 	 * @param sted	Stedet det skal søkes på
 	 * @param år	Året det skal søkes på
 	 * @param måned	Måneden det skal søkes på

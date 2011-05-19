@@ -211,10 +211,13 @@ public class FinnData
 	/**
 	 * Metode for å finne værdata for et gitt sted på en gitt dato.
 	 * Skrevet av: Bård Skeie
-	 * @param navn
-	 * @param fylke
-	 * @param JComboBox
-	 * @return
+	 * @param stedliste	Referanse til programmets hoved-stedliste
+	 * @param fylke		Comboboxen med fylkeslisten
+	 * @param lår		Comboboxen med årstallene
+	 * @param lmåned	Comboboxen med månedene
+	 * @param ldag		Comboboxen med dagene i måneden
+	 * @param panel		Panelet som kaller opp metoden
+	 * @return	Object[][] array med datoer og data for et gitt fylke et gitt år
 	 */
 	public static Object[][] FinnDatoVaer(Stedliste stedliste, JComboBox fylke, JComboBox lår, JComboBox lmåned, JComboBox ldag, JPanel panel)
 	{
