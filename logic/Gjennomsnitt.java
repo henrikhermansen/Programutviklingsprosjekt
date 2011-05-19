@@ -7,6 +7,8 @@
  */
 package logic;
 
+import gui.MetroPanel;
+
 import java.util.Iterator;
 
 import javax.swing.JComboBox;
@@ -333,7 +335,7 @@ public class Gjennomsnitt
 	 */
 	public static Object[][] finnGjennomsnittSted(int år, JPanel panel, int fylke, Sted sted)
 	{
-		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
+		String[] måneder = utvidArray(MetroPanel.MÅNEDER,"Hele året");
 		Object[][] returarray = new Object[13][5];
 		
 		for(int i = 0; i < returarray.length - 1; i++)
@@ -377,7 +379,7 @@ public class Gjennomsnitt
 		
 		double[][] dataarray = gjennomsnittFylke(fylkesl, panel, år);
 		Object[][] returarray = new Object[13][5];
-		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
+		String[] måneder = utvidArray(MetroPanel.MÅNEDER,"Hele året");
 		
 		for(int i = 0; i < returarray.length; i++)
 		{
@@ -403,7 +405,7 @@ public class Gjennomsnitt
 	{
 		double[][] dataarray = gjennomsnittLand(sl, panel, år);
 		Object[][] returarray = new Object[13][5];
-		String[] måneder = {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember","Hele året"};
+		String[] måneder = utvidArray(MetroPanel.MÅNEDER,"Hele året");
 		
 		for(int i = 0; i < returarray.length; i++)
 		{
@@ -414,6 +416,24 @@ public class Gjennomsnitt
 			returarray[i][4] = dataarray[i][2] <= Registrering.MAXMAXTEMP ? dataarray[i][2] : null;
 		}
 		
+		return returarray;
+	}
+	
+	/**
+	 * Metode som utvider størrelsen på String-arrayet array med 1 og setter inn String-verdien tilleggsveri på den nye plassen bakerst i array.
+	 * @author Henrik Hermansen
+	 * @param array Et String-array som skal utvides med 1
+	 * @param tilleggsverdi En String-verdi som skal settes inn på den nye plassen i String-arrayet array
+	 * @return Et String-array
+	 */
+	private static String[] utvidArray(String[] array, String tilleggsverdi)
+	{
+		if(array.length==0)
+			return null;
+		String[] returarray=new String[array.length+1];
+		for(int i=0;i<array.length;i++)
+			returarray[i]=array[i];
+		returarray[returarray.length-1]=tilleggsverdi;
 		return returarray;
 	}
 } // end of class Gjennomsnitt
