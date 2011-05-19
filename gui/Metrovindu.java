@@ -12,6 +12,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import logic.LastIkon;
+import logic.SkrivMelding;
 
 import data.Stedliste;
 import data.Filhåndterer;
@@ -356,21 +357,11 @@ public class Metrovindu extends JFrame
 			}
 			if(e.getSource() == hjelpHjelp)
 			{
-				String hjelp = "Hjelp til programmet\n" +
-								"\n" +
-								"For å bruke programmet må du...";
-				JOptionPane.showMessageDialog(getMetrovindu(), hjelp, "Hjelp", JOptionPane.INFORMATION_MESSAGE);
+				SkrivMelding.hjelp(getMetrovindu());
 			}
 			if(e.getSource() == hjelpOm)
 			{
-				String om = "Metrologiske data\n" +
-							"\n" +
-							"Prosjektoppgave i programutvikling våren 2011\n" +
-							"Gruppe 3: Henrik Hermansen, Bård Skeie og Lars Smeby\n" +
-							"Programversjon: 1.0\n" +
-							"Sist oppdatdert: 15.05.2011\n" +
-							"Høyskolen i Oslo";
-				JOptionPane.showMessageDialog(getMetrovindu(), om, "Om", JOptionPane.INFORMATION_MESSAGE);
+				SkrivMelding.om(getMetrovindu());
 			} // end of if(...)
 		} // end of actionPerformed(...)
 	} // end of class MenyKnappelytter
