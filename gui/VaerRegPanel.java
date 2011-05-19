@@ -80,22 +80,9 @@ public class VaerRegPanel extends MetroPanel
 				String resultat = Registrering.registrerData(minTemp, maxTemp, nedbør, sl, sted, fylke, lår, lmåned, ldag, panel);
 				if(resultat.equals("Data ble satt inn i tabellen/I")) //En svak test med tanke på endringer
 				{
-					fylke.setSelectedIndex(0);
-					try
-					{
-					sted.setSelectedIndex(0);
-					}
-					catch(IllegalArgumentException iae)
-					{
-						//Forekommer hvis det ikke er registrert noen steder i Akershus
-						hentSteder(fylke.getSelectedIndex());
-					}
 					minTemp.setText("");
 					maxTemp.setText("");
 					nedbør.setText("");
-					ldag.setSelectedIndex(0);
-					lmåned.setSelectedIndex(0);
-					lår.setSelectedIndex(0);
 				}
 				SkrivMelding.skriv(resultat, panel);
 			} // end of if(...)
