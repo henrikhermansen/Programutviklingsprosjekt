@@ -7,6 +7,7 @@
  */
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ import data.Stedliste;
  */
 public class RekordPanel extends MetroPanel
 {
-	private JPanel type;
+	private JPanel tekst,type;
 	private ButtonGroup typeGruppe;
 	protected JRadioButton rNedbør, rMintemp, rMaxtemp;
 	
@@ -52,7 +53,9 @@ public class RekordPanel extends MetroPanel
 		type.add(rMintemp);
 		type.add(rMaxtemp);
 		
-		grid.add(new JLabel("Velg type rekord"));
+		tekst = new JPanel(new BorderLayout());
+		tekst.add(new JLabel("Velg type rekord"),BorderLayout.PAGE_START);
+		grid.add(tekst);
 		grid.add(type);
 	}
 	
